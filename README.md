@@ -66,3 +66,9 @@ GNU `configure` cannot run usefully on VMS, so it runs on the Linux host with VM
 
 See `docs/PLAN.md` for the overall plan and `docs/vms-environment.md` for the
 toolchain and CRTL findings that drive the configuration.
+
+## Licence
+
+GNU grep and gnulib are licensed under the GNU General Public License, version 3
+or later. The patches and the VMS build files in this repository are distributed
+under the same terms; see `COPYING`.

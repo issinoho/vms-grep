@@ -1,0 +1,76 @@
+Subject: mbrtowc: correct OpenVMS CRTL UTF-8 decoding errors
+
+In UTF-8 locales the VMS CRTL's mbrtowc accepts surrogates (U+D800..U+DFFF)
+and returns (size_t)-2 for the complete sequence of U+10FFFF.  Treat the
+former as EILSEQ and decode well-formed 4-byte sequences it reports as
+incomplete.  Found by tests/hangul-syllable.
+
+--- a/lib/mbrtowc.c	2026-10-03 00:17:32.330305591 +0100
++++ b/lib/mbrtowc.c	2026-10-03 00:17:32.362950362 +0100
+@@ -76,6 +76,40 @@
+ #  include <locale.h>
+ # endif
+ 
++# ifdef __VMS
++#  include <errno.h>
++#  include <langinfo.h>
++#  include <stdlib.h>
++#  include <string.h>
++
++/* The OpenVMS CRTL's UTF-8 locales accept UTF-16 surrogates (U+D800..U+DFFF)
++   as characters and report the complete sequence for U+10FFFF as
++   incomplete.  rpl_mbrtowc corrects both in UTF-8 locales.  */
++static int
++vms_utf8_locale (void)
++{
++  return MB_CUR_MAX > 1 && strcmp (nl_langinfo (CODESET), "UTF-8") == 0;
++}
++
++/* If S[0..N) starts with a well-formed 4-byte UTF-8 sequence, store its
++   code point in *PWC and return 1.  */
++static int
++vms_utf8_decode4 (wchar_t *pwc, const char *s, size_t n)
++{
++  const unsigned char *u = (const unsigned char *) s;
++  unsigned int c;
++  if (n < 4 || u[0] < 0xF0 || 0xF4 < u[0]
++      || (u[1] & 0xC0) != 0x80 || (u[2] & 0xC0) != 0x80 || (u[3] & 0xC0) != 0x80)
++    return 0;
++  c = ((u[0] & 0x07u) << 18) | ((u[1] & 0x3Fu) << 12)
++      | ((u[2] & 0x3Fu) << 6) | (u[3] & 0x3Fu);
++  if (c < 0x10000 || 0x10FFFF < c)
++    return 0;
++  *pwc = c;
++  return 1;
++}
++# endif
++
+ # undef mbrtowc
+ 
+ size_t
+@@ -138,7 +172,25 @@
+   if (ret < (size_t) -2 && pwc != NULL)
+     *pwc = wc;
+ # else
++#  ifdef __VMS
++  int vms_initial = ps != NULL && mbsinit (ps);
++#  endif
+   ret = mbrtowc (pwc, s, n, ps);
++#  ifdef __VMS
++  if (vms_utf8_locale ())
++    {
++      if (ret < (size_t) -2 && 0xD800 <= *pwc && *pwc <= 0xDFFF)
++        {
++          errno = EILSEQ;
++          return (size_t) -1;
++        }
++      if (ret == (size_t) -2 && vms_initial && vms_utf8_decode4 (pwc, s, n))
++        {
++          memset (ps, 0, sizeof *ps);   /* drop the CRTL's partial state */
++          return 4;
++        }
++    }
++#  endif
+ # endif
+ 
+ # if MBRTOWC_NUL_RETVAL_BUG

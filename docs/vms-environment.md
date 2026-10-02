@@ -84,3 +84,10 @@ link and run with the standard CRTL. IA64 has no equivalent, so VSI C remains th
 ### C++ on IA64
 VSI C++ V7.4-006 is installed. It is the classic EDG-based compiler, not clang: there is no `CLANG.EXE`, and it
 rejects C++11 `static_assert`. It gives no help with the C11 gaps; VSI C stays the IA64 compiler.
+
+## Command-line case (affects users)
+With the default `PARSE_STYLE=TRADITIONAL`, DCL upper-cases an unquoted command line and the
+CRTL then lower-cases `argv`, so `grep -E x` reaches grep as `grep -e x`. Upper-case options and
+mixed-case patterns therefore need either `SET PROCESS/PARSE_STYLE=EXTENDED` (grep sets
+`DECC$ARGV_PARSE_STYLE`, so case is then preserved) or double quotes (`grep "-E" "Foo"`).
+The case is lost before grep starts, so grep itself cannot correct it. This must go in the user docs.

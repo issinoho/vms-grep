@@ -1,0 +1,29 @@
+Subject: grep: on OpenVMS, also take the locale from environment variables
+
+The VMS CRTL's setlocale (LC_ALL, "") consults only logical names, so LC_ALL
+etc. set in the environment (e.g. by GNV bash) were ignored.  See vms/vms_locale.c.
+
+--- a/src/grep.c	2026-10-03 00:02:19.822376993 +0100
++++ b/src/grep.c	2026-10-03 00:02:19.850987151 +0100
+@@ -27,6 +27,9 @@
+ #include <stdint.h>
+ #include <stdio.h>
+ #include "system.h"
++#ifdef __VMS
++# include "vms_locale.h"
++#endif
+ 
+ #include "argmatch.h"
+ #include "c-ctype.h"
+@@ -2496,6 +2499,11 @@
+   /* Internationalization. */
+ #if defined HAVE_SETLOCALE
+   setlocale (LC_ALL, "");
++#ifdef __VMS
++  /* The CRTL's setlocale ignores LC_ALL etc. passed as environment
++     variables (e.g. by GNV bash) rather than logical names.  */
++  vms_locale_from_environment ();
++#endif
+ #endif
+ #if defined ENABLE_NLS
+   bindtextdomain (PACKAGE, LOCALEDIR);

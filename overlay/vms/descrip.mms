@@ -17,7 +17,7 @@ BIN = [.BIN_$(ARCH)]
 .INCLUDE [.VMS]SOURCES.MMS
 
 CC = CC
-CFLAGS = $(CC_QUAL)/NOLIST/INCLUDE_DIRECTORY=("./","./lib","./src")/DEFINE=($(CC_DEFS),HAVE_CONFIG_H)
+CFLAGS = $(CC_QUAL)/NOLIST/INCLUDE_DIRECTORY=("./","./lib","./src","./vms")/DEFINE=($(CC_DEFS),HAVE_CONFIG_H)
 
 LIB = $(OBJ)GREPUTILS.OLB
 EXE = $(BIN)GREP.EXE
@@ -31,6 +31,16 @@ $(EXE) : $(SRC_OBJS), $(EXTRA_OBJS), $(LIB)
 $(LIB) : $(LIB_OBJS)
 	IF F$SEARCH("$(MMS$TARGET)") .EQS. "" THEN LIBRARY/CREATE/OBJECT $(MMS$TARGET)
 	LIBRARY/REPLACE/OBJECT $(MMS$TARGET) $(LOBJ)*.OBJ
+
+! Helper programs the upstream test suite builds with "make check".
+CHECK_PROGRAMS : [.TESTS]get-mb-cur-max.EXE
+	@ CONTINUE
+
+[.TESTS]get-mb-cur-max.EXE : $(OBJ)get-mb-cur-max.OBJ, $(LIB)
+	LINK/EXECUTABLE=$(MMS$TARGET)/NOMAP $(OBJ)get-mb-cur-max.OBJ, $(LIB)/LIBRARY
+
+$(OBJ)get-mb-cur-max.OBJ : [.TESTS]get-mb-cur-max.c
+	$(CC) $(CFLAGS) /OBJECT=$(MMS$TARGET) $(MMS$SOURCE)
 
 CLEAN :
 	IF F$SEARCH("$(LOBJ)*.*") .NES. "" THEN DELETE/NOLOG $(LOBJ)*.*;*
