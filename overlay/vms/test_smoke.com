@@ -26,7 +26,8 @@ $ pass == 0
 $ fail == 0
 $ if f$search("SMOKE_TMP.DIR") .eqs. "" then create/directory [.SMOKE_TMP]
 $ set default [.SMOKE_TMP]
-$ if f$search("*.*;*") .nes. "" then delete/nolog *.*;*
+$ if f$search("[.tree]*.*;*") .nes. "" then delete/nolog [.tree]*.*;*
+$ if f$search("*.TXT;*") .nes. "" then delete/nolog *.TXT;*
 $!
 $! --- fixtures -------------------------------------------------------------
 $ create fruit.txt
@@ -35,7 +36,7 @@ Banana
 cherry pie
 apple tart
 grape
-$ create/directory [.tree]
+$ if f$search("TREE.DIR") .eqs. "" then create/directory [.tree]
 $ create [.tree]one.txt
 needle in one
 $ create [.tree]two.txt
@@ -91,8 +92,9 @@ $readdone:
 $ close f
 $compare:
 $ ok = code .eq. f$integer(p2)
-$ if p1 .nes. "version" .and. p2 .ne. 2 then ok = ok .and. (got .eqs. p3)
-$ if p1 .eqs. "version" then ok = ok .and. (f$locate("grep (GNU grep)", got) .lt. f$length(got))
+$! (DCL upper-cases the unquoted test name.)
+$ if p1 .nes. "VERSION" .and. p2 .ne. 2 then ok = ok .and. (got .eqs. p3)
+$ if p1 .eqs. "VERSION" then ok = ok .and. (f$locate("grep (GNU grep)", got) .lt. f$length(got))
 $ if ok
 $ then
 $   write sys$output "PASS ", p1

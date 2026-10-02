@@ -5,6 +5,7 @@
 # <workdir>/<name>-<version with dots as underscores>, e.g. [.GREP-3_12].
 # Re-pushing uploads new file versions; build.sh purges the old ones on VMS.
 set -euo pipefail
+export LC_ALL=C   # sort and comm must agree on collation
 
 top=$(cd "$(dirname "$0")/.." && pwd)
 node=${1:?usage: push.sh <node>}
