@@ -1,0 +1,10 @@
+# Hand-settled configure answers for OpenVMS (VSI C, both IA64 and x86-64).
+#
+# Loaded after probed.site, so values here win.  Use this for checks the
+# automatic probes cannot answer: run-time behaviour tests (AC_RUN_IFELSE),
+# compiler-feature tests, and anything the probes got wrong.  Give a reason
+# for every entry.
+
+# x86 CRTL has pthread_sigmask, IA64 does not.  grep is built without threads,
+# so use sigprocmask on both for identical behaviour.
+ac_cv_func_pthread_sigmask=no

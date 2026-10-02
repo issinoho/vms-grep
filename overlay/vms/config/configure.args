@@ -1,0 +1,5 @@
+# Options for the host-side configure run (one per line).
+--disable-nls
+--without-pcre
+--disable-threads
+--disable-dependency-tracking
