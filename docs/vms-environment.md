@@ -13,6 +13,10 @@ Collected by `tools/vms_probe.com` and `tools/vms_crtl_probe.com` (raw logs in `
 - Each sftp session costs ~1.2 s even over a multiplexed connection (VMS starts an sftp server
   process per session). `tools/vms.sh` wraps all of the above.
 - Batch jobs default to `/LIST` and `/MAP`; pass `/NOLIST` and `/NOMAP` explicitly.
+- MYI64 `SYS$BATCH` job limit raised to 4 (2026-10-02), so a compile server and builds can run together.
+- GNV: neither node runs GNV$STARTUP at boot. `[.VMS]GNV_ENV.COM` defines GNU/SYS$POSIX_ROOT per process.
+  x86 GNV (rooted at `[GNV.X86.]`) has bash 4.4 + coreutils and runs the upstream suite; IA64 GNV (2015, bash 1.14.8,
+  no `timeout`/`printf`) cannot.
 - A DCL procedure's `DEFINE/USER SYS$OUTPUT file` creates no file when nothing is written.
 
 ## IA64 — MYI64 (<ia64-host>)

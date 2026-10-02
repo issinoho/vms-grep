@@ -103,6 +103,15 @@ echo "$src_srcs" > "$hostcfg/src-sources.txt"
 python3 "$top/tools/gen_mms.py" "$cfgdir/ccflags.txt" "$hostcfg/lib-sources.txt" \
     "$hostcfg/src-sources.txt" "$top/overlay/vms/extra-sources.txt" > "$stage/vms/sources.mms"
 
+# --- test suite inputs (run under GNV bash by vms/run_gnv_tests.sh) -------
+printvar tests TESTS | tr ' ' '\n' | grep . > "$stage/vms/tests.lst"
+make -s -C "$hostcfg/src" egrep fgrep >/dev/null
+for f in egrep fgrep; do
+    sed '1s|^#!.*|#!/bin/sh|' "$hostcfg/src/$f" > "$stage/src/$f"
+done
+printf 'VERSION=%s\nPACKAGE_VERSION=%s\nPACKAGE_BUGREPORT=%s\n' "$UPSTREAM_VERSION" \
+    "$UPSTREAM_VERSION" "$(printvar . PACKAGE_BUGREPORT)" > "$stage/vms/tests.env"
+
 # --- snapshot: the resolved configuration, committed and reviewed ----------
 mkdir -p "$snapshot"
 cp "$hostcfg/config.h" "$snapshot/config.h"

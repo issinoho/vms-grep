@@ -1,0 +1,22 @@
+Subject: tests: do not wrap tr in a shell function on OpenVMS
+
+GNV bash passes the wrong arguments to a shell function run inside a
+pipeline, which broke every test using tr in a pipe (e.g. foad1).
+
+--- a/tests/init.cfg	2026-10-02 21:28:22.714468211 +0100
++++ b/tests/init.cfg	2026-10-02 21:28:22.736078410 +0100
+@@ -187,7 +187,13 @@
+ #   LC_ALL=ja_JP.eucJP tr AB '\244\263'
+ # would act like this with the multibyte tr from HP-UX and Solaris:
+ #   LC_ALL=ja_JP.eucJP tr A  '\244\263'
+-tr() { LC_ALL=C env -- tr "$@"; }
++# GNV bash on OpenVMS emulates fork(); a shell function used inside a
++# pipeline there receives the wrong positional parameters.  The test
++# harness already exports LC_ALL=C, so the wrapper is not needed.
++case $(uname -s 2>/dev/null) in
++  OpenVMS) ;;
++  *) tr() { LC_ALL=C env -- tr "$@"; } ;;
++esac
+ 
+ # Usage: user_time_ EXPECTED_EXIT_STATUS CMD ...
+ # If CMD ... exits with the expected exit status, print the elapsed

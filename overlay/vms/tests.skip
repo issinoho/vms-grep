@@ -1,0 +1,2 @@
+# Upstream tests not run on OpenVMS: <test-name> <reason>
+max-count-overread	needs an endless producer (yes | grep -m1); VMS pipes have no SIGPIPE so yes never exits

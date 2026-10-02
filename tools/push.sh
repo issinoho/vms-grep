@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # push.sh <node> - upload the prepared tree (staging/) to <node>'s work directory.
 #
-# Uploads only what the VMS build needs (lib, src, vms, config.h) into
+# Uploads what the VMS build and tests need (lib, src, tests, vms, config.h) into
 # <workdir>/<name>-<version with dots as underscores>, e.g. [.GREP-3_12].
 # Re-pushing uploads new file versions; build.sh purges the old ones on VMS.
 set -euo pipefail
@@ -17,7 +17,7 @@ remote=$(echo "$name" | tr . _)
 
 pack=$top/cache/push-$name-$node
 rm -rf "$pack"; mkdir -p "$pack/$remote"
-cp -a "$stage/lib" "$stage/src" "$stage/vms" "$stage/config.h" "$pack/$remote/"
+cp -a "$stage/lib" "$stage/src" "$stage/tests" "$stage/vms" "$stage/config.h" "$pack/$remote/"
 # Host build leftovers and files VMS cannot use.
 find "$pack/$remote" \( -name 'Makefile*' -o -name '*.in.h' -o -name '*.o' \) -delete
 
