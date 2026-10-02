@@ -21,6 +21,7 @@ $ write sys$error "BUILD: unsupported architecture ''arch'"
 $ goto done
 $arch_ok:
 $ if f$search("OBJ_''arch'.DIR") .eqs. "" then create/directory [.OBJ_'arch']
+$ if f$search("[.OBJ_''arch']LIB.DIR") .eqs. "" then create/directory [.OBJ_'arch'.LIB]
 $ if f$search("BIN_''arch'.DIR") .eqs. "" then create/directory [.BIN_'arch']
 $ target = p1
 $ if target .eqs. "" then target = "ALL"

@@ -4,7 +4,8 @@
 Usage: gen_mms.py <ccflags.txt> <lib-sources.txt> <src-sources.txt> <extra-sources.txt> > sources.mms
 
 Source paths are relative to lib/, src/ or the tree root (extra).  Objects go
-to $(OBJ), which descrip.mms sets per architecture.  VSI C accepts a single
+to $(OBJ), and library objects to $(LOBJ); descrip.mms sets both per
+architecture.  VSI C accepts a single
 /DEFINE, so the defines from ccflags.txt are split out into CC_DEFS for
 descrip.mms to merge with its own.
 """
@@ -42,7 +43,9 @@ def main():
         for s in srcs:
             full = os.path.join(base, s) if base else s
             stem = os.path.splitext(os.path.basename(s))[0]
-            obj = '$(OBJ)%s.OBJ' % stem
+            # Library objects get their own directory so the librarian can
+            # take them by wildcard (the full list exceeds DCL's line limit).
+            obj = '$(%s)%s.OBJ' % ('LOBJ' if macro == 'LIB' else 'OBJ', stem)
             objs.append(obj)
             rules += ['%s : %s%s' % (obj, vms_dir(os.path.dirname(full)), os.path.basename(full)),
                       '\t$(CC) $(CFLAGS) /OBJECT=$(MMS$TARGET) $(MMS$SOURCE)', '']

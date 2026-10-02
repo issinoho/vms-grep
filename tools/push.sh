@@ -14,22 +14,31 @@ stage=$top/staging/$name
 remote=$(echo "$name" | tr . _)
 [ -d "$stage/vms" ] || { echo "push: run tools/prepare.sh first" >&2; exit 1; }
 
-pack=$top/cache/push-$name
+pack=$top/cache/push-$name-$node
 rm -rf "$pack"; mkdir -p "$pack/$remote"
 cp -a "$stage/lib" "$stage/src" "$stage/vms" "$stage/config.h" "$pack/$remote/"
 # Host build leftovers and files VMS cannot use.
 find "$pack/$remote" \( -name 'Makefile*' -o -name '*.in.h' -o -name '*.o' \) -delete
 
-echo "push: $(find "$pack/$remote" -type f | wc -l) files -> $node:[.$(echo "$remote" | tr a-z A-Z)]"
+echo "push: -> $node:[.$(echo "$remote" | tr a-z A-Z)]"
 read -r _ _ HOST PORT USER WORKDIR SFTPDIR < <(awk -v n="$node" '$1==n' "$top/tools/nodes.conf")
-# Explicit mkdir/put per path: 'put -r' into an existing directory nests a
-# second copy inside it instead of updating the files.
+# Upload only files whose content changed since the last push to this node,
+# so MMS sees new timestamps only on what really changed.  Explicit put per
+# file: 'put -r' into an existing directory nests a copy instead.
+manifest=$top/cache/pushed-$name-$node.sha
+[ "${PUSH_ALL:-}" = 1 ] && rm -f "$manifest"
+touch "$manifest"
+(cd "$pack" && find "$remote" -type f -print0 | sort -z | xargs -0 sha256sum) > "$pack.sha"
+changed=$(comm -23 <(awk '{print $2" "$1}' "$pack.sha" | sort) \
+                   <(awk '{print $2" "$1}' "$manifest" | sort) | awk '{print $1}')
+echo "push: $(echo "$changed" | grep -c . || true) changed of $(wc -l < "$pack.sha") files"
 batch=$pack/sftp.batch
 {
     echo "cd $SFTPDIR"
     (cd "$pack" && find "$remote" -type d) | sed 's/^/-mkdir /'
-    (cd "$pack" && find "$remote" -type f) | while read -r f; do echo "put $pack/$f $f"; done
+    for f in $changed; do echo "put $pack/$f $f"; done
 } > "$batch"
 sftp -P "$PORT" -i "${VMS_SSH_KEY:-$HOME/.ssh/vms_ed25519}" -o BatchMode=yes -b "$batch" "$USER@$HOST" \
-    2>&1 >/dev/null | grep -vE '^ *Welcome to|^ *$|^remote mkdir .*: Failure$' >&2 || true
+    2>&1 >/dev/null | grep -vE '^ *Welcome to|^ *$|^remote mkdir .*Failure' >&2 || true
+cp "$pack.sha" "$manifest"
 echo "push: done"

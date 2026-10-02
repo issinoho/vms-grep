@@ -30,6 +30,7 @@ close.c
 closedir.c
 closeout.c
 close-stream.c
+colorize.c
 creat-safer.c
 c-stack.c
 c-strcasecmp.c

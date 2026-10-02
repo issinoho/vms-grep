@@ -4,9 +4,10 @@
    not defined the corresponding DECC$ logical name, so a site can still
    override any of them.
 
-   Copyright (C) 2026 Free Software Foundation, Inc.
-   This file is part of the OpenVMS port of GNU grep and is distributed
-   under the GNU General Public License, version 3 or later.  */
+   Part of the OpenVMS port of GNU grep; distributed under the GNU
+   General Public License, version 3 or later.  */
+
+#include <config.h>
 
 #include <stdlib.h>
 #include <unixlib.h>

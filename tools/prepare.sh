@@ -81,11 +81,16 @@ for h in $built; do
     mkdir -p "$stage/lib/$(dirname "$h")"
     cp "$hostcfg/lib/$h" "$stage/lib/$h"
 done
+# Sources automake generates at build time (grep's colorize.c).
+nodist=$(printvar lib nodist_libgreputils_a_SOURCES)
+[ -z "$nodist" ] || make -s -C "$hostcfg/lib" $nodist >/dev/null
+for f in $nodist; do cp "$hostcfg/lib/$f" "$stage/lib/$f"; done
 cp "$hostcfg/config.h" "$stage/config.h"
 
 # --- 5. MMS source lists ---------------------------------------------------
 # Objects for libgreputils: automake sources after conditionals, plus LIBOBJS.
 lib_srcs=$( { printvar lib libgreputils_a_SOURCES
+              echo "$nodist"
               printvar lib libgreputils_a_LIBADD | tr ' ' '\n' | sed -n 's/^libgreputils_a-//; s/\.o$/.c/p'
             } | tr ' ' '\n' | grep '\.c$' | sort -u)
 src_srcs=$(printvar src grep_SOURCES | tr ' ' '\n' | grep '\.c$' | sort -u)

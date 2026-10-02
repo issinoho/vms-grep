@@ -18,3 +18,7 @@ ac_cv_c_bigendian=no
 # declaration then collides with the macro.  Use the CRTL macro.
 ac_cv_func_mempcpy=yes
 gl_cv_onwards_func_mempcpy=yes
+
+# open() cannot open a directory by its Unix name on VMS (ENOENT); use
+# gnulib's dummy-fd fallback (patch 0003 extends it to ENOENT).
+gl_cv_func_open_directory_works=no

@@ -1,0 +1,24 @@
+Subject: open: treat ENOENT from opening a directory like EACCES on OpenVMS
+
+The VMS CRTL cannot open() a directory by its Unix name and reports ENOENT.
+Use gnulib's existing REPLACE_OPEN_DIRECTORY fallback (dummy fd + registered
+name, as on mingw) so that grep -r and fts work.
+
+--- a/lib/open.c	2026-10-02 21:06:14.571370977 +0100
++++ b/lib/open.c	2026-10-02 21:06:14.590314907 +0100
+@@ -158,7 +158,14 @@
+      on Linux (ie. always reports EOF on attempts to read()), and
+      override fstat() in fchdir.c to hide the fact that we have a
+      dummy.  */
+-  if (REPLACE_OPEN_DIRECTORY && fd < 0 && errno == EACCES
++  /* OpenVMS: open() of a directory by its Unix name ("dir", "dir/", ".")
++     fails with ENOENT, although stat() and opendir() succeed.  */
++# ifdef __VMS
++#  define OPEN_DIRECTORY_ERRNO(e) ((e) == EACCES || (e) == ENOENT)
++# else
++#  define OPEN_DIRECTORY_ERRNO(e) ((e) == EACCES)
++# endif
++  if (REPLACE_OPEN_DIRECTORY && fd < 0 && OPEN_DIRECTORY_ERRNO (errno)
+       && ((flags & O_ACCMODE) == O_RDONLY
+           || (O_SEARCH != O_RDONLY && (flags & O_ACCMODE) == O_SEARCH)))
+     {
