@@ -39,16 +39,31 @@ vms_dir() {
 }
 
 # Run DCL command(s) with output captured to a log, then print the log.
+# The procedure writes <tag>.DONE as its last act; the host waits for that
+# marker rather than for ssh to exit, because the ssh session sometimes stays
+# open after the VMS process has finished.
 dcl_logged() {
     local tag=vmsrun_$$_$RANDOM
-    local com=$(mktemp) out=$(mktemp)
-    { echo '$ set noon'; echo "\$ set default $WORKDIR"; printf '%s\n' "$@"; } > "$com"
+    local com=$(mktemp) out=$(mktemp) done_f=$(mktemp)
+    { echo '$ set noon'; echo "\$ set default $WORKDIR"; printf '%s\n' "$@"
+      echo "\$ open/write vmsrun_done ${WORKDIR}${tag}.DONE"
+      echo '$ close vmsrun_done'; } > "$com"
     sftp_batch "cd $SFTPDIR" "put $com $tag.com"
     ssh -p "$PORT" "${ssh_opts[@]}" "$USER@$HOST" \
-        "@${WORKDIR}${tag}.COM/OUTPUT=${WORKDIR}${tag}.LOG" >/dev/null 2>&1 || true
-    sftp_batch "cd $SFTPDIR" "get $tag.LOG $out" "rm $tag.com" "rm $tag.LOG" || true
+        "@${WORKDIR}${tag}.COM/OUTPUT=${WORKDIR}${tag}.LOG" >/dev/null 2>&1 &
+    local pid=$! waited=0 limit=${VMS_TIMEOUT:-600}
+    while :; do
+        sleep 2; waited=$((waited + 2))
+        if ! kill -0 "$pid" 2>/dev/null || [ $((waited % 10)) -eq 0 ]; then
+            sftp_batch "cd $SFTPDIR" "get $tag.DONE $done_f" 2>/dev/null && break
+            kill -0 "$pid" 2>/dev/null || { sleep 3; sftp_batch "cd $SFTPDIR" "get $tag.DONE $done_f" 2>/dev/null; break; }
+        fi
+        [ "$waited" -ge "$limit" ] && { echo "vms.sh: timed out after ${limit}s" >&2; break; }
+    done
+    kill "$pid" 2>/dev/null || true; wait "$pid" 2>/dev/null || true
+    sftp_batch "cd $SFTPDIR" "get $tag.LOG $out" "-rm $tag.com" "-rm $tag.LOG" "-rm $tag.DONE" || true
     tr -d '\r' < "$out"
-    rm -f "$com" "$out"
+    rm -f "$com" "$out" "$done_f"
 }
 
 case $op in

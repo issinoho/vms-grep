@@ -4,7 +4,7 @@
 Usage: cfgreport.py <config.cache> <probed.site> <vms-manual.site>
 
 Output lines:  <var>=<value>  <source>
-where source is 'probed' (VMS probe), 'manual' (vms-manual.site) or 'host'
+where source is 'vms' (answered on VMS), 'manual' (vms-manual.site) or 'host'
 (nobody answered for VMS, so the Linux host's result was used).  The 'host'
 lines are the review list: each one is either harmless or needs a VMS answer
 in vms-manual.site.
@@ -34,7 +34,7 @@ def main():
         var, val = m.groups()
         if len(val) >= 2 and val[0] == val[-1] and val[0] in '\'"':
             val = val[1:-1]
-        src = 'manual' if var in manual else 'probed' if var in probed else 'host'
+        src = 'manual' if var in manual else 'vms' if var in probed else 'host'
         print('%s=%s  %s' % (var, val, src))
 
 

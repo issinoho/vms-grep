@@ -1,0 +1,2 @@
+# VMS-only sources compiled into GREP.EXE (paths relative to the tree root).
+vms/vms_crtl_init.c

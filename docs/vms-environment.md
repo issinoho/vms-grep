@@ -9,11 +9,16 @@ Collected by `tools/vms_probe.com` and `tools/vms_crtl_probe.com` (raw logs in `
 - `SYS$LOGIN:[.SUB]` is invalid here (SYS$LOGIN is not a rooted logical). Use
   `DISK$USER:[USERNAME.VMS_GREP]`. sftp sees it as `/DISK$USER/username/vms_grep` (ODS-5, case preserved).
 - Output uses CRLF line endings; strip `\r` on the host side.
+- **`WAIT` hangs** in a DCL session started by `ssh host <cmd>`; never use it there (batch jobs are fine).
+- Each sftp session costs ~1.2 s even over a multiplexed connection (VMS starts an sftp server
+  process per session). `tools/vms.sh` wraps all of the above.
+- Batch jobs default to `/LIST` and `/MAP`; pass `/NOLIST` and `/NOMAP` explicitly.
+- A DCL procedure's `DEFINE/USER SYS$OUTPUT file` creates no file when nothing is written.
 
 ## IA64 — MYI64 (<ia64-host>)
 | Item | Value |
 |---|---|
-| Hardware | HP rx2660 |
+| Hardware | HP rx2660 (bare metal) |
 | OS | OpenVMS IA64 V8.4-2L3 |
 | C compiler | VSI C V7.4-001 (`/STANDARD=C99` and `LATEST` accepted; C99 is the ceiling) |
 | MMS | V4.0-5 (no MMK) |
@@ -49,7 +54,7 @@ Collected by `tools/vms_probe.com` and `tools/vms_crtl_probe.com` (raw logs in `
 ## x86-64 — X86VMS (<x86-host>, non-default ssh port)
 | Item | Value |
 |---|---|
-| Hardware | QEMU guest (Q35 + ICH9) |
+| Hardware | KVM/QEMU guest (Q35 + ICH9) on a Debian NUC — slower; timings not representative |
 | OS | OpenVMS x86_64 E9.2-4 |
 | C compiler | VSI C x86-64 V7.7-003 (GEM back end, *not* clang) |
 | MMS | V4.0-5 (no MMK) |
