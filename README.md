@@ -42,8 +42,9 @@ They are not signed, so PCSI notes that it cannot validate a signature. It insta
 `[GREP.BIN]GREP.EXE`, the documentation in `[GREP.DOC]` (`README.VMS`, a plain-text
 manual `GREP.TXT`, `GREP.1`, `NEWS`, `COPYING`) and two procedures:
 
-- `[GREP]GREP$STARTUP.COM` defines `GREP$ROOT`. It runs once at installation; to run it at
-  every boot, add it to `SYS$MANAGER:SYSTARTUP_VMS.COM`.
+- `SYS$STARTUP:GREP$STARTUP.COM` defines `GREP$ROOT`. It runs once at installation and
+  prints the post-installation tasks. To run it at every boot, add
+  `$ @SYS$STARTUP:GREP$STARTUP.COM` to `SYS$MANAGER:SYSTARTUP_VMS.COM`.
 - `[GREP]GREP$SETUP.COM` defines `grep`, `egrep` and `fgrep` for a user (add it to
   `LOGIN.COM`): `$ @GREP$ROOT:[000000]GREP$SETUP.COM`.
 

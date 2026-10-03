@@ -12,6 +12,7 @@ $ product install GREP /producer=ISSINOHO /base_system='base' /source='kitdir' /
 $ write sys$output "=== install status ", $status
 $ product show product GREP /producer=ISSINOHO
 $ write sys$output "=== VERIFY"
+$ write sys$output "startup procedure: [", f$search("SYS$STARTUP:GREP$STARTUP.COM"), "]"
 $ show logical GREP$ROOT
 $ directory/nohead/notrail GREP$ROOT:[000000...]*.*
 $ @GREP$ROOT:[000000]GREP$SETUP.COM
@@ -36,6 +37,7 @@ $ product remove GREP /producer=ISSINOHO /options=noconfirm /log
 $ write sys$output "=== remove status ", $status
 $ write sys$output "GREP$ROOT after removal: [", f$trnlnm("GREP$ROOT"), "]"
 $ write sys$output "files after removal: [", f$search("SYS$COMMON:[GREP...]*.*"), "]"
+$ write sys$output "startup after removal: [", f$search("SYS$STARTUP:GREP$STARTUP.COM"), "]"
 $ product show product GREP /producer=ISSINOHO
 $ delete/symbol/global grep
 $ delete/symbol/global egrep

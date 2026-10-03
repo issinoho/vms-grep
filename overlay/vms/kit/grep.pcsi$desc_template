@@ -11,7 +11,7 @@ product @PRODUCER@ @BASE@ GREP @PCSIVERSION@ full ;
     directory [GREP.DOC] ;
 
     file [GREP.BIN]GREP.EXE ;
-    file [GREP]GREP$STARTUP.COM ;
+    file [SYS$STARTUP]GREP$STARTUP.COM ;
     file [GREP]GREP$SETUP.COM ;
     file [GREP.DOC]README.VMS ;
     file [GREP.DOC]COPYING. ;
@@ -19,11 +19,11 @@ product @PRODUCER@ @BASE@ GREP @PCSIVERSION@ full ;
     file [GREP.DOC]GREP.TXT ;
     file [GREP.DOC]GREP.1 ;
 
-    -- Define GREP$ROOT now; the system manager adds the startup to
-    -- SYSTARTUP_VMS.COM (see the POST_INSTALL message).
-    execute postinstall "@PCSI$DESTINATION:[GREP]GREP$STARTUP.COM" ;
+    -- Define GREP$ROOT now and print the post-installation tasks (PCSI shows
+    -- only the title of an information message unless /HELP is given).
+    execute postinstall "@PCSI$DESTINATION:[SYS$STARTUP]GREP$STARTUP.COM INSTALL" interactive ;
     -- On removal, deassign GREP$ROOT.
-    execute install "CONTINUE" remove "@PCSI$DESTINATION:[GREP]GREP$STARTUP.COM REMOVE" ;
+    execute install "CONTINUE" remove "@PCSI$DESTINATION:[SYS$STARTUP]GREP$STARTUP.COM REMOVE" ;
 
     information POST_INSTALL phase after ;
 

@@ -13,6 +13,7 @@ read -r _ _ _ _ _ WORKDIR _ < <(awk -v n="$node" '$1==n' "$top/tools/nodes.conf"
 job=$top/cache/installcheck-$node.com
 printf '$ set noon\n$ @%sVMS_INSTALLCHECK.COM %s\n' "$WORKDIR" "$REMOTE" > "$job"
 VMS_TIMEOUT=1800 "$top/tools/vms.sh" "$node" run "$job" > "$top/out/install-$node.txt" 2>&1
-grep -aE 'install status|Installed|SMOKE:|SUCREMOVE|after removal|items found' "$top/out/install-$node.txt"
+grep -aE 'install status|Installed|startup procedure|SMOKE:|SUCREMOVE|after removal|items found' "$top/out/install-$node.txt"
 grep -q 'SMOKE: [0-9]* passed, 0 failed' "$top/out/install-$node.txt" &&
-    grep -q 'GREP\$ROOT after removal: \[\]' "$top/out/install-$node.txt"
+    grep -q 'GREP\$ROOT after removal: \[\]' "$top/out/install-$node.txt" &&
+    grep -q 'startup after removal: \[\]' "$top/out/install-$node.txt"

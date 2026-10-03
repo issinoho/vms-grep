@@ -12,12 +12,13 @@ GREP.TXT (plain text) and grep.1 (man page source).
 
 Setting up
 ----------
-The system manager adds this line to SYS$MANAGER:SYSTARTUP_VMS.COM, using
-the directory where the kit was installed:
+The kit installs GREP$STARTUP.COM into SYS$STARTUP and runs it once.  To
+define GREP$ROOT at every boot, the system manager adds this line to
+SYS$MANAGER:SYSTARTUP_VMS.COM:
 
-    $ @<destination>:[GREP]GREP$STARTUP.COM
+    $ @SYS$STARTUP:GREP$STARTUP.COM
 
-This defines GREP$ROOT.  Users then define the commands in LOGIN.COM:
+Users then define the commands in LOGIN.COM:
 
     $ @GREP$ROOT:[000000]GREP$SETUP.COM
 

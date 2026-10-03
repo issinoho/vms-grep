@@ -9,12 +9,10 @@
 =prompt Documentation is in [GREP.DOC]README.VMS under the installation directory.
 1 POST_INSTALL
 =prompt Post-installation tasks for GNU grep
-GREP$ROOT has been defined for the running system.  To define it at every
-boot, add this line to SYS$MANAGER:SYSTARTUP_VMS.COM, using the directory
-where grep was installed:
-
-    $ @<destination>:[GREP]GREP$STARTUP.COM
-
-Users define the grep, egrep and fgrep commands with:
-
+    At system startup: to define GREP$ROOT at every boot, add this line to
+    SYS$MANAGER:SYSTARTUP_VMS.COM:
+    $ @SYS$STARTUP:GREP$STARTUP.COM
+    For each user: to define grep, egrep and fgrep, add this line to LOGIN.COM:
     $ @GREP$ROOT:[000000]GREP$SETUP.COM
+
+PRODUCT REMOVE GREP removes the product and deassigns GREP$ROOT.
