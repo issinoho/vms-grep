@@ -200,7 +200,8 @@ GNU `configure` cannot run usefully on VMS, so it runs on the Linux host with VM
 ## Roadmap
 
 1. Port PCRE2 with the same structure, then enable `grep -P`.
-2. VMS-specific behaviour: native record formats (VAR/VFC files), wildcard file
+2. A port to OpenVMS **Alpha**, alongside IA64 and x86-64.
+3. VMS-specific behaviour: native record formats (VAR/VFC files), wildcard file
    specifications typed at DCL, and a review of the compiler's warnings.
 
 ## Further reading
