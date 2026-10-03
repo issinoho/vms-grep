@@ -18,10 +18,32 @@ files, and generates the configuration for VSI C.
 | Regex tables (BRE, ERE, Spencer) | 329/329 | 329/329 |
 | Upstream test suite (128 tests) | not runnable (GNV too old) | 84 pass, 0 unexpected failures |
 | `grep -P` (PCRE2) | not yet | not yet |
-| PCSI kit | not yet | not yet |
+| PCSI kit | `ISSINOHO-I64VMS-GREP-V0312-1-1.PCSI` | `ISSINOHO-X86VMS-GREP-V0312-1-1.PCSI` |
 
 See [docs/TESTING.md](docs/TESTING.md) for the details of every skipped, excluded and
 expected-to-fail test.
+
+## Installing the kit
+
+The kits are PCSI files, named `ISSINOHO-<base>-GREP-V0312-1-1.PCSI` (grep 3.12, VMS patch
+level 1). A kit downloaded through a non-VMS system arrives without its record format,
+so restore that first, then install it:
+
+```
+$ SET FILE/ATTRIBUTE=(RFM:FIX,LRL:8192,MRS:8192,RAT:NONE) ISSINOHO-*-GREP-V0312-1-1.PCSI
+$ PRODUCT INSTALL GREP /PRODUCER=ISSINOHO /SOURCE=dev:[dir]
+```
+
+The kit is not signed, so PCSI notes that it cannot validate a signature. It installs
+`[GREP.BIN]GREP.EXE`, the documentation in `[GREP.DOC]` (`README.VMS`, a plain-text
+manual `GREP.TXT`, `GREP.1`, `NEWS`, `COPYING`) and two procedures:
+
+- `[GREP]GREP$STARTUP.COM` defines `GREP$ROOT`. It runs once at installation; to run it at
+  every boot, add it to `SYS$MANAGER:SYSTARTUP_VMS.COM`.
+- `[GREP]GREP$SETUP.COM` defines `grep`, `egrep` and `fgrep` for a user (add it to
+  `LOGIN.COM`): `$ @GREP$ROOT:[000000]GREP$SETUP.COM`.
+
+Removing the product (`PRODUCT REMOVE GREP`) deassigns `GREP$ROOT`.
 
 ## Using grep on OpenVMS
 
@@ -102,6 +124,7 @@ tools/build.sh ia64         # push changed files, MMS build on the node -> [.BIN
 tools/test.sh ia64          # DCL smoke test against the built image
 tools/build.sh x86 && tools/test.sh x86
 tools/gnvtest.sh x86        # full upstream test suite under GNV (about 90 minutes)
+tools/kit.sh ia64           # PCSI kit -> out/kits/ (likewise x86)
 ```
 
 - `tools/build.sh <node> ALL KEEP_GOING` compiles everything, including files after the
@@ -121,6 +144,7 @@ tools/gnvtest.sh x86        # full upstream test suite under GNV (about 90 minut
 | `tools/build.sh <node> [target] [KEEP_GOING]` | Pushes, then runs `[.VMS]BUILD.COM`. |
 | `tools/test.sh <node>` | Runs `[.VMS]TEST_SMOKE.COM`. |
 | `tools/gnvtest.sh <node> [test...]` | Runs the upstream suite in batch and fetches results to `out/gnvtests-<node>/`. |
+| `tools/kit.sh <node>` | Builds, then makes the PCSI kit on the node (`[.VMS.KIT]MAKE_KIT.COM`) and fetches it to `out/kits/`. |
 | `tools/vms_configure.sh <node>` | Runs upstream `configure` with VSI C on the node as the compiler (once per release). |
 | `tools/vms.sh <node> dcl\|run\|batch\|put\|get …` | Reliable remote execution and file transfer (see below). |
 
@@ -169,7 +193,7 @@ GNU `configure` cannot run usefully on VMS, so it runs on the Linux host with VM
 
 ## Roadmap
 
-1. PCSI kits for IA64 and x86-64, with a startup procedure defining `grep`/`egrep`/`fgrep`.
+1. Publish the kits as GitHub release assets.
 2. Port PCRE2 with the same structure, then enable `grep -P`.
 3. VMS-specific behaviour: native record formats (VAR/VFC files), wildcard file
    specifications typed at DCL, and a review of the compiler's warnings.

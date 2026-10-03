@@ -35,6 +35,7 @@ tools/build.sh <ia64|x86> [ALL|CLEAN] [KEEP_GOING]
 tools/test.sh <node>                    # smoke test
 tools/gnvtest.sh x86 [tests...]         # upstream suite (x86 only; ~90 min for all)
 tools/vms.sh <node> dcl '<cmd>' ...     # run DCL; also run/batch/put/get
+tools/kit.sh <node>                     # PCSI kit -> out/kits/ (producer ISSINOHO)
 tools/vms_configure.sh <node>           # once per upstream release, 50-70 min
 ```
 

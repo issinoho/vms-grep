@@ -1,0 +1,30 @@
+--
+-- PCSI product description for GNU grep on OpenVMS.
+-- Template: tools/prepare.sh substitutes @PRODUCER@, @BASE@ and @PCSIVERSION@.
+--
+product @PRODUCER@ @BASE@ GREP @PCSIVERSION@ full ;
+
+    information RELEASE_NOTES phase after ;
+
+    directory [GREP] ;
+    directory [GREP.BIN] ;
+    directory [GREP.DOC] ;
+
+    file [GREP.BIN]GREP.EXE ;
+    file [GREP]GREP$STARTUP.COM ;
+    file [GREP]GREP$SETUP.COM ;
+    file [GREP.DOC]README.VMS ;
+    file [GREP.DOC]COPYING. ;
+    file [GREP.DOC]NEWS. ;
+    file [GREP.DOC]GREP.TXT ;
+    file [GREP.DOC]GREP.1 ;
+
+    -- Define GREP$ROOT now; the system manager adds the startup to
+    -- SYSTARTUP_VMS.COM (see the POST_INSTALL message).
+    execute postinstall "@PCSI$DESTINATION:[GREP]GREP$STARTUP.COM" ;
+    -- On removal, deassign GREP$ROOT.
+    execute install "CONTINUE" remove "@PCSI$DESTINATION:[GREP]GREP$STARTUP.COM REMOVE" ;
+
+    information POST_INSTALL phase after ;
+
+end product ;

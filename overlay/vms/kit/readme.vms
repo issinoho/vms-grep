@@ -1,0 +1,52 @@
+GNU grep for OpenVMS
+====================
+
+This is GNU grep @VERSION@ built natively for OpenVMS @ARCH@, from the
+unmodified GNU release plus the patches in the vms-grep project:
+
+    https://github.com/issinoho/vms-grep
+
+Kit version: @KITVERSION@.  GNU grep is free software under the GNU General
+Public License, version 3 or later; see COPYING.  The full manual is in
+GREP.TXT (plain text) and grep.1 (man page source).
+
+Setting up
+----------
+The system manager adds this line to SYS$MANAGER:SYSTARTUP_VMS.COM, using
+the directory where the kit was installed:
+
+    $ @<destination>:[GREP]GREP$STARTUP.COM
+
+This defines GREP$ROOT.  Users then define the commands in LOGIN.COM:
+
+    $ @GREP$ROOT:[000000]GREP$SETUP.COM
+
+That defines grep, and egrep and fgrep as "grep -E" and "grep -F".
+
+Things that differ from Unix
+----------------------------
+- Case of options and patterns.  With the default PARSE_STYLE=TRADITIONAL,
+  DCL upper-cases an unquoted command line and the C run-time library then
+  lower-cases it, so "grep -E Foo" reaches grep as "grep -e foo".  Either
+      $ SET PROCESS/PARSE_STYLE=EXTENDED
+  (grep then keeps the case as typed), or put such arguments in quotes:
+      $ grep "-E" "Foo|Bar" file.txt
+
+- Exit status.  grep exits with 0 (a line matched), 1 (no line matched) or
+  2 (an error).  DCL sees these as C-facility condition values; the code is
+      $ code = ($STATUS .AND. %X7F8) / 8
+
+- File names are reported in Unix form (dir/file.txt).  -r and -R search
+  directory trees.
+
+- Locales.  Choose one with a logical name or environment variable, e.g.
+      $ DEFINE LC_ALL "UTF8-20"
+  VMS has no "en_US.UTF-8"; use the generic UTF8-xx locales (see
+  SYS$I18N_LOCALE:).  IA64 ships only UTF8-20, which covers characters of
+  up to three bytes.
+
+- grep -P (Perl regular expressions) is not available in this release.
+
+- grep sets several C run-time features at start-up (Unix file names, case
+  preservation, ...).  Defining the corresponding DECC$ logical name
+  yourself overrides grep's choice.

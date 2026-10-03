@@ -116,6 +116,32 @@ done
 printf 'VERSION=%s\nPACKAGE_VERSION=%s\nPACKAGE_BUGREPORT=%s\n' "$UPSTREAM_VERSION" \
     "$UPSTREAM_VERSION" "$(printvar . PACKAGE_BUGREPORT)" > "$stage/vms/tests.env"
 
+# --- PCSI kit inputs (vms/kit/MAKE_KIT.COM builds the kit on each node) ----
+: "${KIT_PRODUCER:=ISSINOHO}"
+major=${UPSTREAM_VERSION%%.*}; minor=${UPSTREAM_VERSION#*.}; minor=${minor%%.*}
+pcsiversion="V$major.$minor-$VMS_PATCH_LEVEL"
+kitversion="$UPSTREAM_VERSION-vms$VMS_PATCH_LEVEL"
+kit=$stage/vms/kit
+subst() {
+    sed -e "s/@PRODUCER@/$KIT_PRODUCER/g" -e "s/@BASE@/$1/g" \
+        -e "s/@PCSIVERSION@/$pcsiversion/g" -e "s/@VERSION@/$UPSTREAM_VERSION/g" \
+        -e "s/@KITVERSION@/$kitversion/g" -e "s/@ARCH@/$2/g"
+}
+for base in I64VMS X86VMS; do
+    subst $base "" < "$kit/grep.pcsi\$desc_template" > "$kit/GREP-$base.PCSI\$DESC"
+    subst $base "" < "$kit/grep.pcsi\$text_template" > "$kit/GREP-$base.PCSI\$TEXT"
+done
+rm -f "$kit/grep.pcsi\$desc_template" "$kit/grep.pcsi\$text_template"
+subst "" "IA64 and x86-64" < "$kit/readme.vms" > "$kit/README.VMS"; rm -f "$kit/readme.vms"
+make -s -C "$hostcfg/doc" grep.1 >/dev/null
+mkdir -p "$kit/doc"
+cp "$hostcfg/doc/grep.1" "$kit/doc/GREP.1"
+groff -mandoc -Tascii -P-cbou "$hostcfg/doc/grep.1" > "$kit/doc/GREP.TXT" 2>/dev/null
+cp "$stage/COPYING" "$kit/doc/COPYING."
+cp "$stage/NEWS" "$kit/doc/NEWS."
+printf 'KIT_PRODUCER=%s\nPCSI_VERSION=%s\nKIT_VERSION=%s\n' "$KIT_PRODUCER" "$pcsiversion" \
+    "$kitversion" > "$kit/kit.env"
+
 # --- snapshot: the resolved configuration, committed and reviewed ----------
 mkdir -p "$snapshot"
 cp "$hostcfg/config.h" "$snapshot/config.h"

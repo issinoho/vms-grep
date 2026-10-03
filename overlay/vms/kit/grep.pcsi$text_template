@@ -1,0 +1,20 @@
+=product @PRODUCER@ @BASE@ GREP @PCSIVERSION@ full
+1 'PRODUCER
+=prompt @PRODUCER@
+1 'PRODUCT
+=prompt GNU grep @VERSION@ for OpenVMS
+1 'NOTICE
+=prompt GNU grep is free software under the GNU GPL, version 3 or later.
+1 RELEASE_NOTES
+=prompt Documentation is in [GREP.DOC]README.VMS under the installation directory.
+1 POST_INSTALL
+=prompt Post-installation tasks for GNU grep
+GREP$ROOT has been defined for the running system.  To define it at every
+boot, add this line to SYS$MANAGER:SYSTARTUP_VMS.COM, using the directory
+where grep was installed:
+
+    $ @<destination>:[GREP]GREP$STARTUP.COM
+
+Users define the grep, egrep and fgrep commands with:
+
+    $ @GREP$ROOT:[000000]GREP$SETUP.COM
