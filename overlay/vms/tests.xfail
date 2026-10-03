@@ -1,3 +1,4 @@
 # Upstream tests expected to fail under GNV for reasons outside grep: <test-name> <reason>
 fedora	one sub-check: GNV bash drops the empty argument in 'grep -Fw ""' and runs the returns_ function inside a pipeline
 euc-mb	pipes into its own shell functions (make_input | euc_grep), which GNV bash runs with the wrong arguments; the same four checks pass natively via VSI Perl
+backref-multibyte-slow	calibrates its time limit by running "grep" from perl, which on VMS goes to DCL, not our grep; measured natively the UTF-8 case takes 0.14s vs 0.12s in C

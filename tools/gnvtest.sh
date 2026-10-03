@@ -24,7 +24,7 @@ dest=$top/out/gnvtests-$node
 rm -rf "$dest"; mkdir -p "$dest/logs"
 "$top/tools/vms.sh" "$node" get "$remote/tests/vms-results.txt" "$dest/results.raw"
 tr -d '\r' < "$dest/results.raw" > "$dest/results.txt"; rm -f "$dest/results.raw"
-for t in $(awk '$1!="PASS" && !($1=="SKIP" && !/no reason given/) && $1!="EXCLUDED" && $1!="SUMMARY:" {print $2}' "$dest/results.txt"); do
+for t in $(awk '$1!="KILLED" && $1!="PASS" && !($1=="SKIP" && !/no reason given/) && $1!="EXCLUDED" && $1!="SUMMARY:" {print $2}' "$dest/results.txt"); do
     "$top/tools/vms.sh" "$node" get "$remote/tests/vms-logs/$t.log" "$dest/logs/$t.log" 2>/dev/null || true
 done
 tail -1 "$dest/results.txt"

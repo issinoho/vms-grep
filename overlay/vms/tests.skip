@@ -2,3 +2,6 @@
 max-count-overread	needs an endless producer (yes | grep -m1); VMS pipes have no SIGPIPE so yes never exits
 yesno	needs file offsets shared between processes ({ grep; sed; } < file); each VMS process opens the file separately
 skip-device	needs mkfifo; VMS has no FIFOs (its stdin checks pass, then set-up fails)
+hash-collision-perf	performance test sized by child CPU time, which VMS Perl reports as 0; it escalates to 640,000 patterns and runs for hours
+grep-dev-null-out	needs an endless producer (awk loop | grep) and a timeout that fires; VMS pipes have no SIGPIPE and a firing GNV timeout kills the runner
+mb-non-UTF8-perf-Fw	performance test: builds 10 million lines through a GNV pipe (hours on VMS) and relies on a 30s timeout

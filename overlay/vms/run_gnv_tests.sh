@@ -48,23 +48,31 @@ export VERSION PACKAGE_VERSION PACKAGE_BUGREPORT srcdir top_srcdir abs_srcdir \
        LC_ALL AWK SHELL CC PERL LOCALE_FR LOCALE_FR_UTF8 PCRE_WORKS MAKE TMPDIR PATH
 
 summary() {
+    # Tests killed by a firing timeout are expected failures if listed as such.
+    for t in $(sed -n 's/^KILLED \([^ ]*\) .*/\1/p' vms-results.txt); do
+        x=$(cat "$top/vms/tests-upstream.xfail" "$top/vms/tests.xfail" 2>/dev/null |
+            sed -n "s/^$t[ 	][ 	]*//p" | head -1)
+        [ -n "$x" ] && sed "s/^KILLED $t (\(.*\))\$/XFAIL $t (\1; $x)/" vms-results.txt > vms-results.new &&
+            mv vms-results.new vms-results.txt
+    done
     line="SUMMARY:"
-    for s in PASS FAIL XFAIL XPASS SKIP ERROR TIMEOUT EXCLUDED; do
+    for s in PASS FAIL XFAIL XPASS SKIP ERROR TIMEOUT KILLED EXCLUDED; do
         line="$line $s=$(grep -c "^$s " vms-results.txt)"
     done
     echo "$line" | tee -a vms-results.txt
 }
 
 want_summary=
+lower=1         # names typed at DCL arrive upper-cased
 case ${1:-} in
 --summary) summary; exit 0 ;;
---append) shift ;;
+--append) shift; lower= ;;   # RUN_GNV_TESTS.COM quotes names, keeping case
 *) rm -rf vms-tmp vms-logs; : > vms-results.txt; want_summary=1 ;;
 esac
 mkdir -p vms-tmp vms-logs
 
 if [ $# -gt 0 ]; then
-    tests=$(echo "$*" | tr A-Z a-z)   # DCL upper-cases its arguments
+    if [ -n "$lower" ]; then tests=$(echo "$*" | tr A-Z a-z); else tests="$*"; fi
 else
     tests=$(cat "$top/vms/tests.lst")
 fi

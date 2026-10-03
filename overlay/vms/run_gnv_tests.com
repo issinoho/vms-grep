@@ -69,7 +69,16 @@ $ if f$search("[.vms-logs]*.*") .nes. "" then delete/nolog [.vms-logs]*.*;*
 $ open/read tl [-.VMS]TESTS.LST
 $test_loop:
 $ read/end=test_done tl t
-$ bash ../vms/run_gnv_tests.sh --append 't'
+$ bash ../vms/run_gnv_tests.sh --append "''t'"
+$! A timeout that fires inside a test kills the whole GNV process tree in a
+$! batch job, runner included, so no result line is written.  Record that.
+$ search/nooutput vms-results.txt " ''t' ("
+$ if $severity .ne. 1
+$ then
+$   open/append rf vms-results.txt
+$   write rf "KILLED ''t' (no result: the test's own timeout fired and GNV killed the runner)"
+$   close rf
+$ endif
 $ goto test_loop
 $test_done:
 $ close tl
