@@ -82,6 +82,12 @@ MMS does not track compiler flags: after changing `ccflags.txt` or `CFLAGS` in
   - VMS pipes have no SIGPIPE.
   - A `timeout` that fires in a batch job kills the whole process tree.
   - IA64's GNV is bash 1.14 and cannot run the upstream suite; use the regex tables there.
+  - `printf` to a VMS file ends every write with a newline (each write is a record), so
+    tests that build exact bytes with printf fail; verify them natively with VSI Perl.
+  - An assignment prefix on a function call (`LC_ALL=x func`) stays set afterwards.
+- **Running grep from VSI Perl:** Perl's own `>file` redirection in `system()` does not
+  work; use `system("pipe vmsgrep ... > file")`. Backticks capture through a mailbox,
+  which `fstat` cannot tell from `/dev/null` (patch 0010 handles that in grep).
 - **CRTL quirks** that matter to grep are documented in `docs/vms-environment.md`:
   - no `#include_next`; text-library includes instead;
   - `open()` of a directory fails;

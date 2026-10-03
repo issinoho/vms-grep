@@ -4,8 +4,8 @@ There are three layers, from quick to thorough:
 
 | Layer | Runs on | Needs | Command (host) |
 |---|---|---|---|
-| DCL smoke test, 18 checks | IA64, x86-64 | nothing extra | `tools/test.sh <node>` |
-| Regex tables, 329 cases | IA64, x86-64 | VSI Perl | `@[.VMS]REGEX_TESTS` on the node |
+| DCL smoke test, 20 checks | IA64, x86-64 | nothing extra | `tools/test.sh <node>` |
+| Regex tables, 330 cases | IA64, x86-64 | VSI Perl | `@[.VMS]REGEX_TESTS` on the node |
 | Upstream test suite, 128 tests | x86-64 | GNV (bash 4.4 + coreutils), VSI Perl | `tools/gnvtest.sh x86` |
 
 ## DCL smoke test (`vms/test_smoke.com`)
@@ -18,7 +18,8 @@ also runs against an installed kit (`@[.VMS]TEST_SMOKE GREP$ROOT:[BIN]GREP.EXE`)
 These are upstream's `bre.tests`, `ere.tests` and `spencer1.tests`, the tables that
 `bre.awk`/`ere.awk`/`spencer1.awk` normally turn into shell scripts. Each case runs
 directly from VSI Perl, with the pattern and input passed through files (`grep -f`), so
-no GNV is involved. This is IA64's main correctness coverage: IA64's GNV is from 2015
+no GNV is involved. A final case captures grep's output with Perl backticks, which go
+through a mailbox (patch 0010). This is IA64's main correctness coverage: IA64's GNV is from 2015
 (bash 1.14) and cannot run gnulib's `init.sh`.
 
 ## Upstream suite under GNV (`vms/run_gnv_tests.sh`, `vms/run_gnv_tests.com`)
@@ -71,23 +72,34 @@ Expected failures come from two lists:
 |---|---|
 | fedora | One sub-check: GNV bash drops the empty argument in `grep -Fw ""`, and `returns_` runs inside a pipeline. |
 | euc-mb | It pipes into its own shell functions, which GNV runs with the wrong arguments. The same four EUC-JP checks pass when run natively from VSI Perl. |
+| pcre-z | It builds its NUL-terminated input with several `printf` writes, and GNV `printf` to a VMS file ends every write with a newline. The same `-Pz`/`-z` checks pass natively from VSI Perl. |
+| pcre-context | Its NUL-separated input is built with `printf`, so it gains a newline after every write. The `-Po` and `-Pzo` lookbehind checks pass natively. |
+| pcre-ascii-digits | Its expected-output file is written by `printf` and gains a trailing newline. All five `\d`/`\D` checks pass natively. |
+| pcre-infloop | The first GNV `timeout` run after the locale set-up exits 125: `timeout` itself failed. grep returns 1 promptly when run again, and natively. |
 | backref-multibyte-slow | It sets its time limit by timing `grep` run from Perl, which on VMS goes to DCL rather than our grep. Measured natively, the UTF-8 case takes 0.14 s against 0.12 s in the C locale. |
 
 ## Current results (grep 3.12)
 | Suite | IA64 | x86-64 |
 |---|---|---|
-| DCL smoke test | 18/18 | 18/18 |
-| Regex tables | 329/329 | 329/329 |
-| Upstream suite | (no usable GNV) | 84 pass, 0 unexpected failures, 6 expected failures, 32 skipped (14 PCRE, 7 "expensive", the rest missing locales or devices), 6 excluded |
+| DCL smoke test | 20/20 | 20/20 |
+| Regex tables | 330/330 | 330/330 |
+| Upstream suite | (no usable GNV) | 96 pass, 0 unexpected failures, 10 expected failures, 16 skipped (7 "expensive", the rest missing locales, devices or programs), 6 excluded |
 
-The skips break down as follows. PCRE waits for the PCRE2 port. The "expensive" tests are
+The skips break down as follows. The "expensive" tests are
 skipped upstream unless `RUN_EXPENSIVE_TESTS=yes`. The locales VMS doesn't ship are
 `tr_TR.UTF-8`, `cs_CZ.UTF-8`, `ru_RU.KOI8-R` and `zh_HK.big5hkscs`. VMS also has no
-`/dev/full` and no `/proc`.
+`/dev/full` and no `/proc`, and GNV has no `gzip` (pcre-jitstack). filename-lineno.pl
+skips itself without giving a reason.
 
 ### GNV and VMS limits found along the way
 - An **empty argument** (`""`) is dropped when GNV bash starts a VMS image; from DCL it
   arrives intact.
+- **`printf` to a file** ends every write with a newline, because each write becomes a
+  record: `printf 'ab' > f; printf 'cd' >> f` gives `ab\ncd\n`, and `printf 'x\0'` gives
+  `x\0\n`. Tests that build exact bytes this way are checked natively instead.
+- **Output captured by another program** (Perl backticks, `open '-|'`) is a mailbox whose
+  `fstat` reports `st_dev` and `st_ino` 0, the same as `/dev/null`. grep took its
+  `/dev/null` shortcut and printed nothing; patch 0010 checks the device name as well.
 - **Upper-case options** are lower-cased under the default `PARSE_STYLE=TRADITIONAL`
   (`-E` arrives as `-e`). Use `SET PROCESS/PARSE_STYLE=EXTENDED` or quote them.
 - **Locales:** the CRTL's `setlocale(LC_ALL, "")` reads only logical names, never

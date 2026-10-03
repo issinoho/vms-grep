@@ -2,3 +2,7 @@
 fedora	one sub-check: GNV bash drops the empty argument in 'grep -Fw ""' and runs the returns_ function inside a pipeline
 euc-mb	pipes into its own shell functions (make_input | euc_grep), which GNV bash runs with the wrong arguments; the same four checks pass natively via VSI Perl
 backref-multibyte-slow	calibrates its time limit by running "grep" from perl, which on VMS goes to DCL, not our grep; measured natively the UTF-8 case takes 0.14s vs 0.12s in C
+pcre-z	builds its NUL-terminated input with several printf writes, and GNV printf to a VMS file ends every write with a newline (so cmp sees extra bytes); the same grep -Pz/-z checks pass natively via VSI Perl
+pcre-context	builds its NUL-separated input with printf, which under GNV gains a newline after every write; the -Po and -Pzo lookbehind checks pass natively via VSI Perl
+pcre-ascii-digits	the expected-output file is written by printf, which under GNV gains a trailing newline (diff shows one extra empty line); all five \d/\D checks pass natively via VSI Perl
+pcre-infloop	the first GNV "timeout" run after the locale set-up exits 125 (timeout itself failed); grep returns 1 when run again and natively, promptly

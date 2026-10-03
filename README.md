@@ -18,9 +18,9 @@ files, and generates the configuration for VSI C.
 | | IA64 (OpenVMS V8.4-2L3, VSI C 7.4) | x86-64 (OpenVMS E9.2-4, VSI C 7.7) |
 |---|---|---|
 | Builds with MMS | yes | yes |
-| DCL smoke test | 18/18 | 18/18 |
-| Regex tables (BRE, ERE, Spencer) | 329/329 | 329/329 |
-| Upstream test suite (128 tests) | not runnable (GNV too old) | 84 pass, 0 unexpected failures |
+| DCL smoke test | 20/20 | 20/20 |
+| Regex tables (BRE, ERE, Spencer) | 330/330 | 330/330 |
+| Upstream test suite (128 tests) | not runnable (GNV too old) | 96 pass, 0 unexpected failures |
 | `grep -P` (PCRE2 10.49, [vms-pcre2](https://github.com/issinoho/vms-pcre2)) | yes | yes |
 | PCSI kit ([v3.12-vms2](https://github.com/issinoho/vms-grep/releases/tag/v3.12-vms2)) | `ISSINOHO-I64VMS-GREP-V0312-2-1.PCSI` | `ISSINOHO-X86VMS-GREP-V0312-2-1.PCSI` |
 
@@ -105,6 +105,7 @@ cache/ staging/ out/   generated locally, not committed
 | 0007 | `mbrtowc`: correct the CRTL's UTF-8 decoding (accepts surrogates, rejects U+10FFFF). |
 | 0008 | tests: a whole-second `timeout` capability check on VMS. |
 | 0009 | grep: write output with `putc` on VMS. For record-oriented stdout (terminal, log file, mailbox) the CRTL turns each `fwrite` item into a record, so lines came out one character per line. |
+| 0010 | grep: on VMS, check the device name before treating stdout as `/dev/null`. When Perl or another program captured grep's output, the mailbox looked like `/dev/null` to `fstat`, and grep printed nothing. |
 
 Patches 0004, 0005 and 0008 change only the test suite.
 
