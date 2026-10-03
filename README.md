@@ -276,7 +276,9 @@ GNU `configure` cannot run usefully on VMS, so it runs on the Linux host with VM
    and roadmap ([vms-sed](https://github.com/issinoho/vms-sed)). Under way.
 4. Then **GNU awk** (gawk), the same way ([vms-awk](https://github.com/issinoho/vms-awk)).
 5. Then **GNU wget**, the same way ([vms-wget](https://github.com/issinoho/vms-wget)).
-6. Then **curl**, the same way ([vms-curl](https://github.com/issinoho/vms-curl)).
+6. Then **curl**, the same way ([vms-curl](https://github.com/issinoho/vms-curl)). VSI ships
+   a curl kit, but on VSI's slower release cycle; this port will follow curl's own releases
+   in lock-step.
 
 ## Further reading
 
