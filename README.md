@@ -14,7 +14,7 @@ files, and generates the configuration for VSI C.
 | | IA64 (OpenVMS V8.4-2L3, VSI C 7.4) | x86-64 (OpenVMS E9.2-4, VSI C 7.7) |
 |---|---|---|
 | Builds with MMS | yes | yes |
-| DCL smoke test | 17/17 | 17/17 |
+| DCL smoke test | 18/18 | 18/18 |
 | Regex tables (BRE, ERE, Spencer) | 329/329 | 329/329 |
 | Upstream test suite (128 tests) | not runnable (GNV too old) | 84 pass, 0 unexpected failures |
 | `grep -P` (PCRE2) | not yet | not yet |
