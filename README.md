@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/images/banner.svg" alt="GNU grep for OpenVMS: a DECterm window running grep, with the GNU head" width="100%">
+</p>
+
 # GNU grep for OpenVMS
 
 A port of current GNU grep to OpenVMS on **IA64** and **x86-64**, kept as a thin layer
@@ -211,6 +215,18 @@ GNU `configure` cannot run usefully on VMS, so it runs on the Linux host with VM
   operational quirks of the nodes.
 - [docs/TESTING.md](docs/TESTING.md): the test layers, results and every exception with
   its reason.
+
+## Artwork
+
+`docs/images/banner.svg` and `docs/images/icon.svg` were made for this project in the style of
+classic DECwindows and VT terminals. They incorporate the
+[GNU head](https://www.gnu.org/graphics/heckert_gnu.html) by Aurelio A. Heckert, © 2003 Free
+Software Foundation, Inc., used under the Creative Commons Attribution-ShareAlike 2.0 licence.
+The two images are therefore also licensed under
+[CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/).
+
+OpenVMS is a trademark of VMS Software, Inc. This project is not affiliated with VMS
+Software, Inc., with the Free Software Foundation or with the GNU Project.
 
 ## Licence
 
