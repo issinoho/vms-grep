@@ -105,6 +105,10 @@ python3 "$top/tools/gen_mms.py" "$cfgdir/ccflags.txt" "$hostcfg/lib-sources.txt"
 
 # --- test suite inputs (run under GNV bash by vms/run_gnv_tests.sh) -------
 printvar tests TESTS | tr ' ' '\n' | grep . > "$stage/vms/tests.lst"
+# Upstream's own expected failures (XFAIL_TESTS), honoured like 'make check'.
+printvar tests XFAIL_TESTS | tr ' ' '\n' | grep . |
+    sed 's/$/	upstream XFAIL_TESTS (fails with the included regex matcher on every platform)/' \
+    > "$stage/vms/tests-upstream.xfail"
 make -s -C "$hostcfg/src" egrep fgrep >/dev/null
 for f in egrep fgrep; do
     sed '1s|^#!.*|#!/bin/sh|' "$hostcfg/src/$f" > "$stage/src/$f"

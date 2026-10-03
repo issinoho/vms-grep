@@ -39,9 +39,21 @@ $ if f$search("SYS$I18N_LOCALE:UTF8-50.LOCALE") .nes. "" then utf8 = "UTF8-50"
 $ if utf8 .eqs. "" then goto no_utf8
 $ copy/nolog SYS$I18N_LOCALE:'utf8'.LOCALE 'locdir'EN_US_UTF-8.LOCALE
 $ copy/nolog SYS$I18N_LOCALE:'utf8'.LOCALE 'locdir'FR_FR_UTF-8.LOCALE
+$! Upstream asks for ja_JP.EUC-JP; VMS ships it as ja_JP.eucJP.
+$ if f$search("SYS$I18N_LOCALE:JA_JP_EUCJP.LOCALE") .nes. "" then -
+    copy/nolog SYS$I18N_LOCALE:JA_JP_EUCJP.LOCALE 'locdir'JA_JP_EUC-JP.LOCALE
 $ purge/nolog 'locdir'
-$ i18n = f$trnlnm("SYS$I18N_LOCALE")
-$ define/process SYS$I18N_LOCALE 'locdir', 'i18n'
+$! SYS$I18N_LOCALE is a search list; keep every element after ours.
+$ i18n = ""
+$ i = 0
+$i18n_loop:
+$ e = f$trnlnm("SYS$I18N_LOCALE",,i)
+$ if e .eqs. "" then goto i18n_done
+$ i18n = i18n + "," + e
+$ i = i + 1
+$ goto i18n_loop
+$i18n_done:
+$ define/process SYS$I18N_LOCALE 'locdir''i18n'
 $ write sys$output "RUN_GNV_TESTS: en_US.UTF-8 and fr_FR.UTF-8 aliased to ''utf8'"
 $no_utf8:
 $ set process/parse_style=extended/case_lookup=blind

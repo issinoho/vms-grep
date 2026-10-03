@@ -8,8 +8,9 @@
 #                     PASS|FAIL|XFAIL|XPASS|SKIP|ERROR|TIMEOUT|EXCLUDED name (detail)
 #   vms-logs/<t>.log  output of each test that did not pass or skip
 # Tests listed in vms/tests.skip (name, then reason) are not run.  Tests in
-# vms/tests.xfail (name, then reason) run, but a failure is expected there
-# (XFAIL) because of the GNV environment rather than grep; a pass is XPASS.
+# vms/tests-upstream.xfail (upstream's XFAIL_TESTS) or vms/tests.xfail (GNV
+# environment problems, not grep) run, but a failure is expected (XFAIL);
+# a pass is XPASS.
 #
 # Usage: run_gnv_tests.sh [test-name...]            fresh results (default: all tests)
 #        run_gnv_tests.sh --append test-name...     add to existing results
@@ -68,7 +69,6 @@ else
     tests=$(cat "$top/vms/tests.lst")
 fi
 
-limit=${GREP_TEST_TIMEOUT:-900}
 for t in $tests; do
     reason=$(sed -n "s/^$t[ 	][ 	]*//p" "$top/vms/tests.skip" 2>/dev/null)
     if [ -n "$reason" ]; then
@@ -86,7 +86,9 @@ for t in $tests; do
     *)  set -- /bin/sh ;;
     esac
     start=$(date +%s)
-    GREP_TEST_NAME=$t timeout "$limit" "$@" "./$t" > "vms-logs/$t.log" 2>&1
+    # No outer timeout: GNV's timeout, when a test's own timeout fires
+    # inside it, takes the whole process tree down, runner included.
+    GREP_TEST_NAME=$t "$@" "./$t" > "vms-logs/$t.log" 2>&1
     rc=$?
     case $rc in
     0) status=PASS ;;
@@ -96,15 +98,21 @@ for t in $tests; do
     *) status=FAIL ;;
     esac
     detail="$(( $(date +%s) - start ))s, rc=$rc"
-    xfail=$(sed -n "s/^$t[ 	][ 	]*//p" "$top/vms/tests.xfail" 2>/dev/null)
+    xfail=$(cat "$top/vms/tests-upstream.xfail" "$top/vms/tests.xfail" 2>/dev/null |
+            sed -n "s/^$t[ 	][ 	]*//p" | head -1)
     if [ -n "$xfail" ]; then
         case $status in FAIL) status=XFAIL; detail="$detail; $xfail" ;; PASS) status=XPASS ;; esac
     fi
+    why=
     if [ $status = SKIP ]; then
         why=$(sed -n 's/.*skipped test: //p' "vms-logs/$t.log" | head -1)
         detail="$detail; ${why:-no reason given}"
     fi
-    case $status in PASS|SKIP) rm -f "vms-logs/$t.log" ;; esac
+    # Keep the log of a skip that gave no reason, so it can be found.
+    case $status in
+    PASS) rm -f "vms-logs/$t.log" ;;
+    SKIP) [ -n "$why" ] && rm -f "vms-logs/$t.log" ;;
+    esac
     echo "$status $t ($detail)" | tee -a vms-results.txt
 done
 
