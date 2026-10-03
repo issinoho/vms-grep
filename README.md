@@ -21,7 +21,7 @@ files, and generates the configuration for VSI C.
 | DCL smoke test | 18/18 | 18/18 |
 | Regex tables (BRE, ERE, Spencer) | 329/329 | 329/329 |
 | Upstream test suite (128 tests) | not runnable (GNV too old) | 84 pass, 0 unexpected failures |
-| `grep -P` (PCRE2) | not yet | not yet |
+| `grep -P` (PCRE2 10.49, [vms-pcre2](https://github.com/issinoho/vms-pcre2)) | yes | yes |
 | PCSI kit ([v3.12-vms2](https://github.com/issinoho/vms-grep/releases/tag/v3.12-vms2)) | `ISSINOHO-I64VMS-GREP-V0312-2-1.PCSI` | `ISSINOHO-X86VMS-GREP-V0312-2-1.PCSI` |
 
 See [docs/TESTING.md](docs/TESTING.md) for the details of every skipped, excluded and
@@ -124,6 +124,18 @@ you can also copy it to VMS any way you like and build there by hand.
   The build has been tested on IA64 V8.4-2L3 with VSI C 7.4, and on x86-64 E9.2-4 with
   VSI C 7.7.
 
+### 0. Build PCRE2 first
+
+`grep -P` uses PCRE2, linked statically into `GREP.EXE`. Build
+[vms-pcre2](https://github.com/issinoho/vms-pcre2) first; its README explains how.
+On each VMS system this produces an install tree such as
+`[.PCRE2-10_49.INSTALL_IA64]`. The grep build finds it through the rooted logical name
+`PCRE2$ROOT`:
+- **Building by hand:** define it yourself, e.g.
+  `$ DEFINE/TRANSLATION=CONCEALED PCRE2$ROOT dev:[dir.PCRE2-10_49.INSTALL_IA64.]`.
+- **Building over ssh:** `tools/build.sh` defines it for the tree named by `PCRE2_TREE` in
+  `upstream.conf`, in the same work directory.
+
 ### 1. Prepare the source tree (Linux)
 
 ```sh
@@ -141,12 +153,13 @@ signature against the GNU keyring. It then applies `patches/`, adds `overlay/`, 
 
 Copy these parts of `staging/grep-3.12/` to a directory on the VMS system, keeping the
 directory structure: `config.h`, `lib/`, `src/` and `vms/` (`tests/` too, for the test
-suites). Any method works: sftp, a ZIP made on the host, or NFS. Then, on VMS:
+suites). Any method works: sftp, a ZIP made on the host, or NFS. Then, on VMS, with
+`PCRE2$ROOT` defined (step 0):
 
 ```
 $ SET DEFAULT dev:[dir.GREP-3_12]
 $ @[.VMS]BUILD                    ! -> [.BIN_IA64]GREP.EXE or [.BIN_X86_64]GREP.EXE
-$ @[.VMS]TEST_SMOKE               ! quick functional test (18 checks)
+$ @[.VMS]TEST_SMOKE               ! quick functional test (20 checks, incl. -P)
 $ @[.VMS]REGEX_TESTS              ! regex tables, if VSI Perl is installed
 $ @[.VMS.KIT]MAKE_KIT             ! PCSI kit -> [.KIT_<arch>]
 ```
@@ -244,11 +257,10 @@ GNU `configure` cannot run usefully on VMS, so it runs on the Linux host with VM
 
 ## Roadmap
 
-1. Port PCRE2 with the same structure, then enable `grep -P`.
-2. A port to OpenVMS **Alpha**, alongside IA64 and x86-64.
-3. VMS-specific behaviour: native record formats (VAR/VFC files), wildcard file
+1. A port to OpenVMS **Alpha**, alongside IA64 and x86-64.
+2. VMS-specific behaviour: native record formats (VAR/VFC files), wildcard file
    specifications typed at DCL, and a review of the compiler's warnings.
-4. Next port: **GNU sed**, following on from grep and PCRE2 with exactly the same methods
+3. Next port: **GNU sed**, following on from grep and PCRE2 with exactly the same methods
    and roadmap ([vms-sed](https://github.com/issinoho/vms-sed)).
 
 ## Further reading

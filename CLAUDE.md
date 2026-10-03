@@ -27,6 +27,14 @@ describes the workflow and design. This file covers the rules and the pitfalls.
   `tools/nodes.conf`.
 - Keep `docs/TESTING.md` and the README status table in step with test results.
 
+## PCRE2 dependency
+
+`grep -P` links PCRE2 statically. PCRE2 is built by the sibling repo `~/projects/vms-pcre2`
+(github.com/issinoho/vms-pcre2) into `<workdir>.PCRE2-10_49.INSTALL_<arch>]` on each node,
+and is found through the rooted logical name `PCRE2$ROOT`, which build.sh and the configure
+compile server define from `PCRE2_TREE` in `upstream.conf`. Build PCRE2 first on a fresh
+node. Both repos must use the same `/NAMES` qualifiers.
+
 ## Commands
 
 ```sh

@@ -46,7 +46,8 @@ Things that differ from Unix
   SYS$I18N_LOCALE:).  IA64 ships only UTF8-20, which covers characters of
   up to three bytes.
 
-- grep -P (Perl regular expressions) is not available in this release.
+- grep -P (Perl-compatible regular expressions) uses PCRE2 @PCRE2VERSION@,
+  linked into GREP.EXE (8-bit, Unicode, no JIT).
 
 - grep sets several C run-time features at start-up (Unix file names, case
   preservation, ...).  Defining the corresponding DECC$ logical name

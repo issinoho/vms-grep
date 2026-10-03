@@ -125,7 +125,8 @@ kit=$stage/vms/kit
 subst() {
     sed -e "s/@PRODUCER@/$KIT_PRODUCER/g" -e "s/@BASE@/$1/g" \
         -e "s/@PCSIVERSION@/$pcsiversion/g" -e "s/@VERSION@/$UPSTREAM_VERSION/g" \
-        -e "s/@KITVERSION@/$kitversion/g" -e "s/@ARCH@/$2/g"
+        -e "s/@KITVERSION@/$kitversion/g" -e "s/@ARCH@/$2/g" \
+        -e "s/@PCRE2VERSION@/${PCRE2_VERSION:-none}/g"
 }
 for base in I64VMS X86VMS; do
     subst $base "" < "$kit/grep.pcsi\$desc_template" > "$kit/GREP-$base.PCSI\$DESC"

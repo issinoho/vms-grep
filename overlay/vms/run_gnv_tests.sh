@@ -39,7 +39,6 @@ if [ -f /perl_root/perl.exe ]; then PERL=/perl_root/perl; else PERL=false; fi
 # fr_FR.ISO8859-1 ships with VMS; fr_FR.UTF-8 is aliased by RUN_GNV_TESTS.COM.
 LOCALE_FR=fr_FR.ISO8859-1
 LOCALE_FR_UTF8=fr_FR.UTF-8
-PCRE_WORKS=0        # built without PCRE2 for now
 MAKE=make
 TMPDIR=$abs_srcdir/vms-tmp
 PATH=$top/src:$PATH
@@ -61,6 +60,10 @@ summary() {
     done
     echo "$line" | tee -a vms-results.txt
 }
+
+# As tests/Makefile.am: PCRE_WORKS says whether grep -P works.
+if err=$(echo . | grep -Pq . 2>&1) && [ -z "$err" ]; then PCRE_WORKS=1; else PCRE_WORKS=0; fi
+export PCRE_WORKS
 
 want_summary=
 lower=1         # names typed at DCL arrive upper-cased
