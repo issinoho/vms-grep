@@ -1,0 +1,33 @@
+Subject: grep: on OpenVMS, write output with putc instead of fwrite
+
+For record-oriented stdout (terminal, log file, mailbox) the VMS CRTL turns
+each fwrite item into a record: fwrite (line, 1, len) printed one character
+per line.  putc output is assembled into records at newlines.
+
+--- a/src/grep.c	2026-10-03 08:48:25.950066325 +0100
++++ b/src/grep.c	2026-10-03 08:48:25.979358681 +0100
+@@ -473,8 +473,24 @@
+ static void
+ fwrite_errno (void const *ptr, idx_t size, idx_t nmemb)
+ {
++#ifdef __VMS
++  /* When stdout is record-oriented (a terminal, a log file, a mailbox), the
++     VMS CRTL writes every fwrite item as a separate record, so a line output
++     as fwrite (line, 1, len) became one character per line, and a prefix
++     written separately (-H, -n) a line of its own.  putc output is buffered
++     into records at newlines like other stdio output, and keeps NUL bytes.  */
++  char const *p = ptr;
++  idx_t n = size * nmemb;
++  for (; n > 0; n--)
++    if (putc (*p++, stdout) == EOF)
++      {
++        stdout_errno = errno;
++        break;
++      }
++#else
+   if (fwrite (ptr, size, nmemb, stdout) != nmemb)
+     stdout_errno = errno;
++#endif
+ }
+ 
+ static void

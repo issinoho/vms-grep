@@ -20,7 +20,7 @@ $ dir = dir - ".000000"
 $ if f$edit(p1, "UPCASE") .eqs. "REMOVE"
 $ then
 $   if f$trnlnm("GREP$ROOT", "LNM$SYSTEM_TABLE") .nes. "" then -
-        deassign/system GREP$ROOT
+        deassign/system/executive_mode GREP$ROOT
 $   exit 1
 $ endif
 $ define/system/executive_mode/translation_attributes=concealed GREP$ROOT 'dev''dir'

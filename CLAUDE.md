@@ -36,6 +36,7 @@ tools/test.sh <node>                    # smoke test
 tools/gnvtest.sh x86 [tests...]         # upstream suite (x86 only; ~90 min for all)
 tools/vms.sh <node> dcl '<cmd>' ...     # run DCL; also run/batch/put/get
 tools/kit.sh <node>                     # PCSI kit -> out/kits/ (producer ISSINOHO)
+tools/installcheck.sh <node>            # install kit, verify, smoke-test, remove (changes system; ask first)
 tools/vms_configure.sh <node>           # once per upstream release, 50-70 min
 ```
 
@@ -62,6 +63,11 @@ MMS does not track compiler flags: after changing `ccflags.txt` or `CFLAGS` in
   - `CALL` arguments are upper-cased unless quoted.
   - `SYS$LOGIN:[.X]` is not valid on these nodes.
 - **`sftp put -r` into an existing directory nests a copy**; push.sh uploads file by file.
+- **Run `tools/prepare.sh` after every change to `patches/` or `overlay/`.** build.sh and
+  kit.sh push whatever is in `staging/`; forgetting this once shipped a stale kit.
+- **stdout on VMS is often record-oriented** (terminal, `/OUTPUT` log, mailbox). The CRTL
+  turns each `fwrite` item into a record (patch 0009), and a host-side `grep` treats
+  output containing a NUL as binary (use `grep -a`).
 - **GNV quirks:**
   - Shell functions inside pipelines get the wrong arguments.
   - Empty arguments are dropped when bash runs a VMS image.

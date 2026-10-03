@@ -4,13 +4,15 @@ There are three layers, from quick to thorough:
 
 | Layer | Runs on | Needs | Command (host) |
 |---|---|---|---|
-| DCL smoke test, 16 checks | IA64, x86-64 | nothing extra | `tools/test.sh <node>` |
+| DCL smoke test, 17 checks | IA64, x86-64 | nothing extra | `tools/test.sh <node>` |
 | Regex tables, 329 cases | IA64, x86-64 | VSI Perl | `@[.VMS]REGEX_TESTS` on the node |
 | Upstream test suite, 128 tests | x86-64 | GNV (bash 4.4 + coreutils), VSI Perl | `tools/gnvtest.sh x86` |
 
 ## DCL smoke test (`vms/test_smoke.com`)
-Basic options, exit statuses as seen by DCL, `-r` over a directory tree, and case
-preservation under `SET PROCESS/PARSE_STYLE=EXTENDED`. It gates every build.
+Basic options, exit statuses as seen by DCL, `-r` over a directory tree, case preservation
+under `SET PROCESS/PARSE_STYLE=EXTENDED`, and output to a record-oriented destination: a DCL
+`PIPE` into `SEARCH` must see each line as a single record. It gates every build, and it
+also runs against an installed kit (`@[.VMS]TEST_SMOKE GREP$ROOT:[BIN]GREP.EXE`).
 
 ## Regex tables (`vms/regex_tests.pl`, `vms/regex_tests.com`)
 These are upstream's `bre.tests`, `ere.tests` and `spencer1.tests`, the tables that
@@ -74,7 +76,7 @@ Expected failures come from two lists:
 ## Current results (grep 3.12)
 | Suite | IA64 | x86-64 |
 |---|---|---|
-| DCL smoke test | 16/16 | 16/16 |
+| DCL smoke test | 17/17 | 17/17 |
 | Regex tables | 329/329 | 329/329 |
 | Upstream suite | (no usable GNV) | 84 pass, 0 unexpected failures, 6 expected failures, 32 skipped (14 PCRE, 7 "expensive", the rest missing locales or devices), 6 excluded |
 

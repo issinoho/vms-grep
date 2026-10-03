@@ -60,6 +60,18 @@ $ call t only      0 "app|app"                  "-o app fruit.txt"
 $ call t files     0 "fruit.txt"                "-l grape fruit.txt"
 $ call t recurse   0 "tree/one.txt:needle in one" "-r needle tree"
 $!
+$! Output to a record-oriented destination (a PIPE mailbox): each output line
+$! must arrive as one record, not one record per write or per character.
+$ pipe grep -n apple fruit.txt | search/nooutput sys$pipe "1:apple"
+$ if $severity .eq. 1
+$ then
+$   write sys$output "PASS PIPE-RECORDS"
+$   pass == pass + 1
+$ else
+$   write sys$output "FAIL PIPE-RECORDS: ""1:apple"" not found as one record in piped output"
+$   fail == fail + 1
+$ endif
+$!
 $finish:
 $ set default 'vmsdir'
 $ set default [-]

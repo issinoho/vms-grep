@@ -14,7 +14,7 @@ files, and generates the configuration for VSI C.
 | | IA64 (OpenVMS V8.4-2L3, VSI C 7.4) | x86-64 (OpenVMS E9.2-4, VSI C 7.7) |
 |---|---|---|
 | Builds with MMS | yes | yes |
-| DCL smoke test | 16/16 | 16/16 |
+| DCL smoke test | 17/17 | 17/17 |
 | Regex tables (BRE, ERE, Spencer) | 329/329 | 329/329 |
 | Upstream test suite (128 tests) | not runnable (GNV too old) | 84 pass, 0 unexpected failures |
 | `grep -P` (PCRE2) | not yet | not yet |
@@ -34,7 +34,8 @@ $ SET FILE/ATTRIBUTE=(RFM:FIX,LRL:8192,MRS:8192,RAT:NONE) ISSINOHO-*-GREP-V0312-
 $ PRODUCT INSTALL GREP /PRODUCER=ISSINOHO /SOURCE=dev:[dir]
 ```
 
-The kit is not signed, so PCSI notes that it cannot validate a signature. It installs
+The kits have been tested by installing, verifying and removing them on both architectures.
+They are not signed, so PCSI notes that it cannot validate a signature. It installs
 `[GREP.BIN]GREP.EXE`, the documentation in `[GREP.DOC]` (`README.VMS`, a plain-text
 manual `GREP.TXT`, `GREP.1`, `NEWS`, `COPYING`) and two procedures:
 
@@ -95,6 +96,7 @@ cache/ staging/ out/   generated locally, not committed
 | 0006 | grep: also take `LC_ALL`/`LC_*`/`LANG` from environment variables (the CRTL reads only logical names). |
 | 0007 | `mbrtowc`: correct the CRTL's UTF-8 decoding (accepts surrogates, rejects U+10FFFF). |
 | 0008 | tests: a whole-second `timeout` capability check on VMS. |
+| 0009 | grep: write output with `putc` on VMS. For record-oriented stdout (terminal, log file, mailbox) the CRTL turns each `fwrite` item into a record, so lines came out one character per line. |
 
 Patches 0004, 0005 and 0008 change only the test suite.
 
