@@ -275,6 +275,8 @@ GNU `configure` cannot run usefully on VMS, so it runs on the Linux host with VM
 3. Next port: **GNU sed**, following on from grep and PCRE2 with exactly the same methods
    and roadmap ([vms-sed](https://github.com/issinoho/vms-sed)). Under way.
 4. Then **GNU awk** (gawk), the same way ([vms-awk](https://github.com/issinoho/vms-awk)).
+5. Then **GNU wget**, the same way ([vms-wget](https://github.com/issinoho/vms-wget)).
+6. Then **curl**, the same way ([vms-curl](https://github.com/issinoho/vms-curl)).
 
 ## Further reading
 
