@@ -1,0 +1,63 @@
+Subject: grep: on OpenVMS, do not mistake a mailbox stdout for /dev/null
+
+When another program (Perl backticks, pipe open, system) captures grep's
+output, stdout is a mailbox whose fstat st_dev and st_ino are 0, the same as
+stat ("/dev/null").  grep then took its /dev/null shortcut: it printed
+nothing and stopped at the first match.  Confirm with the device name.
+
+--- a/src/grep.c	2026-10-03 13:00:44.345550479 +0100
++++ b/src/grep.c	2026-10-03 13:00:44.365057264 +0100
+@@ -1127,6 +1127,40 @@
+ static bool done_on_match;	/* Stop scanning file on first match.  */
+ static bool exit_on_match;	/* Exit on first match.  */
+ static bool dev_null_output;	/* Stdout is known to be /dev/null.  */
++
++#ifdef __VMS
++# include <descrip.h>
++# include <dvidef.h>
++# include <lib$routines.h>
++# include <unixio.h>
++
++/* True if file descriptor FD is open on the null device NLA0:.  On VMS
++   fstat cannot tell: a mailbox, as when Perl or another program captures
++   grep's output, has st_dev and st_ino 0 like /dev/null, and grep then
++   printed nothing.  Ask for the physical device name instead.  */
++static bool
++vms_null_device (int fd)
++{
++  char name[256];
++  if (! getname (fd, name, 1))
++    return false;
++  char *colon = strchr (name, ':');
++  if (! colon)
++    return false;
++  struct dsc$descriptor_s dev = { colon - name + 1, DSC$K_DTYPE_T,
++                                  DSC$K_CLASS_S, name };
++  char devnam[64];
++  unsigned short len = 0;
++  struct dsc$descriptor_s res = { sizeof devnam - 1, DSC$K_DTYPE_T,
++                                  DSC$K_CLASS_S, devnam };
++  int item = DVI$_DEVNAM;
++  if (! (lib$getdvi (&item, 0, &dev, 0, &res, &len) & 1))
++    return false;
++  devnam[len] = '\0';
++  char const *p = strstr (devnam, "NLA");
++  return p && (p == devnam || p[-1] == '_' || p[-1] == '$');
++}
++#endif
+ static bool binary;		/* Use binary rather than text I/O.  */
+ 
+ static void
+@@ -2908,7 +2942,11 @@
+         {
+           struct stat null_stat;
+           if (stat ("/dev/null", &null_stat) == 0
+-              && SAME_INODE (tmp_stat, null_stat))
++              && SAME_INODE (tmp_stat, null_stat)
++#ifdef __VMS
++              && vms_null_device (STDOUT_FILENO)
++#endif
++              )
+             dev_null_output = true;
+           else
+             possibly_tty = true;

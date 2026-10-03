@@ -62,6 +62,18 @@ for my $suite (@suites) {
     $total += $n;
     $failed += $bad;
 }
+
+# Output captured by another program goes through a mailbox, which fstat
+# cannot tell from /dev/null (patch 0010): grep must still print its lines.
+write_file('rt-in.tmp', "one\ntwo\nthree");
+my @got = `vmsgrep "t" rt-in.tmp`;
+my $st = posix_status();
+chomp @got;
+my $ok = $st == 0 && "@got" eq 'two three';
+printf "%s captured output: exit %d, got '%s'\n", $ok ? 'PASS' : 'FAIL', $st, "@got";
+$total++;
+$failed++ unless $ok;
+
 1 while unlink 'rt-pat.tmp', 'rt-in.tmp';
 printf "REGEX: %d cases, %d failed\n", $total, $failed;
 exit($failed ? 1 : 0);

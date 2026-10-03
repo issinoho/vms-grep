@@ -8,3 +8,4 @@
 0007-mbrtowc-vms-utf8-fixes.patch
 0008-tests-timeout-check-vms.patch
 0009-grep-vms-record-stdout.patch
+0010-grep-vms-dev-null-output.patch
