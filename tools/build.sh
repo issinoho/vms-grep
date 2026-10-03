@@ -17,6 +17,12 @@ job=$top/cache/build-$node.com
 cat > "$job" <<DCL
 \$ set noon
 \$ set process/parse_style=extended
+\$! PCRE2\$ROOT: the node's vms-pcre2 install tree (PCRE2_TREE in upstream.conf)
+\$ parch = f\$edit(f\$getsyi("ARCH_NAME"), "UPCASE")
+\$ pdir = "${WORKDIR%]}.$PCRE2_TREE.INSTALL_" + parch + "]"
+\$ pdev = f\$parse(pdir,,,"DEVICE","NO_CONCEAL")
+\$ proot = f\$parse(pdir,,,"DIRECTORY","NO_CONCEAL") - "][" - "]" + ".]"
+\$ define/process/translation_attributes=concealed PCRE2\$ROOT 'pdev''proot'
 \$ purge/nolog ${WORKDIR%]}.$remote...]*.*
 \$ @${WORKDIR%]}.$remote.VMS]BUILD.COM $target $keep
 DCL

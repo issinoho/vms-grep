@@ -59,6 +59,8 @@ $ call t line      0 "apple"                    "-x apple fruit.txt"
 $ call t only      0 "app|app"                  "-o app fruit.txt"
 $ call t files     0 "fruit.txt"                "-l grape fruit.txt"
 $ call t recurse   0 "tree/one.txt:needle in one" "-r needle tree"
+$ call t perl      0 "cherry pie|apple tart"    "-P ""^\w+\s\w+$"" fruit.txt"
+$ call t lookahead 0 "cherry"                   "-oP ""\w+(?= pie)"" fruit.txt"
 $!
 $! A line containing byte 0xFF must be written intact (signed char vs EOF).
 $ open/write hb highbyte.txt

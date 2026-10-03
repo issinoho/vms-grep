@@ -2,4 +2,5 @@ dfasearch.c
 grep.c
 kwsearch.c
 kwset.c
+pcresearch.c
 searchutils.c

@@ -6,6 +6,9 @@
 # the node.  Run-time tests cannot run, so their answers come from gnulib's
 # cross-compiling guesses or overlay/vms/config/vms-manual.site.
 #
+# PCRE2 (for grep -P) must already be built on the node by vms-pcre2: the
+# server defines PCRE2$ROOT for its install tree (PCRE2_TREE in upstream.conf).
+#
 # Result: overlay/vms/config/configure-<node>.cache, the complete set of
 # configure answers for VMS.  Commit it; prepare.sh reuses it offline.
 # Slow (a few seconds per test, several hundred tests) - run once per release.
@@ -52,8 +55,8 @@ echo "vms_configure: starting compile server on $node"
 "$top/tools/vms.sh" "$node" put "$top/tools/vms_ccserver.com"
 ccq=$(cat "$cfgdir/ccflags.txt")
 "$top/tools/vms.sh" "$node" dcl \
-    "submit/noprint/log_file=${WORKDIR}CCSERVER_$node.LOG/parameters=(\"${WORKDIR%]}.CCSERV]\",\"$ccq\") ${WORKDIR}VMS_CCSERVER.COM" |
-    grep -v '^$'
+    "submit/noprint/log_file=${WORKDIR}CCSERVER_$node.LOG/parameters=(\"${WORKDIR%]}.CCSERV]\",\"$ccq\",\"PCRE2\$ROOT=${WORKDIR%]}.$PCRE2_TREE.INSTALL_$ARCH]\") ${WORKDIR}VMS_CCSERVER.COM" |
+    { grep -v '^$' || true; }
 
 rm -rf "$work"; mkdir -p "$work"
 python3 "$top/tools/nextheaders_site.py" "$src/configure" "$cfgdir/crtl_modules.txt" \
@@ -64,6 +67,8 @@ start=$(date +%s)
 (cd "$work" &&
  VMSCC_NODE=$node VMSCC_SUBDIR=ccserv VMSCC_CTL=$ctl VMSCC_LOG=$work/vmscc.log \
  VMSCC_MEMO=$top/cache/vmscc-memo/$node \
+ PCRE_CFLAGS=-I/pcre2/include PCRE_LIBS=-lpcre2-8 \
+ VMSCC_MAP='-I/pcre2/include=PCRE2$ROOT:[INCLUDE];-lpcre2-8=PCRE2$ROOT:[LIB]PCRE2-8.OLB' \
  CC=$top/tools/vmscc CONFIG_SITE=$work/vms.site \
  "$src/configure" -C --build="$("$src/build-aux/config.guess")" --host=$triplet \
      "${cfgargs[@]}" > configure.out 2>&1) || { tail -20 "$work/configure.out"; exit 1; }

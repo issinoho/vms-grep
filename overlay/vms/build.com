@@ -23,6 +23,14 @@ $arch_ok:
 $ if f$search("OBJ_''arch'.DIR") .eqs. "" then create/directory [.OBJ_'arch']
 $ if f$search("[.OBJ_''arch']LIB.DIR") .eqs. "" then create/directory [.OBJ_'arch'.LIB]
 $ if f$search("BIN_''arch'.DIR") .eqs. "" then create/directory [.BIN_'arch']
+$! grep -P needs PCRE2 (github.com/issinoho/vms-pcre2): PCRE2$ROOT must be a
+$! rooted logical for its install tree, e.g.
+$!   $ DEFINE/TRANSLATION=CONCEALED PCRE2$ROOT dev:[dir.PCRE2-10_49.INSTALL_IA64.]
+$ if f$trnlnm("PCRE2$ROOT") .eqs. "" .and. p1 .nes. "CLEAN"
+$ then
+$   write sys$error "BUILD: define PCRE2$ROOT for the PCRE2 install tree first (see README)"
+$   goto done
+$ endif
 $ target = p1
 $ if target .eqs. "" then target = "ALL"
 $ write sys$output "BUILD: ''target' for ''arch' in ''f$environment("DEFAULT")'"

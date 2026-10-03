@@ -12,12 +12,25 @@
 #   VMSCC_LOG       optional: append one line per call (mode, result)
 #   VMSCC_MEMO      optional: directory caching results by hash of (mode, source),
 #                   so re-running configure only sends tests it has not seen
+#   VMSCC_MAP       optional: ";"-separated "flag=VMS-spec" pairs translating
+#                   -I<dir> to an include directory and -l<lib> to an object
+#                   library, e.g. "-lpcre2-8=PCRE2$ROOT:[LIB]PCRE2-8.OLB"
 set -uo pipefail
 
 here=$(cd "$(dirname "$0")" && pwd)
 read -r _ _ HOST PORT USER _ SFTPDIR < <(awk -v n="$VMSCC_NODE" '$1==n' "$here/nodes.conf")
 
-mode=link out= srcs=() defs=()
+mode=link out= srcs=() defs=() incs=() libs=()
+# map_flag <flag>: record a VMS include directory or library for a mapped flag.
+map_flag() {
+    local pair key val
+    IFS=';' read -r -a pairs <<< "${VMSCC_MAP:-}"
+    for pair in "${pairs[@]}"; do
+        key=${pair%%=*}; val=${pair#*=}
+        [ "$key" = "$1" ] || continue
+        case $1 in -I*) incs+=("$val") ;; -l*) libs+=("$val") ;; esac
+    done
+}
 while [ $# -gt 0 ]; do
     case $1 in
     --version|-v|-V|-qversion|--help)
@@ -28,7 +41,10 @@ while [ $# -gt 0 ]; do
     -o*) out=${1#-o} ;;
     -D) defs+=("$2"); shift ;;
     -D*) defs+=("${1#-D}") ;;
-    -I|-L|-l|-include|-isystem) shift ;;
+    -I|-L|-l) map_flag "$1$2"; shift ;;
+    -I*|-l*) map_flag "$1" ;;
+    -L*) ;;
+    -include|-isystem) shift ;;
     *.c) srcs+=("$1") ;;
     *.o|*.a) ;;          # objects/libraries on link lines: nothing to do remotely
     -*) ;;               # gcc options (-g, -O2, -std=..., -W...) have no meaning here
@@ -54,7 +70,14 @@ trap 'rm -rf "$tmp"' EXIT
     done
     cat "$src"
 } > "$tmp/$id.c"
-echo "$mode" > "$tmp/$id.req"
+# Request: mode; then, only if any flag was mapped, include directories and
+# object libraries (comma lists).  Unmapped requests stay one line, so results
+# memoised before VMSCC_MAP existed remain valid.
+{ echo "$mode"
+  if [ ${#incs[@]} -gt 0 ] || [ ${#libs[@]} -gt 0 ]; then
+      (IFS=,; echo "${incs[*]}")
+      (IFS=,; echo "${libs[*]}")
+  fi; } > "$tmp/$id.req"
 
 sftp_do() {
     printf '%s\n' "$@" | sftp -P "$PORT" -o "ControlPath=$VMSCC_CTL" -o BatchMode=yes \

@@ -54,7 +54,7 @@ ac_cv_func_mbrtowc=${ac_cv_func_mbrtowc=yes}
 ac_cv_func_mbsinit=${ac_cv_func_mbsinit=yes}
 ac_cv_func_mbsrtowcs=${ac_cv_func_mbsrtowcs=yes}
 ac_cv_func_mbtowc=${ac_cv_func_mbtowc=yes}
-ac_cv_func_mempcpy=${ac_cv_func_mempcpy=no}
+ac_cv_func_mempcpy=${ac_cv_func_mempcpy=yes}
 ac_cv_func_memrchr=${ac_cv_func_memrchr=no}
 ac_cv_func_mmap=${ac_cv_func_mmap=yes}
 ac_cv_func_mprotect=${ac_cv_func_mprotect=yes}
@@ -249,37 +249,10 @@ ac_cv_type_uid_t=${ac_cv_type_uid_t=yes}
 ac_cv_type_volatile_sig_atomic_t=${ac_cv_type_volatile_sig_atomic_t=yes}
 ac_cv_working_alloca_h=${ac_cv_working_alloca_h=yes}
 test ${acl_cv_hardcode_libdir_flag_spec+y} || acl_cv_hardcode_libdir_flag_spec='${wl}-rpath ${wl}$libdir'
+am_cv_langinfo_codeset=${am_cv_langinfo_codeset=yes}
 gl_cv___builtin_expect=${gl_cv___builtin_expect=no}
-gl_cv_absolute_arpa_inet_h=${gl_cv_absolute_arpa_inet_h=}
-gl_cv_absolute_assert_h=${gl_cv_absolute_assert_h=}
-gl_cv_absolute_ctype_h=${gl_cv_absolute_ctype_h=}
-gl_cv_absolute_dirent_h=${gl_cv_absolute_dirent_h=}
-gl_cv_absolute_errno_h=${gl_cv_absolute_errno_h=}
-gl_cv_absolute_fcntl_h=${gl_cv_absolute_fcntl_h=}
-gl_cv_absolute_float_h=${gl_cv_absolute_float_h=}
-gl_cv_absolute_inttypes_h=${gl_cv_absolute_inttypes_h=}
-gl_cv_absolute_langinfo_h=${gl_cv_absolute_langinfo_h=}
-gl_cv_absolute_limits_h=${gl_cv_absolute_limits_h=}
-gl_cv_absolute_locale_h=${gl_cv_absolute_locale_h=}
-gl_cv_absolute_math_h=${gl_cv_absolute_math_h=}
 gl_cv_absolute_pthread_h=${gl_cv_absolute_pthread_h=}
 gl_cv_absolute_sched_h=${gl_cv_absolute_sched_h=}
-gl_cv_absolute_signal_h=${gl_cv_absolute_signal_h=}
-gl_cv_absolute_stddef_h=${gl_cv_absolute_stddef_h=}
-gl_cv_absolute_stdint_h=${gl_cv_absolute_stdint_h=}
-gl_cv_absolute_stdio_h=${gl_cv_absolute_stdio_h=}
-gl_cv_absolute_stdlib_h=${gl_cv_absolute_stdlib_h=}
-gl_cv_absolute_string_h=${gl_cv_absolute_string_h=}
-gl_cv_absolute_sys_ioctl_h=${gl_cv_absolute_sys_ioctl_h=}
-gl_cv_absolute_sys_socket_h=${gl_cv_absolute_sys_socket_h=}
-gl_cv_absolute_sys_stat_h=${gl_cv_absolute_sys_stat_h=}
-gl_cv_absolute_sys_time_h=${gl_cv_absolute_sys_time_h=}
-gl_cv_absolute_sys_types_h=${gl_cv_absolute_sys_types_h=}
-gl_cv_absolute_sys_uio_h=${gl_cv_absolute_sys_uio_h=}
-gl_cv_absolute_time_h=${gl_cv_absolute_time_h=}
-gl_cv_absolute_unistd_h=${gl_cv_absolute_unistd_h=}
-gl_cv_absolute_wchar_h=${gl_cv_absolute_wchar_h=}
-gl_cv_absolute_wctype_h=${gl_cv_absolute_wctype_h=}
 gl_cv_bitsizeof_ptrdiff_t=${gl_cv_bitsizeof_ptrdiff_t=32}
 gl_cv_bitsizeof_sig_atomic_t=${gl_cv_bitsizeof_sig_atomic_t=32}
 gl_cv_bitsizeof_size_t=${gl_cv_bitsizeof_size_t=32}
@@ -365,7 +338,7 @@ gl_cv_func_mbsrtowcs_works=${gl_cv_func_mbsrtowcs_works='guessing yes'}
 gl_cv_func_memchr_works=${gl_cv_func_memchr_works='guessing no'}
 gl_cv_func_nanosleep=${gl_cv_func_nanosleep='guessing no'}
 gl_cv_func_nl_langinfo_yesexpr_works=${gl_cv_func_nl_langinfo_yesexpr_works='guessing yes'}
-gl_cv_func_open_directory_works=${gl_cv_func_open_directory_works='guessing no'}
+gl_cv_func_open_directory_works=${gl_cv_func_open_directory_works=no}
 gl_cv_func_open_slash=${gl_cv_func_open_slash='guessing yes'}
 gl_cv_func_perror_works=${gl_cv_func_perror_works='guessing no'}
 gl_cv_func_printf_attribute_flavor=${gl_cv_func_printf_attribute_flavor=system}
@@ -449,41 +422,43 @@ gl_cv_macro_O_CLOEXEC=${gl_cv_macro_O_CLOEXEC=yes}
 gl_cv_malloc_ptrdiff=${gl_cv_malloc_ptrdiff=no}
 gl_cv_minmax_in_limits_h=${gl_cv_minmax_in_limits_h=no}
 gl_cv_minmax_in_sys_param_h=${gl_cv_minmax_in_sys_param_h=no}
-gl_cv_next_arpa_inet_h=${gl_cv_next_arpa_inet_h='""'}
-gl_cv_next_assert_h=${gl_cv_next_assert_h='""'}
-gl_cv_next_ctype_h=${gl_cv_next_ctype_h='""'}
-gl_cv_next_dirent_h=${gl_cv_next_dirent_h='""'}
-gl_cv_next_errno_h=${gl_cv_next_errno_h='""'}
+gl_cv_next_arpa_inet_h=${gl_cv_next_arpa_inet_h=INET}
+gl_cv_next_assert_h=${gl_cv_next_assert_h=ASSERT}
+gl_cv_next_ctype_h=${gl_cv_next_ctype_h=CTYPE}
+gl_cv_next_dirent_h=${gl_cv_next_dirent_h=DIRENT}
+gl_cv_next_errno_h=${gl_cv_next_errno_h=ERRNO}
 gl_cv_next_error_h=${gl_cv_next_error_h='<error.h>'}
-gl_cv_next_fcntl_h=${gl_cv_next_fcntl_h='""'}
-gl_cv_next_float_h=${gl_cv_next_float_h='""'}
+gl_cv_next_fcntl_h=${gl_cv_next_fcntl_h=FCNTL}
+gl_cv_next_float_h=${gl_cv_next_float_h=FLOAT}
 gl_cv_next_fnmatch_h=${gl_cv_next_fnmatch_h='<fnmatch.h>'}
 gl_cv_next_getopt_h=${gl_cv_next_getopt_h='<getopt.h>'}
-gl_cv_next_inttypes_h=${gl_cv_next_inttypes_h='""'}
-gl_cv_next_langinfo_h=${gl_cv_next_langinfo_h='""'}
-gl_cv_next_limits_h=${gl_cv_next_limits_h='""'}
-gl_cv_next_locale_h=${gl_cv_next_locale_h='""'}
-gl_cv_next_math_h=${gl_cv_next_math_h='""'}
+gl_cv_next_inttypes_h=${gl_cv_next_inttypes_h=INTTYPES}
+gl_cv_next_langinfo_h=${gl_cv_next_langinfo_h=LANGINFO}
+gl_cv_next_limits_h=${gl_cv_next_limits_h=LIMITS}
+gl_cv_next_locale_h=${gl_cv_next_locale_h=LOCALE}
+gl_cv_next_math_h=${gl_cv_next_math_h=MATH}
+gl_cv_next_netinet_in_h=${gl_cv_next_netinet_in_h=IN}
 gl_cv_next_pthread_h=${gl_cv_next_pthread_h='""'}
 gl_cv_next_sched_h=${gl_cv_next_sched_h='""'}
-gl_cv_next_signal_h=${gl_cv_next_signal_h='""'}
-gl_cv_next_stddef_h=${gl_cv_next_stddef_h='""'}
-gl_cv_next_stdint_h=${gl_cv_next_stdint_h='""'}
-gl_cv_next_stdio_h=${gl_cv_next_stdio_h='""'}
-gl_cv_next_stdlib_h=${gl_cv_next_stdlib_h='""'}
-gl_cv_next_string_h=${gl_cv_next_string_h='""'}
-gl_cv_next_sys_ioctl_h=${gl_cv_next_sys_ioctl_h='""'}
+gl_cv_next_signal_h=${gl_cv_next_signal_h=SIGNAL}
+gl_cv_next_stdarg_h=${gl_cv_next_stdarg_h=STDARG}
+gl_cv_next_stddef_h=${gl_cv_next_stddef_h=STDDEF}
+gl_cv_next_stdint_h=${gl_cv_next_stdint_h=STDINT}
+gl_cv_next_stdio_h=${gl_cv_next_stdio_h=STDIO}
+gl_cv_next_stdlib_h=${gl_cv_next_stdlib_h=STDLIB}
+gl_cv_next_string_h=${gl_cv_next_string_h=STRING}
+gl_cv_next_sys_ioctl_h=${gl_cv_next_sys_ioctl_h=IOCTL}
 gl_cv_next_sys_select_h=${gl_cv_next_sys_select_h='<sys/select.h>'}
-gl_cv_next_sys_socket_h=${gl_cv_next_sys_socket_h='""'}
-gl_cv_next_sys_stat_h=${gl_cv_next_sys_stat_h='""'}
-gl_cv_next_sys_time_h=${gl_cv_next_sys_time_h='""'}
-gl_cv_next_sys_types_h=${gl_cv_next_sys_types_h='""'}
-gl_cv_next_sys_uio_h=${gl_cv_next_sys_uio_h='""'}
-gl_cv_next_time_h=${gl_cv_next_time_h='""'}
+gl_cv_next_sys_socket_h=${gl_cv_next_sys_socket_h=SOCKET}
+gl_cv_next_sys_stat_h=${gl_cv_next_sys_stat_h=STAT}
+gl_cv_next_sys_time_h=${gl_cv_next_sys_time_h=TIME}
+gl_cv_next_sys_types_h=${gl_cv_next_sys_types_h=TYPES}
+gl_cv_next_sys_uio_h=${gl_cv_next_sys_uio_h=UIO}
+gl_cv_next_time_h=${gl_cv_next_time_h=TIME}
 gl_cv_next_uchar_h=${gl_cv_next_uchar_h='<uchar.h>'}
-gl_cv_next_unistd_h=${gl_cv_next_unistd_h='""'}
-gl_cv_next_wchar_h=${gl_cv_next_wchar_h='""'}
-gl_cv_next_wctype_h=${gl_cv_next_wctype_h='""'}
+gl_cv_next_unistd_h=${gl_cv_next_unistd_h=UNISTD}
+gl_cv_next_wchar_h=${gl_cv_next_wchar_h=WCHAR}
+gl_cv_next_wctype_h=${gl_cv_next_wctype_h=WCTYPE}
 gl_cv_nullptr_t_needs_stddef=${gl_cv_nullptr_t_needs_stddef=yes}
 gl_cv_off64_t=${gl_cv_off64_t=no}
 gl_cv_onwards_func_catgets=${gl_cv_onwards_func_catgets=yes}
@@ -496,7 +471,7 @@ gl_cv_onwards_func_getprogname=${gl_cv_onwards_func_getprogname=no}
 gl_cv_onwards_func_initstate=${gl_cv_onwards_func_initstate=yes}
 gl_cv_onwards_func_iswblank=${gl_cv_onwards_func_iswblank=yes}
 gl_cv_onwards_func_mbtowc=${gl_cv_onwards_func_mbtowc=yes}
-gl_cv_onwards_func_mempcpy=${gl_cv_onwards_func_mempcpy=no}
+gl_cv_onwards_func_mempcpy=${gl_cv_onwards_func_mempcpy=yes}
 gl_cv_onwards_func_newlocale=${gl_cv_onwards_func_newlocale='future OS version'}
 gl_cv_onwards_func_nl_langinfo=${gl_cv_onwards_func_nl_langinfo=yes}
 gl_cv_onwards_func_reallocarray=${gl_cv_onwards_func_reallocarray=no}
@@ -565,9 +540,7 @@ gt_cv_locale_tr_utf8=${gt_cv_locale_tr_utf8=none}
 gt_cv_locale_zh_CN=${gt_cv_locale_zh_CN=none}
 gt_cv_val_LC_MESSAGES=${gt_cv_val_LC_MESSAGES=yes}
 gt_cv_var_environ_declaration=${gt_cv_var_environ_declaration=no}
-pcre_cv_have_pcre2_compile=${pcre_cv_have_pcre2_compile=no}
-pkg_cv_PCRE_CFLAGS=${pkg_cv_PCRE_CFLAGS=}
-pkg_cv_PCRE_LIBS=${pkg_cv_PCRE_LIBS=-lpcre2-8}
+pcre_cv_have_pcre2_compile=${pcre_cv_have_pcre2_compile=yes}
 sv_cv_sigaltstack=${sv_cv_sigaltstack=no}
 sv_cv_stack_direction=${sv_cv_stack_direction=-1}
 sv_cv_stack_direction_msg=${sv_cv_stack_direction_msg='grows down'}

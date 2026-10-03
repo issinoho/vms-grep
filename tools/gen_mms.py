@@ -47,7 +47,9 @@ def main():
             # take them by wildcard (the full list exceeds DCL's line limit).
             obj = '$(%s)%s.OBJ' % ('LOBJ' if macro == 'LIB' else 'OBJ', stem)
             objs.append(obj)
-            rules += ['%s : %s%s' % (obj, vms_dir(os.path.dirname(full)), os.path.basename(full)),
+            # Every object also depends on config.h: MMS here tracks no header
+            # dependencies, and a configuration change must rebuild everything.
+            rules += ['%s : %s%s, []config.h' % (obj, vms_dir(os.path.dirname(full)), os.path.basename(full)),
                       '\t$(CC) $(CFLAGS) /OBJECT=$(MMS$TARGET) $(MMS$SOURCE)', '']
         out.append('%s_OBJS = %s' % (macro, ', -\n\t'.join(objs) if objs else ''))
         out.append('')

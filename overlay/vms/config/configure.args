@@ -1,5 +1,5 @@
 # Options for the host-side configure run (one per line).
 --disable-nls
---without-pcre
+--enable-perl-regexp
 --disable-threads
 --disable-dependency-tracking
