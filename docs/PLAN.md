@@ -1,5 +1,19 @@
 # Plan: GNU grep for OpenVMS (IA64 + x86-64), tracking upstream releases
 
+> **Status (October 2026).** This is the original plan, kept for its reasoning. Phases 0–5
+> are done: grep 3.12 is released as [v3.12-vms3](https://github.com/issinoho/vms-grep/releases/tag/v3.12-vms3)
+> with `grep -P`, and PCRE2 has its own repo and kit
+> ([vms-pcre2](https://github.com/issinoho/vms-pcre2), v10.49-vms1). Where the work departed
+> from the plan:
+> - **PCRE2 is linked statically** into `GREP.EXE`, so the grep kit has no PCSI dependency.
+> - **Start-up and commands are separate:** `GREP$STARTUP.COM` (in `SYS$STARTUP`) defines
+>   `GREP$ROOT`, and `GREP$SETUP.COM` defines `grep`, `egrep` and `fgrep` per user.
+> - **No ZIP** of the binaries; releases carry the PCSI kits and `SHA256SUMS`.
+> - **The configure step** runs upstream `configure` on the host, with VSI C on the node
+>   answering every test (`tools/vms_configure.sh`), rather than hand-written answers.
+>
+> The current state is in [README.md](../README.md) and [TESTING.md](TESTING.md).
+
 ## Context
 VSI's GNV grep is many releases behind. We want a repeatable port that tracks current GNU grep
 releases (3.12 today) with minimal maintenance per release. Our repo (`~/projects/vms-grep`, not yet

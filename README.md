@@ -32,8 +32,9 @@ expected-to-fail test.
 Download the kits from the
 [latest release](https://github.com/issinoho/vms-grep/releases/latest); the current
 release is [v3.12-vms3](https://github.com/issinoho/vms-grep/releases/tag/v3.12-vms3).
-Check them against the release's `SHA256SUMS`. The kits are PCSI files, named `ISSINOHO-<base>-GREP-V0312-3-1.PCSI` (grep 3.12, VMS patch
-level 3). A kit downloaded through a non-VMS system arrives without its record format,
+Check them against the release's `SHA256SUMS`. The kits are PCSI files, named
+`ISSINOHO-<base>-GREP-V0312-3-1.PCSI` (grep 3.12, VMS patch level 3). `<base>` is `I64VMS`
+or `X86VMS`. A kit downloaded through a non-VMS system arrives without its record format,
 so restore that first, then install it:
 
 ```
@@ -42,7 +43,8 @@ $ PRODUCT INSTALL GREP /PRODUCER=ISSINOHO /SOURCE=dev:[dir]
 ```
 
 The kits have been tested by installing, verifying and removing them on both architectures.
-They are not signed, so PCSI notes that it cannot validate a signature. It installs
+`GREP.EXE` is self-contained: PCRE2 is linked in, so nothing else needs installing for
+`grep -P`. The kits are not signed, so PCSI notes that it cannot validate a signature. It installs
 `[GREP.BIN]GREP.EXE`, the documentation in `[GREP.DOC]` (`README.VMS`, a plain-text
 manual `GREP.TXT`, `GREP.1`, `NEWS`, `COPYING`) and two procedures:
 
@@ -67,6 +69,11 @@ These notes are for people running the resulting `GREP.EXE`:
 - **Exit status:** grep returns POSIX exit codes (0 = match, 1 = no match, 2 = error),
   encoded in `$STATUS` as C-facility values. In DCL, `($STATUS .AND. %X7F8) / 8` gives the
   code.
+- **`grep -P`:** Perl-compatible regular expressions use PCRE2 10.49 (8-bit, Unicode, no
+  JIT). Quote the option and the pattern under traditional parsing, for example
+  `grep "-P" "\d+" file.txt`. `grep --version` names the PCRE2 version.
+- **Capturing grep's output:** reading grep's output from another program (Perl backticks,
+  pipes) works as on Unix; patch 0010 fixed a case where it came back empty.
 - **File names:** these are reported in Unix form (`dir/file.txt`). `-r` recurses through
   directories.
 - **Locales:** set a locale with a logical name or an environment variable, for example
@@ -132,6 +139,8 @@ you can also copy it to VMS any way you like and build there by hand.
 On each VMS system this produces an install tree such as
 `[.PCRE2-10_49.INSTALL_IA64]`. The grep build finds it through the rooted logical name
 `PCRE2$ROOT`:
+- **Using the PCRE2 kit:** if the [PCRE2 PCSI kit](https://github.com/issinoho/vms-pcre2/releases/latest)
+  is installed, `PCRE2$ROOT` is already defined system-wide, and a hand build can use it as is.
 - **Building by hand:** define it yourself, e.g.
   `$ DEFINE/TRANSLATION=CONCEALED PCRE2$ROOT dev:[dir.PCRE2-10_49.INSTALL_IA64.]`.
 - **Building over ssh:** `tools/build.sh` defines it for the tree named by `PCRE2_TREE` in
@@ -210,6 +219,7 @@ foreign command: `$ grep :== $dev:[dir.GREP-3_12.BIN_IA64]GREP.EXE`.
 | `tools/test.sh <node>` | Runs `[.VMS]TEST_SMOKE.COM`. |
 | `tools/gnvtest.sh <node> [test...]` | Runs the upstream suite in batch and fetches results to `out/gnvtests-<node>/`. |
 | `tools/kit.sh <node>` | Builds, then makes the PCSI kit on the node (`[.VMS.KIT]MAKE_KIT.COM`) and fetches it to `out/kits/`. |
+| `tools/installcheck.sh <node>` | Installs the kit on the node, verifies it, runs the smoke test on the installed image and removes it. Changes the system while it runs. |
 | `tools/vms_configure.sh <node>` | Runs upstream `configure` with VSI C on the node as the compiler (once per release). |
 | `tools/vms.sh <node> dcl\|run\|batch\|put\|get …` | Reliable remote execution and file transfer (see below). |
 
@@ -254,6 +264,7 @@ GNU `configure` cannot run usefully on VMS, so it runs on the Linux host with VM
 [.GREP-3_12.OBJ_<arch>]     grep objects, GREPUTILS.OLB, link map
 [.GREP-3_12.OBJ_<arch>.LIB] gnulib objects
 [.GREP-3_12.BIN_<arch>]     GREP.EXE
+[.GREP-3_12.KIT_<arch>]     the PCSI kit (MAKE_KIT.COM)
 ```
 
 ## Roadmap
