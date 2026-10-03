@@ -108,41 +108,82 @@ cache/ staging/ out/   generated locally, not committed
 
 Patches 0004, 0005 and 0008 change only the test suite.
 
-## Requirements
+## How to build
 
-- **Linux host:** bash, python3, gcc and make (for the host-side `configure` run), curl,
-  gpg, and ssh/sftp.
-- **VMS nodes:** VSI C, MMS and OpenSSH. Testing also uses VSI Perl and, on x86-64, GNV
-  (bash 4.4 and coreutils).
+The build has two halves. A **Linux host** prepares a ready-to-compile source tree from
+the GNU release, and an **OpenVMS system** compiles it with VSI C and MMS. The scripts in
+`tools/` can drive the VMS side over ssh. The prepared tree is self-contained, though, so
+you can also copy it to VMS any way you like and build there by hand.
 
-## First-time setup
+### What you need
 
-1. Create an ssh key with no passphrase for automation, e.g. `~/.ssh/vms_ed25519` (or point
-   `VMS_SSH_KEY` at another key). Install its public key in `SYS$LOGIN:[.SSH]AUTHORIZED_KEYS.`
-   on each node. The login directory must not be group- or world-writable, or sshd ignores
-   the key.
-2. Copy `tools/nodes.conf.example` to `tools/nodes.conf` and fill in each node: host, port,
-   user, VMS work directory and the matching sftp path. This file is git-ignored.
-3. Create the work directory on each node, e.g. `$ CREATE/DIRECTORY DISK$USER:[USERNAME.VMS_GREP]`.
-4. Check access: `tools/vms.sh ia64 dcl 'show time'`.
+- **Linux host:** git, bash, python3, gcc and make (for the host-side `configure` run),
+  curl and gpg. ssh/sftp too, if you want the automated route.
+- **OpenVMS IA64 or x86-64:** VSI C and MMS. OpenSSH for the automated route. VSI Perl for
+  the regex tests, and GNV (bash 4.4 and coreutils, x86-64) for the full upstream suite.
+  The build has been tested on IA64 V8.4-2L3 with VSI C 7.4, and on x86-64 E9.2-4 with
+  VSI C 7.7.
 
-## Everyday workflow
+### 1. Prepare the source tree (Linux)
 
 ```sh
-tools/prepare.sh            # fetch + verify tarball, patch, overlay, generate headers -> staging/
-tools/build.sh ia64         # push changed files, MMS build on the node -> [.BIN_IA64]GREP.EXE
-tools/test.sh ia64          # DCL smoke test against the built image
-tools/build.sh x86 && tools/test.sh x86
-tools/gnvtest.sh x86        # full upstream test suite under GNV (about 90 minutes)
-tools/kit.sh ia64           # PCSI kit -> out/kits/ (likewise x86)
+git clone https://github.com/issinoho/vms-grep.git
+cd vms-grep
+tools/prepare.sh
 ```
 
-- `tools/build.sh <node> ALL KEEP_GOING` compiles everything, including files after the
-  first failure, so one run reports every error.
-- `tools/build.sh <node> CLEAN` removes the objects. MMS does not track changes to compiler
-  flags, so clean after changing them.
-- `tools/push.sh` uploads only files whose content changed, so MMS rebuilds only what's affected.
-- On a node, `@[.VMS]REGEX_TESTS` runs the regex tables with VSI Perl; it needs no GNV.
+This downloads the grep release named in `upstream.conf`, and checks its SHA-256 and GPG
+signature against the GNU keyring. It then applies `patches/`, adds `overlay/`, generates
+`config.h`, the gnulib headers and the MMS source list, and leaves the result in
+`staging/grep-3.12/`.
+
+### 2a. Build on VMS by hand
+
+Copy these parts of `staging/grep-3.12/` to a directory on the VMS system, keeping the
+directory structure: `config.h`, `lib/`, `src/` and `vms/` (`tests/` too, for the test
+suites). Any method works: sftp, a ZIP made on the host, or NFS. Then, on VMS:
+
+```
+$ SET DEFAULT dev:[dir.GREP-3_12]
+$ @[.VMS]BUILD                    ! -> [.BIN_IA64]GREP.EXE or [.BIN_X86_64]GREP.EXE
+$ @[.VMS]TEST_SMOKE               ! quick functional test (18 checks)
+$ @[.VMS]REGEX_TESTS              ! regex tables, if VSI Perl is installed
+$ @[.VMS.KIT]MAKE_KIT             ! PCSI kit -> [.KIT_<arch>]
+```
+
+`@[.VMS]BUILD ALL KEEP_GOING` carries on past compile errors so that one run reports them
+all. `@[.VMS]BUILD CLEAN` removes the objects; do that after changing compiler flags,
+because MMS doesn't track them.
+
+### 2b. Build on VMS from the host over ssh
+
+One-time setup:
+
+1. Create an ssh key with no passphrase, e.g. `~/.ssh/vms_ed25519` (or point `VMS_SSH_KEY`
+   at another key). Install its public key in `SYS$LOGIN:[.SSH]AUTHORIZED_KEYS.` on each
+   node. The login directory must not be group- or world-writable, or sshd ignores the key.
+2. Copy `tools/nodes.conf.example` to `tools/nodes.conf` and fill in each node: host,
+   port, user, VMS work directory and the matching sftp path. This file is git-ignored.
+3. Create the work directory on each node, e.g.
+   `$ CREATE/DIRECTORY DISK$USER:[USERNAME.VMS_GREP]`.
+4. Check access: `tools/vms.sh ia64 dcl 'show time'`.
+
+Then, from the host:
+
+```sh
+tools/build.sh ia64         # upload changed files, MMS build on the node
+tools/test.sh ia64          # DCL smoke test
+tools/gnvtest.sh x86        # full upstream test suite under GNV (about 90 minutes)
+tools/kit.sh ia64           # build, then make the PCSI kit -> out/kits/
+```
+
+The names (`ia64`, `x86`) are the node names from `tools/nodes.conf`. `tools/push.sh`
+uploads only files whose content changed, so rebuilds are incremental.
+
+### 3. Install
+
+See [Installing the kit](#installing-the-kit). To try the image without a kit, define a
+foreign command: `$ grep :== $dev:[dir.GREP-3_12.BIN_IA64]GREP.EXE`.
 
 ## Tools
 

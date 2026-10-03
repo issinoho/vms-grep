@@ -46,6 +46,7 @@ dcl_logged() {
     local tag=vmsrun_$$_$RANDOM
     local com=$(mktemp) out=$(mktemp) done_f=$(mktemp)
     { echo '$ set noon'; echo "\$ set default $WORKDIR"; printf '%s\n' "$@"
+      echo '$ write sys$output "VMSRUN-END"'
       echo "\$ open/write vmsrun_done ${WORKDIR}${tag}.DONE"
       echo '$ close vmsrun_done'; } > "$com"
     sftp_batch "cd $SFTPDIR" "put $com $tag.com"
@@ -60,9 +61,16 @@ dcl_logged() {
         fi
         [ "$waited" -ge "$limit" ] && { echo "vms.sh: timed out after ${limit}s" >&2; break; }
     done
+    # The log is closed only when the process exits, after the DONE marker:
+    # fetch until it holds the end line written just before the marker.
+    for _ in 1 2 3 4 5 6 7 8 9 10; do
+        sftp_batch "cd $SFTPDIR" "get $tag.LOG $out" 2>/dev/null || true
+        grep -aq '^VMSRUN-END' "$out" 2>/dev/null && break
+        sleep 3
+    done
     kill "$pid" 2>/dev/null || true; wait "$pid" 2>/dev/null || true
-    sftp_batch "cd $SFTPDIR" "get $tag.LOG $out" "-rm $tag.com" "-rm $tag.LOG" "-rm $tag.DONE" || true
-    tr -d '\r' < "$out"
+    sftp_batch "cd $SFTPDIR" "-rm $tag.com" "-rm $tag.LOG" "-rm $tag.DONE" || true
+    tr -d '\r' < "$out" | grep -av '^VMSRUN-END' || true
     rm -f "$com" "$out" "$done_f"
 }
 
