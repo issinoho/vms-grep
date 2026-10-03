@@ -248,6 +248,8 @@ GNU `configure` cannot run usefully on VMS, so it runs on the Linux host with VM
 2. A port to OpenVMS **Alpha**, alongside IA64 and x86-64.
 3. VMS-specific behaviour: native record formats (VAR/VFC files), wildcard file
    specifications typed at DCL, and a review of the compiler's warnings.
+4. Next port: **GNU sed**, following on from grep and PCRE2 with exactly the same methods
+   and roadmap ([vms-sed](https://github.com/issinoho/vms-sed)).
 
 ## Further reading
 
