@@ -273,7 +273,8 @@ GNU `configure` cannot run usefully on VMS, so it runs on the Linux host with VM
 2. VMS-specific behaviour: native record formats (VAR/VFC files), wildcard file
    specifications typed at DCL, and a review of the compiler's warnings.
 3. Next port: **GNU sed**, following on from grep and PCRE2 with exactly the same methods
-   and roadmap ([vms-sed](https://github.com/issinoho/vms-sed)).
+   and roadmap ([vms-sed](https://github.com/issinoho/vms-sed)). Under way.
+4. Then **GNU awk** (gawk), the same way ([vms-awk](https://github.com/issinoho/vms-awk)).
 
 ## Further reading
 
