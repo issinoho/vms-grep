@@ -18,14 +18,17 @@ files, and generates the configuration for VSI C.
 | Regex tables (BRE, ERE, Spencer) | 329/329 | 329/329 |
 | Upstream test suite (128 tests) | not runnable (GNV too old) | 84 pass, 0 unexpected failures |
 | `grep -P` (PCRE2) | not yet | not yet |
-| PCSI kit | `ISSINOHO-I64VMS-GREP-V0312-1-1.PCSI` | `ISSINOHO-X86VMS-GREP-V0312-1-1.PCSI` |
+| PCSI kit ([v3.12-vms1](https://github.com/issinoho/vms-grep/releases/tag/v3.12-vms1)) | `ISSINOHO-I64VMS-GREP-V0312-1-1.PCSI` | `ISSINOHO-X86VMS-GREP-V0312-1-1.PCSI` |
 
 See [docs/TESTING.md](docs/TESTING.md) for the details of every skipped, excluded and
 expected-to-fail test.
 
 ## Installing the kit
 
-The kits are PCSI files, named `ISSINOHO-<base>-GREP-V0312-1-1.PCSI` (grep 3.12, VMS patch
+Download the kits from the
+[latest release](https://github.com/issinoho/vms-grep/releases/latest); the current
+release is [v3.12-vms1](https://github.com/issinoho/vms-grep/releases/tag/v3.12-vms1).
+Check them against the release's `SHA256SUMS`. The kits are PCSI files, named `ISSINOHO-<base>-GREP-V0312-1-1.PCSI` (grep 3.12, VMS patch
 level 1). A kit downloaded through a non-VMS system arrives without its record format,
 so restore that first, then install it:
 
@@ -195,9 +198,8 @@ GNU `configure` cannot run usefully on VMS, so it runs on the Linux host with VM
 
 ## Roadmap
 
-1. Publish the kits as GitHub release assets.
-2. Port PCRE2 with the same structure, then enable `grep -P`.
-3. VMS-specific behaviour: native record formats (VAR/VFC files), wildcard file
+1. Port PCRE2 with the same structure, then enable `grep -P`.
+2. VMS-specific behaviour: native record formats (VAR/VFC files), wildcard file
    specifications typed at DCL, and a review of the compiler's warnings.
 
 ## Further reading
