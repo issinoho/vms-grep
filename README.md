@@ -18,7 +18,7 @@ files, and generates the configuration for VSI C.
 | Regex tables (BRE, ERE, Spencer) | 329/329 | 329/329 |
 | Upstream test suite (128 tests) | not runnable (GNV too old) | 84 pass, 0 unexpected failures |
 | `grep -P` (PCRE2) | not yet | not yet |
-| PCSI kit ([v3.12-vms1](https://github.com/issinoho/vms-grep/releases/tag/v3.12-vms1)) | `ISSINOHO-I64VMS-GREP-V0312-1-1.PCSI` | `ISSINOHO-X86VMS-GREP-V0312-1-1.PCSI` |
+| PCSI kit ([v3.12-vms2](https://github.com/issinoho/vms-grep/releases/tag/v3.12-vms2)) | `ISSINOHO-I64VMS-GREP-V0312-2-1.PCSI` | `ISSINOHO-X86VMS-GREP-V0312-2-1.PCSI` |
 
 See [docs/TESTING.md](docs/TESTING.md) for the details of every skipped, excluded and
 expected-to-fail test.
@@ -27,13 +27,13 @@ expected-to-fail test.
 
 Download the kits from the
 [latest release](https://github.com/issinoho/vms-grep/releases/latest); the current
-release is [v3.12-vms1](https://github.com/issinoho/vms-grep/releases/tag/v3.12-vms1).
-Check them against the release's `SHA256SUMS`. The kits are PCSI files, named `ISSINOHO-<base>-GREP-V0312-1-1.PCSI` (grep 3.12, VMS patch
-level 1). A kit downloaded through a non-VMS system arrives without its record format,
+release is [v3.12-vms2](https://github.com/issinoho/vms-grep/releases/tag/v3.12-vms2).
+Check them against the release's `SHA256SUMS`. The kits are PCSI files, named `ISSINOHO-<base>-GREP-V0312-2-1.PCSI` (grep 3.12, VMS patch
+level 2). A kit downloaded through a non-VMS system arrives without its record format,
 so restore that first, then install it:
 
 ```
-$ SET FILE/ATTRIBUTE=(RFM:FIX,LRL:8192,MRS:8192,RAT:NONE) ISSINOHO-*-GREP-V0312-1-1.PCSI
+$ SET FILE/ATTRIBUTE=(RFM:FIX,LRL:8192,MRS:8192,RAT:NONE) ISSINOHO-*-GREP-V0312-2-1.PCSI
 $ PRODUCT INSTALL GREP /PRODUCER=ISSINOHO /SOURCE=dev:[dir]
 ```
 
