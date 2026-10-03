@@ -60,6 +60,31 @@ $ call t only      0 "app|app"                  "-o app fruit.txt"
 $ call t files     0 "fruit.txt"                "-l grape fruit.txt"
 $ call t recurse   0 "tree/one.txt:needle in one" "-r needle tree"
 $!
+$! A line containing byte 0xFF must be written intact (signed char vs EOF).
+$ open/write hb highbyte.txt
+$ hi = "a"
+$ hi[8,8] = 255
+$ hi = hi + "b"
+$ write hb hi
+$ close hb
+$ define/user sys$output out.txt
+$ define/user sys$error out.txt
+$ grep -a a highbyte.txt
+$ st = $status
+$ got = ""
+$ open/read hb out.txt
+$ read/end=hb_eof hb got
+$hb_eof:
+$ close hb
+$ if ((st .and. %X7F8) / 8) .eq. 0 .and. got .eqs. hi
+$ then
+$   write sys$output "PASS HIGHBYTE"
+$   pass == pass + 1
+$ else
+$   write sys$output "FAIL HIGHBYTE: line with byte 255 not written intact"
+$   fail == fail + 1
+$ endif
+$!
 $! Output to a record-oriented destination (a PIPE mailbox): each output line
 $! must arrive as one record, not one record per write or per character.
 $ pipe grep -n apple fruit.txt | search/nooutput sys$pipe "1:apple"

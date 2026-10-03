@@ -19,7 +19,7 @@ per line.  putc output is assembled into records at newlines.
 +  char const *p = ptr;
 +  idx_t n = size * nmemb;
 +  for (; n > 0; n--)
-+    if (putc (*p++, stdout) == EOF)
++    if (putc ((unsigned char) *p++, stdout) == EOF)
 +      {
 +        stdout_errno = errno;
 +        break;
