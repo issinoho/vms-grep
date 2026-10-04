@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-04T10:22:00Z",
+  "generated": "2026-10-04T12:19:45Z",
   "releases": {
     "vms-grep": {
       "tag_name": "v3.12-vms3",
@@ -113,6 +113,29 @@
           "name": "SHA256SUMS",
           "size": 208,
           "browser_download_url": "https://github.com/issinoho/vms-wget/releases/download/v1.25.0-vms2/SHA256SUMS"
+        }
+      ]
+    },
+    "vms-m4": {
+      "tag_name": "v1.4.21-vms1",
+      "name": "GNU m4 1.4.21 for OpenVMS (vms1)",
+      "published_at": "2026-10-04T12:03:25Z",
+      "html_url": "https://github.com/issinoho/vms-m4/releases/tag/v1.4.21-vms1",
+      "assets": [
+        {
+          "name": "ISSINOHO-I64VMS-M4-V0104-21E1-1.PCSI",
+          "size": 1441792,
+          "browser_download_url": "https://github.com/issinoho/vms-m4/releases/download/v1.4.21-vms1/ISSINOHO-I64VMS-M4-V0104-21E1-1.PCSI"
+        },
+        {
+          "name": "ISSINOHO-X86VMS-M4-V0104-21E1-1.PCSI",
+          "size": 1409024,
+          "browser_download_url": "https://github.com/issinoho/vms-m4/releases/download/v1.4.21-vms1/ISSINOHO-X86VMS-M4-V0104-21E1-1.PCSI"
+        },
+        {
+          "name": "SHA256SUMS",
+          "size": 206,
+          "browser_download_url": "https://github.com/issinoho/vms-m4/releases/download/v1.4.21-vms1/SHA256SUMS"
         }
       ]
     },

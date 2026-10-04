@@ -57,6 +57,29 @@
     "setup": "$ @WGET$ROOT:[000000]WGET$SETUP.COM"
   },
   {
+    "repo": "vms-m4",
+    "name": "GNU m4",
+    "kind": "tool",
+    "upstream": "https://www.gnu.org/software/m4/",
+    "product": "M4",
+    "blurb": "The GNU macro processor. syscmd and esyscmd run DCL commands through LIB$SPAWN. Bison runs m4 to generate its parsers.",
+    "try": "$ m4 \"-DHOST=OpenVMS\" CONFIG.M4",
+    "status": "released",
+    "setup": "$ @M4$ROOT:[000000]M4$SETUP.COM"
+  },
+  {
+    "repo": "vms-bison",
+    "name": "GNU Bison",
+    "kind": "tool",
+    "upstream": "https://www.gnu.org/software/bison/",
+    "product": "BISON",
+    "blurb": "The GNU parser generator. It runs GNU m4 for OpenVMS to generate its parsers, so the kit requires the M4 kit.",
+    "requires": "GNU m4 kit",
+    "try": "$ bison \"-d\" CALC.Y",
+    "status": "in progress",
+    "setup": "$ @BISON$ROOT:[000000]BISON$SETUP.COM"
+  },
+  {
     "repo": "vms-pcre2",
     "name": "PCRE2",
     "kind": "library",
@@ -73,14 +96,5 @@
     "product": "ZLIB",
     "blurb": "The zlib compression library as an object library and headers under ZLIB$ROOT. It provides compressed transfers in curl and Wget.",
     "status": "released"
-  },
-  {
-    "repo": "vms-m4",
-    "name": "GNU m4",
-    "kind": "tool",
-    "upstream": "https://www.gnu.org/software/m4/",
-    "product": "M4",
-    "blurb": "The GNU macro processor: the next tool in the pipeline, and a step towards running more GNU build tooling natively.",
-    "status": "in progress"
   }
 ]
