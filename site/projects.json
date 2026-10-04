@@ -62,7 +62,7 @@
     "kind": "tool",
     "upstream": "https://www.gnu.org/software/m4/",
     "product": "M4",
-    "blurb": "The GNU macro processor. syscmd and esyscmd run DCL commands through LIB$SPAWN. Bison runs m4 to generate its parsers.",
+    "blurb": "The GNU macro processor. syscmd and esyscmd run DCL commands through LIB$SPAWN. Bison and flex run m4 to generate their parsers and scanners.",
     "try": "$ m4 \"-DHOST=OpenVMS\" CONFIG.M4",
     "status": "released",
     "setup": "$ @M4$ROOT:[000000]M4$SETUP.COM"
@@ -78,6 +78,18 @@
     "try": "$ bison \"-d\" CALC.Y",
     "status": "released",
     "setup": "$ @BISON$ROOT:[000000]BISON$SETUP.COM"
+  },
+  {
+    "repo": "vms-flex",
+    "name": "flex",
+    "kind": "tool",
+    "upstream": "https://github.com/westes/flex",
+    "product": "FLEX",
+    "blurb": "The fast lexical analyser generator, with its LIBFL library and FlexLexer.h. It runs GNU m4 for OpenVMS to generate its scanners, so the kit requires the M4 kit.",
+    "requires": "GNU m4 kit",
+    "try": "$ flex \"-o\" wc.c FLEX$ROOT:[DOC]WC.L",
+    "status": "released",
+    "setup": "$ @FLEX$ROOT:[000000]FLEX$SETUP.COM"
   },
   {
     "repo": "vms-pcre2",

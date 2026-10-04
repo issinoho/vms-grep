@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-04T15:51:06Z",
+  "generated": "2026-10-04T22:50:13Z",
   "releases": {
     "vms-grep": {
       "tag_name": "v3.12-vms3",
@@ -140,25 +140,48 @@
       ]
     },
     "vms-bison": {
-      "tag_name": "v3.8.2-vms1",
-      "name": "GNU Bison 3.8.2 for OpenVMS (vms1)",
-      "published_at": "2026-10-04T15:48:04Z",
-      "html_url": "https://github.com/issinoho/vms-bison/releases/tag/v3.8.2-vms1",
+      "tag_name": "v3.8.2-vms2",
+      "name": "GNU Bison 3.8.2 for OpenVMS (vms2)",
+      "published_at": "2026-10-04T22:46:51Z",
+      "html_url": "https://github.com/issinoho/vms-bison/releases/tag/v3.8.2-vms2",
       "assets": [
         {
-          "name": "ISSINOHO-I64VMS-BISON-V0308-2E1-1.PCSI",
-          "size": 3620864,
-          "browser_download_url": "https://github.com/issinoho/vms-bison/releases/download/v3.8.2-vms1/ISSINOHO-I64VMS-BISON-V0308-2E1-1.PCSI"
+          "name": "ISSINOHO-I64VMS-BISON-V0308-2E2-1.PCSI",
+          "size": 3629056,
+          "browser_download_url": "https://github.com/issinoho/vms-bison/releases/download/v3.8.2-vms2/ISSINOHO-I64VMS-BISON-V0308-2E2-1.PCSI"
         },
         {
-          "name": "ISSINOHO-X86VMS-BISON-V0308-2E1-1.PCSI",
+          "name": "ISSINOHO-X86VMS-BISON-V0308-2E2-1.PCSI",
           "size": 3252224,
-          "browser_download_url": "https://github.com/issinoho/vms-bison/releases/download/v3.8.2-vms1/ISSINOHO-X86VMS-BISON-V0308-2E1-1.PCSI"
+          "browser_download_url": "https://github.com/issinoho/vms-bison/releases/download/v3.8.2-vms2/ISSINOHO-X86VMS-BISON-V0308-2E2-1.PCSI"
         },
         {
           "name": "SHA256SUMS",
           "size": 210,
-          "browser_download_url": "https://github.com/issinoho/vms-bison/releases/download/v3.8.2-vms1/SHA256SUMS"
+          "browser_download_url": "https://github.com/issinoho/vms-bison/releases/download/v3.8.2-vms2/SHA256SUMS"
+        }
+      ]
+    },
+    "vms-flex": {
+      "tag_name": "v2.6.4-vms1",
+      "name": "flex 2.6.4 for OpenVMS (vms1)",
+      "published_at": "2026-10-04T22:38:08Z",
+      "html_url": "https://github.com/issinoho/vms-flex/releases/tag/v2.6.4-vms1",
+      "assets": [
+        {
+          "name": "ISSINOHO-I64VMS-FLEX-V0206-4E1-1.PCSI",
+          "size": 2228224,
+          "browser_download_url": "https://github.com/issinoho/vms-flex/releases/download/v2.6.4-vms1/ISSINOHO-I64VMS-FLEX-V0206-4E1-1.PCSI"
+        },
+        {
+          "name": "ISSINOHO-X86VMS-FLEX-V0206-4E1-1.PCSI",
+          "size": 1785856,
+          "browser_download_url": "https://github.com/issinoho/vms-flex/releases/download/v2.6.4-vms1/ISSINOHO-X86VMS-FLEX-V0206-4E1-1.PCSI"
+        },
+        {
+          "name": "SHA256SUMS",
+          "size": 208,
+          "browser_download_url": "https://github.com/issinoho/vms-flex/releases/download/v2.6.4-vms1/SHA256SUMS"
         }
       ]
     },
