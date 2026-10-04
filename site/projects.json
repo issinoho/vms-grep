@@ -76,7 +76,7 @@
     "blurb": "The GNU parser generator. It runs GNU m4 for OpenVMS to generate its parsers, so the kit requires the M4 kit.",
     "requires": "GNU m4 kit",
     "try": "$ bison \"-d\" CALC.Y",
-    "status": "in progress",
+    "status": "released",
     "setup": "$ @BISON$ROOT:[000000]BISON$SETUP.COM"
   },
   {

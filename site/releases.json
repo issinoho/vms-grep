@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-04T12:19:45Z",
+  "generated": "2026-10-04T15:51:06Z",
   "releases": {
     "vms-grep": {
       "tag_name": "v3.12-vms3",
@@ -136,6 +136,29 @@
           "name": "SHA256SUMS",
           "size": 206,
           "browser_download_url": "https://github.com/issinoho/vms-m4/releases/download/v1.4.21-vms1/SHA256SUMS"
+        }
+      ]
+    },
+    "vms-bison": {
+      "tag_name": "v3.8.2-vms1",
+      "name": "GNU Bison 3.8.2 for OpenVMS (vms1)",
+      "published_at": "2026-10-04T15:48:04Z",
+      "html_url": "https://github.com/issinoho/vms-bison/releases/tag/v3.8.2-vms1",
+      "assets": [
+        {
+          "name": "ISSINOHO-I64VMS-BISON-V0308-2E1-1.PCSI",
+          "size": 3620864,
+          "browser_download_url": "https://github.com/issinoho/vms-bison/releases/download/v3.8.2-vms1/ISSINOHO-I64VMS-BISON-V0308-2E1-1.PCSI"
+        },
+        {
+          "name": "ISSINOHO-X86VMS-BISON-V0308-2E1-1.PCSI",
+          "size": 3252224,
+          "browser_download_url": "https://github.com/issinoho/vms-bison/releases/download/v3.8.2-vms1/ISSINOHO-X86VMS-BISON-V0308-2E1-1.PCSI"
+        },
+        {
+          "name": "SHA256SUMS",
+          "size": 210,
+          "browser_download_url": "https://github.com/issinoho/vms-bison/releases/download/v3.8.2-vms1/SHA256SUMS"
         }
       ]
     },
