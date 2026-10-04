@@ -1,0 +1,86 @@
+[
+  {
+    "repo": "vms-grep",
+    "name": "GNU grep",
+    "kind": "tool",
+    "upstream": "https://www.gnu.org/software/grep/",
+    "product": "GREP",
+    "blurb": "Current GNU grep, replacing a GNV grep that is many releases behind. Includes grep -P with PCRE2 linked in, so the kit is self-contained.",
+    "try": "$ grep \"-P\" \"\\d{4}-\\d{2}\" SYS$LOGIN:LOGIN.COM",
+    "status": "released",
+    "setup": "$ @GREP$ROOT:[000000]GREP$SETUP.COM"
+  },
+  {
+    "repo": "vms-sed",
+    "name": "GNU sed",
+    "kind": "tool",
+    "upstream": "https://www.gnu.org/software/sed/",
+    "product": "SED",
+    "blurb": "The GNU stream editor, built natively with VSI C and tested against upstream's own suite.",
+    "try": "$ sed \"-e\" \"s/VAX/Alpha/g\" HISTORY.TXT",
+    "status": "released",
+    "setup": "$ @SED$ROOT:[000000]SED$SETUP.COM"
+  },
+  {
+    "repo": "vms-awk",
+    "name": "GNU awk",
+    "kind": "tool",
+    "upstream": "https://www.gnu.org/software/gawk/",
+    "product": "GAWK",
+    "blurb": "gawk, built with the OpenVMS port that ships inside every gawk release, wrapped in our signed-tarball tooling and PCSI kits.",
+    "try": "$ gawk \"{ n += $2 } END { print n }\" SIZES.DAT",
+    "status": "released",
+    "setup": "$ @GAWK$ROOT:[000000]GAWK$SETUP.COM"
+  },
+  {
+    "repo": "vms-curl",
+    "name": "curl",
+    "kind": "tool",
+    "upstream": "https://curl.se/",
+    "product": "VMSCURL",
+    "blurb": "Current curl with TLS from VSI's OpenSSL 3 kit and zlib linked in. Installs as VMSCURL, so it can sit alongside VSI's own CURL kit.",
+    "requires": "VSI SSL3 kit",
+    "try": "$ curl \"-sSLO\" https://openvms.issinoho.com/",
+    "status": "released",
+    "setup": "$ curl :== $VMSCURL$ROOT:[BIN]CURL.EXE"
+  },
+  {
+    "repo": "vms-wget",
+    "name": "GNU Wget",
+    "kind": "tool",
+    "upstream": "https://www.gnu.org/software/wget/",
+    "product": "WGET",
+    "blurb": "GNU Wget with HTTPS through VSI's OpenSSL 3 kit and a current CA bundle. It writes downloads as stream files, whatever the old version's record format was.",
+    "requires": "VSI SSL3 kit",
+    "try": "$ wget \"--mirror\" https://openvms.issinoho.com/",
+    "status": "released",
+    "setup": "$ @WGET$ROOT:[000000]WGET$SETUP.COM"
+  },
+  {
+    "repo": "vms-pcre2",
+    "name": "PCRE2",
+    "kind": "library",
+    "upstream": "https://github.com/PCRE2Project/pcre2",
+    "product": "PCRE2",
+    "blurb": "Perl-compatible regular expressions (8-bit, Unicode) as an object library and headers under PCRE2$ROOT. It provides grep -P.",
+    "status": "released"
+  },
+  {
+    "repo": "vms-zlib",
+    "name": "zlib",
+    "kind": "library",
+    "upstream": "https://zlib.net/",
+    "product": "ZLIB",
+    "blurb": "The zlib compression library as an object library and headers under ZLIB$ROOT. It provides compressed transfers in curl and Wget.",
+    "status": "released"
+  },
+  {
+    "repo": "vms-m4",
+    "name": "GNU m4",
+    "kind": "tool",
+    "upstream": "https://www.gnu.org/software/m4/",
+    "product": "M4",
+    "blurb": "The GNU macro processor: the next tool in the pipeline, and a step towards running more GNU build tooling natively.",
+    "status": "in progress"
+  }
+]

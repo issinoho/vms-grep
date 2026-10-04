@@ -1,0 +1,166 @@
+{
+  "generated": "2026-10-04T10:22:00Z",
+  "releases": {
+    "vms-grep": {
+      "tag_name": "v3.12-vms3",
+      "name": "GNU grep 3.12 for OpenVMS (vms3)",
+      "published_at": "2026-10-03T13:53:05Z",
+      "html_url": "https://github.com/issinoho/vms-grep/releases/tag/v3.12-vms3",
+      "assets": [
+        {
+          "name": "ISSINOHO-I64VMS-GREP-V0312-3-1.PCSI",
+          "size": 1671168,
+          "browser_download_url": "https://github.com/issinoho/vms-grep/releases/download/v3.12-vms3/ISSINOHO-I64VMS-GREP-V0312-3-1.PCSI"
+        },
+        {
+          "name": "ISSINOHO-X86VMS-GREP-V0312-3-1.PCSI",
+          "size": 1368064,
+          "browser_download_url": "https://github.com/issinoho/vms-grep/releases/download/v3.12-vms3/ISSINOHO-X86VMS-GREP-V0312-3-1.PCSI"
+        },
+        {
+          "name": "SHA256SUMS",
+          "size": 204,
+          "browser_download_url": "https://github.com/issinoho/vms-grep/releases/download/v3.12-vms3/SHA256SUMS"
+        }
+      ]
+    },
+    "vms-sed": {
+      "tag_name": "v4.10-vms1",
+      "name": "GNU sed 4.10 for OpenVMS (vms1)",
+      "published_at": "2026-10-03T18:51:39Z",
+      "html_url": "https://github.com/issinoho/vms-sed/releases/tag/v4.10-vms1",
+      "assets": [
+        {
+          "name": "ISSINOHO-I64VMS-SED-V0410-1-1.PCSI",
+          "size": 745472,
+          "browser_download_url": "https://github.com/issinoho/vms-sed/releases/download/v4.10-vms1/ISSINOHO-I64VMS-SED-V0410-1-1.PCSI"
+        },
+        {
+          "name": "ISSINOHO-X86VMS-SED-V0410-1-1.PCSI",
+          "size": 671744,
+          "browser_download_url": "https://github.com/issinoho/vms-sed/releases/download/v4.10-vms1/ISSINOHO-X86VMS-SED-V0410-1-1.PCSI"
+        },
+        {
+          "name": "SHA256SUMS",
+          "size": 202,
+          "browser_download_url": "https://github.com/issinoho/vms-sed/releases/download/v4.10-vms1/SHA256SUMS"
+        }
+      ]
+    },
+    "vms-awk": {
+      "tag_name": "v5.4.1-vms1",
+      "name": "GNU awk (gawk) 5.4.1 for OpenVMS (vms1)",
+      "published_at": "2026-10-03T20:32:24Z",
+      "html_url": "https://github.com/issinoho/vms-awk/releases/tag/v5.4.1-vms1",
+      "assets": [
+        {
+          "name": "ISSINOHO-I64VMS-GAWK-V0504-1E1-1.PCSI",
+          "size": 3325952,
+          "browser_download_url": "https://github.com/issinoho/vms-awk/releases/download/v5.4.1-vms1/ISSINOHO-I64VMS-GAWK-V0504-1E1-1.PCSI"
+        },
+        {
+          "name": "ISSINOHO-X86VMS-GAWK-V0504-1E1-1.PCSI",
+          "size": 2048000,
+          "browser_download_url": "https://github.com/issinoho/vms-awk/releases/download/v5.4.1-vms1/ISSINOHO-X86VMS-GAWK-V0504-1E1-1.PCSI"
+        },
+        {
+          "name": "SHA256SUMS",
+          "size": 208,
+          "browser_download_url": "https://github.com/issinoho/vms-awk/releases/download/v5.4.1-vms1/SHA256SUMS"
+        }
+      ]
+    },
+    "vms-curl": {
+      "tag_name": "v8.22.0-vms1",
+      "name": "curl 8.22.0 for OpenVMS (vms1)",
+      "published_at": "2026-10-03T23:53:13Z",
+      "html_url": "https://github.com/issinoho/vms-curl/releases/tag/v8.22.0-vms1",
+      "assets": [
+        {
+          "name": "ISSINOHO-I64VMS-VMSCURL-V0822-0E1-1.PCSI",
+          "size": 4636672,
+          "browser_download_url": "https://github.com/issinoho/vms-curl/releases/download/v8.22.0-vms1/ISSINOHO-I64VMS-VMSCURL-V0822-0E1-1.PCSI"
+        },
+        {
+          "name": "ISSINOHO-X86VMS-VMSCURL-V0822-0E1-1.PCSI",
+          "size": 3383296,
+          "browser_download_url": "https://github.com/issinoho/vms-curl/releases/download/v8.22.0-vms1/ISSINOHO-X86VMS-VMSCURL-V0822-0E1-1.PCSI"
+        },
+        {
+          "name": "SHA256SUMS",
+          "size": 214,
+          "browser_download_url": "https://github.com/issinoho/vms-curl/releases/download/v8.22.0-vms1/SHA256SUMS"
+        }
+      ]
+    },
+    "vms-wget": {
+      "tag_name": "v1.25.0-vms2",
+      "name": "GNU Wget 1.25.0 for OpenVMS (vms2)",
+      "published_at": "2026-10-04T09:05:44Z",
+      "html_url": "https://github.com/issinoho/vms-wget/releases/tag/v1.25.0-vms2",
+      "assets": [
+        {
+          "name": "ISSINOHO-I64VMS-WGET-V0125-0E2-1.PCSI",
+          "size": 3121152,
+          "browser_download_url": "https://github.com/issinoho/vms-wget/releases/download/v1.25.0-vms2/ISSINOHO-I64VMS-WGET-V0125-0E2-1.PCSI"
+        },
+        {
+          "name": "ISSINOHO-X86VMS-WGET-V0125-0E2-1.PCSI",
+          "size": 2555904,
+          "browser_download_url": "https://github.com/issinoho/vms-wget/releases/download/v1.25.0-vms2/ISSINOHO-X86VMS-WGET-V0125-0E2-1.PCSI"
+        },
+        {
+          "name": "SHA256SUMS",
+          "size": 208,
+          "browser_download_url": "https://github.com/issinoho/vms-wget/releases/download/v1.25.0-vms2/SHA256SUMS"
+        }
+      ]
+    },
+    "vms-pcre2": {
+      "tag_name": "v10.49-vms1",
+      "name": "PCRE2 10.49 for OpenVMS (vms1)",
+      "published_at": "2026-10-03T14:00:22Z",
+      "html_url": "https://github.com/issinoho/vms-pcre2/releases/tag/v10.49-vms1",
+      "assets": [
+        {
+          "name": "ISSINOHO-I64VMS-PCRE2-V1049-1-1.PCSI",
+          "size": 3956736,
+          "browser_download_url": "https://github.com/issinoho/vms-pcre2/releases/download/v10.49-vms1/ISSINOHO-I64VMS-PCRE2-V1049-1-1.PCSI"
+        },
+        {
+          "name": "ISSINOHO-X86VMS-PCRE2-V1049-1-1.PCSI",
+          "size": 2891776,
+          "browser_download_url": "https://github.com/issinoho/vms-pcre2/releases/download/v10.49-vms1/ISSINOHO-X86VMS-PCRE2-V1049-1-1.PCSI"
+        },
+        {
+          "name": "SHA256SUMS",
+          "size": 206,
+          "browser_download_url": "https://github.com/issinoho/vms-pcre2/releases/download/v10.49-vms1/SHA256SUMS"
+        }
+      ]
+    },
+    "vms-zlib": {
+      "tag_name": "v1.3.2-vms1",
+      "name": "zlib 1.3.2 for OpenVMS (vms1)",
+      "published_at": "2026-10-03T22:27:54Z",
+      "html_url": "https://github.com/issinoho/vms-zlib/releases/tag/v1.3.2-vms1",
+      "assets": [
+        {
+          "name": "ISSINOHO-I64VMS-ZLIB-V0103-2E1-1.PCSI",
+          "size": 1007616,
+          "browser_download_url": "https://github.com/issinoho/vms-zlib/releases/download/v1.3.2-vms1/ISSINOHO-I64VMS-ZLIB-V0103-2E1-1.PCSI"
+        },
+        {
+          "name": "ISSINOHO-X86VMS-ZLIB-V0103-2E1-1.PCSI",
+          "size": 843776,
+          "browser_download_url": "https://github.com/issinoho/vms-zlib/releases/download/v1.3.2-vms1/ISSINOHO-X86VMS-ZLIB-V0103-2E1-1.PCSI"
+        },
+        {
+          "name": "SHA256SUMS",
+          "size": 208,
+          "browser_download_url": "https://github.com/issinoho/vms-zlib/releases/download/v1.3.2-vms1/SHA256SUMS"
+        }
+      ]
+    }
+  }
+}

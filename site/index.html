@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Open Source for OpenVMS</title>
+<meta name="description" content="Current GNU and open-source software for OpenVMS on IA64 and x86-64, released in lock-step with upstream. PCSI kits for grep, sed, gawk, curl, Wget, PCRE2 and zlib.">
+<meta property="og:title" content="Open Source for OpenVMS">
+<meta property="og:description" content="GNU and open-source tools for OpenVMS, released in lock-step with upstream.">
+<meta property="og:url" content="https://openvms.issinoho.com/">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0b1219">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;700&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="#top"><span class="brand-prompt">$</span> openvms<span class="brand-dot">.</span>issinoho</a>
+  <nav>
+    <a href="#mission">Mission</a>
+    <a href="#ports">Ports</a>
+    <a href="#install">Install</a>
+    <a href="#method">Method</a>
+    <a href="#legacy">Legacy</a>
+    <a class="nav-gh" href="https://github.com/issinoho?tab=repositories&amp;q=vms-">GitHub</a>
+  </nav>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-copy">
+    <p class="eyebrow">IA64 &middot; x86-64 &middot; Alpha coming</p>
+    <h1>Today&rsquo;s open source,<br><span class="glow">on OpenVMS.</span></h1>
+    <p class="lede">Current GNU and open-source tools for OpenVMS, released in step with
+      upstream: within days of a new release, not years. They are built natively with VSI&nbsp;C,
+      tested on real systems and packaged as standard PCSI kits.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="#ports">Download kits</a>
+      <a class="btn" href="#mission">Why we&rsquo;re doing this</a>
+    </div>
+    <dl class="stats">
+      <div><dt id="stat-ports">7</dt><dd>ports released</dd></div>
+      <div><dt>2</dt><dd>architectures</dd></div>
+      <div><dt id="stat-kits">14</dt><dd>PCSI kits</dd></div>
+    </dl>
+  </div>
+
+  <div class="window term-window" aria-label="An OpenVMS terminal session">
+    <div class="titlebar">
+      <span class="tb-btn tb-menu"></span>
+      <span class="tb-title">DECterm: OPENVMS::SYSTEM</span>
+      <span class="tb-btn tb-min"></span><span class="tb-btn tb-max"></span>
+    </div>
+    <pre class="screen" id="hero-term"></pre>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>VAX</span><span>&#9670;</span><span>Alpha</span><span>&#9670;</span><span>Itanium</span><span>&#9670;</span><span>x86-64</span><span>&#9670;</span>
+    <span>DCL</span><span>&#9670;</span><span>RMS</span><span>&#9670;</span><span>DECnet</span><span>&#9670;</span><span>VMScluster</span><span>&#9670;</span>
+    <span>LOGIN.COM;1</span><span>&#9670;</span><span>SYS$SYSTEM</span><span>&#9670;</span><span>PCSI</span><span>&#9670;</span><span>MMS</span><span>&#9670;</span>
+    <span>VAX</span><span>&#9670;</span><span>Alpha</span><span>&#9670;</span><span>Itanium</span><span>&#9670;</span><span>x86-64</span><span>&#9670;</span>
+    <span>DCL</span><span>&#9670;</span><span>RMS</span><span>&#9670;</span><span>DECnet</span><span>&#9670;</span><span>VMScluster</span><span>&#9670;</span>
+    <span>LOGIN.COM;1</span><span>&#9670;</span><span>SYS$SYSTEM</span><span>&#9670;</span><span>PCSI</span><span>&#9670;</span><span>MMS</span><span>&#9670;</span>
+  </div>
+</div>
+
+<!-- ============ MISSION ============ -->
+<section id="mission" class="section">
+  <p class="kicker">01 / Mission</p>
+  <h2>Keeping OpenVMS in step with the rest of the industry.</h2>
+  <div class="mission-grid">
+    <div class="mission-text">
+      <p>OpenVMS still runs systems that are not allowed to stop: exchanges, railways,
+        hospitals, factories. Its open-source toolbox has fallen behind, though. The GNU tools
+        in the GNV kit are many releases old, and vendor kits for things like curl arrive on a
+        vendor&rsquo;s timetable rather than the community&rsquo;s.</p>
+      <p><strong>Our mission is to bring open-source and GNU projects onto OpenVMS in lock-step
+        with their upstream releases.</strong> When GNU grep, curl or zlib ships a new version,
+        the OpenVMS kit should follow within days and be built from the same signed source,
+        with the same fixes and the same features.</p>
+      <p>We do this to show that OpenVMS can be a first-class home for modern software, and
+        to give people running VMS today the same tools as everyone else.</p>
+    </div>
+    <ul class="pillars">
+      <li><span class="pillar-icon">&#8635;</span><div><h3>Lock-step releases</h3><p>Every kit is versioned after its upstream release, so <code>v3.12-vms3</code> is GNU grep 3.12, VMS patch level 3.</p></div></li>
+      <li><span class="pillar-icon">&#9998;</span><div><h3>Thin, honest deltas</h3><p>The repositories hold only our patches and VMS files. Upstream source always comes from the maintainer&rsquo;s signed tarball.</p></div></li>
+      <li><span class="pillar-icon">&#8679;</span><div><h3>Upstream first</h3><p>VMS changes are guarded with <code>#ifdef __VMS</code> and written so they can be sent upstream.</p></div></li>
+    </ul>
+  </div>
+
+  <div class="ai-panel window">
+    <div class="titlebar"><span class="tb-btn tb-menu"></span><span class="tb-title">README.AI</span><span class="tb-btn tb-min"></span><span class="tb-btn tb-max"></span></div>
+    <div class="ai-body">
+      <div>
+        <h3>Yes, we use AI. Here is how.</h3>
+        <p>Porting is mostly patient detective work: reading configure output, tracking down
+          C run-time library quirks, rebuilding, and rerunning test suites. We use Anthropic&rsquo;s
+          <strong>Claude</strong>, through Claude Code, as a pair programmer for that work. It
+          drafts patches, drives builds and tests on the VMS systems over SSH, and works
+          through failures. This is how one maintainer can keep a whole family of ports current.</p>
+        <p>A human sets the direction and decides what ships. AI makes the work faster, but it
+          does not replace the evidence that a port works.</p>
+      </div>
+      <ul class="checks">
+        <li>Built natively with VSI&nbsp;C and MMS on real IA64 and x86-64 OpenVMS systems</li>
+        <li>Upstream test suites run on VMS. Every skipped test and expected failure is documented with its reason</li>
+        <li>Source tarballs are verified against the maintainers&rsquo; signing keys</li>
+        <li>Every change is a readable patch in a public repository</li>
+        <li>A fixed kit always gets a new patch level. Version numbers are never reused</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PORTS ============ -->
+<section id="ports" class="section">
+  <p class="kicker">02 / Ports</p>
+  <div class="section-head">
+    <h2>The kits</h2>
+    <p class="muted">Release details are read live from each project&rsquo;s GitHub releases.
+      <span id="data-source" class="data-source"></span></p>
+  </div>
+  <div class="filters" role="tablist" aria-label="Filter ports">
+    <button class="chip is-on" data-filter="all" role="tab" aria-selected="true">All</button>
+    <button class="chip" data-filter="tool" role="tab" aria-selected="false">Tools</button>
+    <button class="chip" data-filter="library" role="tab" aria-selected="false">Libraries</button>
+  </div>
+  <div class="ports" id="ports-grid"></div>
+  <noscript><p class="muted">Release links need JavaScript. Browse the
+    <a href="https://github.com/issinoho?tab=repositories&amp;q=vms-">vms-* repositories</a> on GitHub instead.</p></noscript>
+</section>
+
+<!-- ============ INSTALL ============ -->
+<section id="install" class="section">
+  <p class="kicker">03 / Install</p>
+  <h2>A few lines of DCL.</h2>
+  <div class="install-grid">
+    <ol class="steps">
+      <li><h3>Download</h3><p>Fetch the <code>.PCSI</code> kit for your architecture (<code>I64VMS</code> or <code>X86VMS</code>) and the release&rsquo;s <code>SHA256SUMS</code>, and check the kit against it.</p></li>
+      <li><h3>Restore the record format</h3><p>A kit that passed through a non-VMS system loses its fixed-length record attributes. Put them back before installing.</p></li>
+      <li><h3>Install with PCSI</h3><p>Standard <code>PRODUCT INSTALL</code>. Each kit includes a startup procedure and a per-user setup procedure that defines the commands.</p></li>
+    </ol>
+    <div class="window">
+      <div class="titlebar"><span class="tb-btn tb-menu"></span><span class="tb-title">INSTALL.COM</span><span class="tb-btn tb-min"></span><span class="tb-btn tb-max"></span></div>
+      <div class="install-picker" id="install-picker" role="tablist" aria-label="Choose a product"></div>
+      <pre class="screen screen-static" id="install-cmds"></pre>
+      <button class="copy" id="install-copy" type="button">Copy</button>
+    </div>
+  </div>
+  <p class="tip"><strong>Tip:</strong> under the default <code>PARSE_STYLE=TRADITIONAL</code>, DCL
+    changes the case of unquoted arguments, so <code>-F</code> arrives as <code>-f</code>. Quote options and
+    patterns (<code>grep "-E" "Foo"</code>) or run <code>$ SET PROCESS/PARSE_STYLE=EXTENDED</code>.</p>
+</section>
+
+<!-- ============ METHOD ============ -->
+<section id="method" class="section">
+  <p class="kicker">04 / Method</p>
+  <h2>From signed tarball to PCSI kit.</h2>
+  <p class="muted narrow">Each port uses the same pipeline, so a new upstream release usually
+    means updating one version number, rebuilding and retesting. When upstream changes
+    something that affects VMS, the build fails loudly instead of drifting quietly.</p>
+  <ol class="pipeline">
+    <li><span class="pl-n">1</span><h3>Fetch &amp; verify</h3><p>The upstream release tarball, checked against its SHA-256 and the maintainer&rsquo;s GPG key.</p></li>
+    <li><span class="pl-n">2</span><h3>Patch &amp; overlay</h3><p>A short, numbered patch series plus VMS-only files. Nothing upstream is edited by hand.</p></li>
+    <li><span class="pl-n">3</span><h3>Configure</h3><p>Upstream&rsquo;s own <code>configure</code>, with every compile test run by VSI&nbsp;C on the VMS system, or the project&rsquo;s own VMS build where it has one.</p></li>
+    <li><span class="pl-n">4</span><h3>Build natively</h3><p>MMS and VSI&nbsp;C on IA64 and x86-64. No cross-compilation.</p></li>
+    <li><span class="pl-n">5</span><h3>Test</h3><p>Upstream&rsquo;s test suite under GNV, plus DCL smoke tests, batch-job tests and install checks.</p></li>
+    <li><span class="pl-n">6</span><h3>Kit &amp; release</h3><p>PCSI kits under the ISSINOHO producer prefix, with SHA256SUMS, published on GitHub.</p></li>
+  </ol>
+</section>
+
+<!-- ============ LEGACY ============ -->
+<section id="legacy" class="section legacy">
+  <p class="kicker">05 / Legacy</p>
+  <h2>Fifty years of engineering that still runs.</h2>
+  <p class="muted narrow">Digital Equipment Corporation built minicomputers that put computing
+    into labs, factories and offices, and an operating system that could keep running for
+    years. Clustering, versioned files, a distributed lock manager and DCL&rsquo;s readable
+    commands were all part of VMS long before most systems had them. This project exists
+    because that work still deserves current tools.</p>
+
+  <ol class="timeline">
+    <li><span class="tl-year">1957</span><p>Ken Olsen and Harlan Anderson found <strong>Digital Equipment Corporation</strong> in an old wool mill in Maynard, Massachusetts.</p></li>
+    <li><span class="tl-year">1977</span><p>The <strong>VAX-11/780</strong> ships with <strong>VAX/VMS V1.0</strong>, designed to run on it.</p></li>
+    <li><span class="tl-year">1978</span><p>The <strong>VT100</strong> arrives. Its escape sequences are still what every terminal emulator speaks.</p></li>
+    <li><span class="tl-year">1984</span><p><strong>VAXclusters</strong> join several machines into one system with shared disks and a distributed lock manager.</p></li>
+    <li><span class="tl-year">1992</span><p>The 64-bit <strong>Alpha AXP</strong> arrives, and the operating system is now called <strong>OpenVMS</strong>.</p></li>
+    <li><span class="tl-year">1998</span><p>Compaq acquires Digital. In 2002, HP merges with Compaq.</p></li>
+    <li><span class="tl-year">2005</span><p><strong>OpenVMS I64</strong> brings VMS to Intel Itanium.</p></li>
+    <li><span class="tl-year">2014</span><p><strong>VMS Software, Inc.</strong> takes over OpenVMS development.</p></li>
+    <li><span class="tl-year">2022</span><p><strong>OpenVMS V9.2</strong> runs on x86-64, on commodity servers and hypervisors.</p></li>
+    <li class="tl-now"><span class="tl-year">Now</span><p>Current GNU and open-source releases on OpenVMS, kept in lock-step with upstream. <a href="#ports">That&rsquo;s us.</a></p></li>
+  </ol>
+
+  <div class="vt-grid">
+    <figure class="vt-card"><div class="vt-glyph">;3</div><figcaption><h3>File versions</h3><p><code>LOGIN.COM;3</code>: every save keeps the previous version, decades before version control was common.</p></figcaption></figure>
+    <figure class="vt-card"><div class="vt-glyph">&#8862;</div><figcaption><h3>Clusters</h3><p>Shared-everything clusters whose total uptime is measured in years, with rolling upgrades.</p></figcaption></figure>
+    <figure class="vt-card"><div class="vt-glyph">$_</div><figcaption><h3>DCL</h3><p>A command language you can read aloud: <code>SET DEFAULT</code>, <code>DIRECTORY/SIZE</code>, <code>SHOW SYSTEM</code>.</p></figcaption></figure>
+    <figure class="vt-card"><div class="vt-glyph">&#9671;</div><figcaption><h3>Architecture</h3><p>Ported from VAX to Alpha, Itanium and x86-64, so the same code has outlived four instruction sets.</p></figcaption></figure>
+  </div>
+</section>
+
+<!-- ============ ROADMAP ============ -->
+<section id="roadmap" class="section">
+  <p class="kicker">06 / Next</p>
+  <h2>On the bench.</h2>
+  <ul class="roadmap">
+    <li><span class="badge badge-wip">in progress</span><strong>GNU m4</strong>: the next tool in the pipeline.</li>
+    <li><span class="badge">planned</span><strong>OpenVMS Alpha</strong> kits, alongside IA64 and x86-64.</li>
+    <li><span class="badge">planned</span>Native VMS behaviour: VAR/VFC record formats and DCL wildcards.</li>
+    <li><span class="badge">ongoing</span>Offering our VMS patches upstream so that future releases need fewer of them.</li>
+  </ul>
+  <p class="muted">Want a particular project ported? <a href="https://github.com/issinoho/vms-grep/issues">Open an issue</a> and tell us what you need.</p>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <p class="brand"><span class="brand-prompt">$</span> LOGOUT</p>
+    <p>Maintained by <a href="https://www.issinoho.com">Iain Smith</a>. Each port keeps its upstream
+      licence; see each repository. Site source: <a href="https://github.com/issinoho/vms-grep/tree/master/site">vms-grep/site</a>.</p>
+    <p class="fine">OpenVMS is a trademark of VMS Software, Inc. VAX, Alpha, DEC and Digital are trademarks
+      of their respective owners. This project is not affiliated with VMS Software, Inc., Hewlett Packard
+      Enterprise, the Free Software Foundation or the GNU Project.</p>
+  </div>
+</footer>
+
+<script src="app.js" defer></script>
+</body>
+</html>

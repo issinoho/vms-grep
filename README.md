@@ -290,6 +290,16 @@ GNU `configure` cannot run usefully on VMS, so it runs on the Linux host with VM
 - [docs/TESTING.md](docs/TESTING.md): the test layers, results and every exception with
   its reason.
 
+## Web site
+
+[openvms.issinoho.com](https://openvms.issinoho.com) is the home page for all the vms-*
+ports. Its source is in `site/` and `.github/workflows/pages.yml` publishes it to GitHub
+Pages. The ports are listed in `site/projects.json`; add a new port there. Release details
+come from each repository's latest GitHub release. The workflow takes a snapshot
+(`tools/site-releases.sh`) when it deploys, every six hours, and when a `release-published`
+repository dispatch arrives. The page then checks the GitHub API itself, so a new release
+appears without waiting for a redeploy.
+
 ## Artwork
 
 `docs/images/banner.svg` and `docs/images/icon.svg` were made for this project in the style of
