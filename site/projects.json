@@ -125,6 +125,22 @@
     "setup": "$ @PATCH$ROOT:[000000]PATCH$SETUP.COM"
   },
   {
+    "repo": "vms-mariadb",
+    "name": "MariaDB",
+    "kind": "server",
+    "upstream": "https://mariadb.org/",
+    "product": "VMSMARIADB",
+    "blurb": "The MariaDB 11.4 LTS server and command-line clients, built with VSI's clang compiler. A preview: Aria, MyISAM and MEMORY tables, no InnoDB yet. Installs as VMSMARIADB, beside VSI's own MariaDB kit; VMSMARIADB$SERVER.COM creates a data directory and starts the server.",
+    "requires": "VSI SSL3 kit",
+    "notes": [
+      "x86-64 only",
+      "preview"
+    ],
+    "try": "$ mariadb \"-h\" 127.0.0.1 \"-u\" root \"-e\" \"SELECT VERSION()\"",
+    "status": "released",
+    "setup": "$ @VMSMARIADB$ROOT:[000000]VMSMARIADB$SETUP.COM"
+  },
+  {
     "repo": "vms-pcre2",
     "name": "PCRE2",
     "kind": "library",

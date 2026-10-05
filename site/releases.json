@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-05T13:31:37Z",
+  "generated": "2026-10-05T19:16:12Z",
   "releases": {
     "vms-grep": {
       "tag_name": "v3.12-vms3",
@@ -251,6 +251,24 @@
           "name": "SHA256SUMS",
           "size": 210,
           "browser_download_url": "https://github.com/issinoho/vms-patch/releases/download/v2.8-vms1/SHA256SUMS"
+        }
+      ]
+    },
+    "vms-mariadb": {
+      "tag_name": "v11.4.13-vms1",
+      "name": "MariaDB 11.4.13 for OpenVMS (vms1, preview)",
+      "published_at": "2026-10-05T19:12:39Z",
+      "html_url": "https://github.com/issinoho/vms-mariadb/releases/tag/v11.4.13-vms1",
+      "assets": [
+        {
+          "name": "ISSINOHO-X86VMS-VMSMARIADB-V1104-13E1-1.PCSI",
+          "size": 209723392,
+          "browser_download_url": "https://github.com/issinoho/vms-mariadb/releases/download/v11.4.13-vms1/ISSINOHO-X86VMS-VMSMARIADB-V1104-13E1-1.PCSI"
+        },
+        {
+          "name": "SHA256SUMS",
+          "size": 111,
+          "browser_download_url": "https://github.com/issinoho/vms-mariadb/releases/download/v11.4.13-vms1/SHA256SUMS"
         }
       ]
     },

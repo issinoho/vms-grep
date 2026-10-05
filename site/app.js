@@ -56,9 +56,11 @@
     const rel = releases[p.repo];
     const repoUrl = `https://github.com/${OWNER}/${p.repo}`;
     const tags = [
-      p.kind === "library" ? `<span class="tag tag-lib">library</span>` : `<span class="tag">tool</span>`,
+      p.kind === "library" ? `<span class="tag tag-lib">library</span>` :
+        p.kind === "server" ? `<span class="tag tag-srv">server</span>` : `<span class="tag">tool</span>`,
       `<span class="tag">PCSI ${esc(p.product)}</span>`,
       p.requires ? `<span class="tag tag-req">needs ${esc(p.requires)}</span>` : "",
+      ...(p.notes || []).map((n) => `<span class="tag tag-note">${esc(n)}</span>`),
     ].join("");
     const head = (ver, sub) => `
       <div class="port-head">

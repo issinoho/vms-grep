@@ -219,6 +219,8 @@ h1 { font-size: clamp(44px, 7.2vw, 92px); font-weight: 700; letter-spacing: -.04
 .tag { font: 12px var(--mono); padding: 3px 8px; border-radius: 6px; background: rgba(255,255,255,.06); color: var(--muted); }
 .tag-req { color: var(--amber); background: rgba(255,184,77,.1); }
 .tag-lib { color: #9fc3ea; background: rgba(90,130,173,.18); }
+.tag-srv { color: #a8dcb5; background: rgba(90,173,120,.16); }
+.tag-note { color: var(--ink); background: rgba(255,255,255,.1); }
 .try { margin: 0 0 14px; padding: 10px 12px; border-radius: 8px; background: #050b08; color: var(--phosphor); font: 18px/1.2 var(--vt); overflow-x: auto; white-space: pre; text-shadow: 0 0 5px rgba(61,255,122,.4); }
 .downloads { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 0 20px 14px; }
 .dl {
