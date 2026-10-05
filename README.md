@@ -14,8 +14,9 @@ the same family as [GNU sed](https://github.com/issinoho/vms-sed),
 [GNU Bison](https://github.com/issinoho/vms-bison), [flex](https://github.com/issinoho/vms-flex),
 [GNU Wget](https://github.com/issinoho/vms-wget), [curl](https://github.com/issinoho/vms-curl),
 [PCRE2](https://github.com/issinoho/vms-pcre2), [zlib](https://github.com/issinoho/vms-zlib),
-[bzip2](https://github.com/issinoho/vms-bzip2), [XZ Utils](https://github.com/issinoho/vms-xz) and
-[Zstandard](https://github.com/issinoho/vms-zstd) for OpenVMS.
+[bzip2](https://github.com/issinoho/vms-bzip2), [XZ Utils](https://github.com/issinoho/vms-xz),
+[Zstandard](https://github.com/issinoho/vms-zstd)
+and [MariaDB](https://github.com/issinoho/vms-mariadb) for OpenVMS.
 
 This repository holds **only our changes**. Upstream source is never stored here: every
 build starts from the signed release tarball, applies our patches, adds our VMS-only
@@ -283,7 +284,7 @@ GNU `configure` cannot run usefully on VMS, so it runs on the Linux host with VM
 3. Bring in vms-sed's fix for the C run-time library's UTF-8 decoding (sed patch 0012).
 4. Offer the patches that are not VMS packaging to grep and gnulib.
 
-The family of ports, all for IA64 and x86-64, each following its upstream releases:
+The family of ports, all for IA64 and x86-64 (MariaDB: x86-64 only), each following its upstream releases:
 
 | Port | Latest release | |
 |---|---|---|
@@ -303,6 +304,7 @@ The family of ports, all for IA64 and x86-64, each following its upstream releas
 | GNU make — [vms-make](https://github.com/issinoho/vms-make) | [v4.4.1-vms1](https://github.com/issinoho/vms-make/releases/tag/v4.4.1-vms1) | built with make's own VMS port |
 | GNU diffutils — [vms-diffutils](https://github.com/issinoho/vms-diffutils) | [v3.12-vms1](https://github.com/issinoho/vms-diffutils/releases/tag/v3.12-vms1) | cmp, diff, diff3, sdiff |
 | GNU patch — [vms-patch](https://github.com/issinoho/vms-patch) | [v2.8-vms1](https://github.com/issinoho/vms-patch/releases/tag/v2.8-vms1) | applies diffs |
+| MariaDB — [vms-mariadb](https://github.com/issinoho/vms-mariadb) | [v11.4.13-vms1](https://github.com/issinoho/vms-mariadb/releases/tag/v11.4.13-vms1) | server and clients; x86-64 only, preview |
 
 ## Further reading
 
