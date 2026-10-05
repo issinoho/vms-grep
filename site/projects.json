@@ -92,6 +92,17 @@
     "setup": "$ @FLEX$ROOT:[000000]FLEX$SETUP.COM"
   },
   {
+    "repo": "vms-make",
+    "name": "GNU make",
+    "kind": "tool",
+    "upstream": "https://www.gnu.org/software/make/",
+    "product": "MAKE",
+    "blurb": "GNU make, built with the OpenVMS port that ships inside make itself, brought up to date for make 4.4 and VSI C. Recipes are DCL commands.",
+    "try": "$ make \"-n\" \"-f\" MAKEFILE.VMS",
+    "status": "released",
+    "setup": "$ @MAKE$ROOT:[000000]MAKE$SETUP.COM"
+  },
+  {
     "repo": "vms-pcre2",
     "name": "PCRE2",
     "kind": "library",

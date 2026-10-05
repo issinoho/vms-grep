@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-04T22:50:13Z",
+  "generated": "2026-10-05T01:46:21Z",
   "releases": {
     "vms-grep": {
       "tag_name": "v3.12-vms3",
@@ -182,6 +182,29 @@
           "name": "SHA256SUMS",
           "size": 208,
           "browser_download_url": "https://github.com/issinoho/vms-flex/releases/download/v2.6.4-vms1/SHA256SUMS"
+        }
+      ]
+    },
+    "vms-make": {
+      "tag_name": "v4.4.1-vms1",
+      "name": "GNU make 4.4.1 for OpenVMS (vms1)",
+      "published_at": "2026-10-05T01:45:48Z",
+      "html_url": "https://github.com/issinoho/vms-make/releases/tag/v4.4.1-vms1",
+      "assets": [
+        {
+          "name": "ISSINOHO-I64VMS-MAKE-V0404-1E1-1.PCSI",
+          "size": 1523712,
+          "browser_download_url": "https://github.com/issinoho/vms-make/releases/download/v4.4.1-vms1/ISSINOHO-I64VMS-MAKE-V0404-1E1-1.PCSI"
+        },
+        {
+          "name": "ISSINOHO-X86VMS-MAKE-V0404-1E1-1.PCSI",
+          "size": 1343488,
+          "browser_download_url": "https://github.com/issinoho/vms-make/releases/download/v4.4.1-vms1/ISSINOHO-X86VMS-MAKE-V0404-1E1-1.PCSI"
+        },
+        {
+          "name": "SHA256SUMS",
+          "size": 208,
+          "browser_download_url": "https://github.com/issinoho/vms-make/releases/download/v4.4.1-vms1/SHA256SUMS"
         }
       ]
     },
