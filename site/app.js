@@ -212,18 +212,32 @@
   }
 
   // ---------- data ----------
-  function readCache() {
+  // The browser's copy of the last GitHub lookup, unless it is stale or older
+  // than the deployed snapshot (a new port or release would be missing from it).
+  function readCache(snapshotAt) {
     try {
       const c = JSON.parse(localStorage.getItem(CACHE_KEY));
-      return c && Date.now() - c.at < CACHE_MS ? c.releases : null;
+      if (!c || Date.now() - c.at >= CACHE_MS) return null;
+      if (snapshotAt && c.at < Date.parse(snapshotAt)) return null;
+      return c.releases;
     } catch { return null; }
   }
   function writeCache(r) {
     try { localStorage.setItem(CACHE_KEY, JSON.stringify({ at: Date.now(), releases: r })); } catch { /* private mode */ }
   }
 
-  async function fetchLive() {
-    const cached = readCache();
+  // Per port, the newer of two sets of releases (the snapshot and GitHub's).
+  function mergeReleases(a, b) {
+    const out = { ...a };
+    for (const [repo, r] of Object.entries(b || {})) {
+      const mine = out[repo];
+      if (!mine || Date.parse(r.published_at) >= Date.parse(mine.published_at)) out[repo] = r;
+    }
+    return out;
+  }
+
+  async function fetchLive(snapshotAt) {
+    const cached = readCache(snapshotAt);
     if (cached) return { releases: cached, cached: true };
     const out = {};
     const results = await Promise.all(projects.map(async (p) => {
@@ -240,13 +254,18 @@
 
   function setSource(text) { $("#data-source").textContent = text; }
 
+  let snapshotAt = null;
+
   async function main() {
     try {
       const [pj, rj] = await Promise.all([
-        fetch("projects.json").then((r) => r.json()),
-        fetch("releases.json").then((r) => r.ok ? r.json() : null).catch(() => null),
+        // no-cache: revalidate with the server (ETag) on every visit, so a
+        // new port or release shows at once, not after the 10-minute max-age.
+        fetch("projects.json", { cache: "no-cache" }).then((r) => r.json()),
+        fetch("releases.json", { cache: "no-cache" }).then((r) => r.ok ? r.json() : null).catch(() => null),
       ]);
       projects = pj;
+      snapshotAt = rj && rj.generated;
       if (rj) {
         releases = rj.releases || {};
         setSource(`Snapshot from ${fmtDate(rj.generated)}; checking GitHub…`);
@@ -260,9 +279,10 @@
     runTerminal();
 
     try {
-      const live = await fetchLive();
-      const changed = JSON.stringify(live.releases) !== JSON.stringify(releases);
-      releases = live.releases;
+      const live = await fetchLive(snapshotAt);
+      const merged = mergeReleases(releases, live.releases);
+      const changed = JSON.stringify(merged) !== JSON.stringify(releases);
+      releases = merged;
       setSource(live.cached ? "Live from GitHub (cached for 30 minutes)." : "Live from GitHub releases.");
       if (changed) { renderPorts(); runTerminal(); }
     } catch {
