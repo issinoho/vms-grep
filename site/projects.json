@@ -38,11 +38,11 @@
     "kind": "tool",
     "upstream": "https://curl.se/",
     "product": "VMSCURL",
-    "blurb": "Current curl with TLS from VSI's OpenSSL 3 kit and zlib linked in. Installs as VMSCURL, so it can sit alongside VSI's own CURL kit.",
+    "blurb": "Current curl with TLS from VSI's OpenSSL 3 kit, and zlib and zstd linked in for --compressed. Installs as VMSCURL, so it can sit alongside VSI's own CURL kit.",
     "requires": "VSI SSL3 kit",
     "try": "$ curl \"-sSLO\" https://openvms.issinoho.com/",
     "status": "released",
-    "setup": "$ curl :== $VMSCURL$ROOT:[BIN]CURL.EXE"
+    "setup": "$ @VMSCURL$ROOT:[000000]VMSCURL$SETUP.COM"
   },
   {
     "repo": "vms-wget",

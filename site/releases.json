@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-05T12:46:46Z",
+  "generated": "2026-10-05T13:31:37Z",
   "releases": {
     "vms-grep": {
       "tag_name": "v3.12-vms3",
@@ -71,25 +71,25 @@
       ]
     },
     "vms-curl": {
-      "tag_name": "v8.22.0-vms1",
-      "name": "curl 8.22.0 for OpenVMS (vms1)",
-      "published_at": "2026-10-03T23:53:13Z",
-      "html_url": "https://github.com/issinoho/vms-curl/releases/tag/v8.22.0-vms1",
+      "tag_name": "v8.22.0-vms2",
+      "name": "curl 8.22.0 for OpenVMS (vms2)",
+      "published_at": "2026-10-05T13:30:39Z",
+      "html_url": "https://github.com/issinoho/vms-curl/releases/tag/v8.22.0-vms2",
       "assets": [
         {
-          "name": "ISSINOHO-I64VMS-VMSCURL-V0822-0E1-1.PCSI",
-          "size": 4636672,
-          "browser_download_url": "https://github.com/issinoho/vms-curl/releases/download/v8.22.0-vms1/ISSINOHO-I64VMS-VMSCURL-V0822-0E1-1.PCSI"
+          "name": "ISSINOHO-I64VMS-VMSCURL-V0822-0E2-1.PCSI",
+          "size": 5259264,
+          "browser_download_url": "https://github.com/issinoho/vms-curl/releases/download/v8.22.0-vms2/ISSINOHO-I64VMS-VMSCURL-V0822-0E2-1.PCSI"
         },
         {
-          "name": "ISSINOHO-X86VMS-VMSCURL-V0822-0E1-1.PCSI",
-          "size": 3383296,
-          "browser_download_url": "https://github.com/issinoho/vms-curl/releases/download/v8.22.0-vms1/ISSINOHO-X86VMS-VMSCURL-V0822-0E1-1.PCSI"
+          "name": "ISSINOHO-X86VMS-VMSCURL-V0822-0E2-1.PCSI",
+          "size": 3702784,
+          "browser_download_url": "https://github.com/issinoho/vms-curl/releases/download/v8.22.0-vms2/ISSINOHO-X86VMS-VMSCURL-V0822-0E2-1.PCSI"
         },
         {
           "name": "SHA256SUMS",
           "size": 214,
-          "browser_download_url": "https://github.com/issinoho/vms-curl/releases/download/v8.22.0-vms1/SHA256SUMS"
+          "browser_download_url": "https://github.com/issinoho/vms-curl/releases/download/v8.22.0-vms2/SHA256SUMS"
         }
       ]
     },
