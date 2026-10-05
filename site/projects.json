@@ -141,5 +141,38 @@
     "product": "ZLIB",
     "blurb": "The zlib compression library as an object library and headers under ZLIB$ROOT. It provides compressed transfers in curl and Wget.",
     "status": "released"
+  },
+  {
+    "repo": "vms-bzip2",
+    "name": "bzip2",
+    "kind": "library",
+    "upstream": "https://sourceware.org/bzip2/",
+    "product": "BZIP2",
+    "blurb": "The bzip2 compressor and libbz2. VMS text files are compressed as text (their lines survive); the library links with programs compiled with any /NAMES.",
+    "try": "$ bzip2 \"-k\" REPORT.TXT",
+    "status": "released",
+    "setup": "$ @BZIP2$ROOT:[000000]BZIP2$SETUP.COM"
+  },
+  {
+    "repo": "vms-xz",
+    "name": "XZ Utils",
+    "kind": "library",
+    "upstream": "https://tukaani.org/xz/",
+    "product": "XZ",
+    "blurb": "xz, xzdec and lzmainfo with the liblzma library. Reads .xz, .lzma and .lz; passes upstream's own good and bad test files.",
+    "try": "$ xz \"-k\" REPORT.TXT",
+    "status": "released",
+    "setup": "$ @XZ$ROOT:[000000]XZ$SETUP.COM"
+  },
+  {
+    "repo": "vms-zstd",
+    "name": "Zstandard",
+    "kind": "library",
+    "upstream": "https://facebook.github.io/zstd/",
+    "product": "ZSTD",
+    "blurb": "The zstd compressor and libzstd: fast compression at any level from 1 to 19, checked against upstream's golden files.",
+    "try": "$ zstd \"-19\" REPORT.TXT",
+    "status": "released",
+    "setup": "$ @ZSTD$ROOT:[000000]ZSTD$SETUP.COM"
   }
 ]

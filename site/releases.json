@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-05T09:35:07Z",
+  "generated": "2026-10-05T12:46:46Z",
   "releases": {
     "vms-grep": {
       "tag_name": "v3.12-vms3",
@@ -297,6 +297,75 @@
           "name": "SHA256SUMS",
           "size": 208,
           "browser_download_url": "https://github.com/issinoho/vms-zlib/releases/download/v1.3.2-vms1/SHA256SUMS"
+        }
+      ]
+    },
+    "vms-bzip2": {
+      "tag_name": "v1.0.8-vms1",
+      "name": "bzip2 1.0.8 for OpenVMS (vms1)",
+      "published_at": "2026-10-05T12:45:01Z",
+      "html_url": "https://github.com/issinoho/vms-bzip2/releases/tag/v1.0.8-vms1",
+      "assets": [
+        {
+          "name": "ISSINOHO-I64VMS-BZIP2-V0100-8E1-1.PCSI",
+          "size": 933888,
+          "browser_download_url": "https://github.com/issinoho/vms-bzip2/releases/download/v1.0.8-vms1/ISSINOHO-I64VMS-BZIP2-V0100-8E1-1.PCSI"
+        },
+        {
+          "name": "ISSINOHO-X86VMS-BZIP2-V0100-8E1-1.PCSI",
+          "size": 614400,
+          "browser_download_url": "https://github.com/issinoho/vms-bzip2/releases/download/v1.0.8-vms1/ISSINOHO-X86VMS-BZIP2-V0100-8E1-1.PCSI"
+        },
+        {
+          "name": "SHA256SUMS",
+          "size": 210,
+          "browser_download_url": "https://github.com/issinoho/vms-bzip2/releases/download/v1.0.8-vms1/SHA256SUMS"
+        }
+      ]
+    },
+    "vms-xz": {
+      "tag_name": "v5.8.4-vms1",
+      "name": "XZ Utils 5.8.4 for OpenVMS (vms1)",
+      "published_at": "2026-10-05T12:45:14Z",
+      "html_url": "https://github.com/issinoho/vms-xz/releases/tag/v5.8.4-vms1",
+      "assets": [
+        {
+          "name": "ISSINOHO-I64VMS-XZ-V0508-4E1-1.PCSI",
+          "size": 2400256,
+          "browser_download_url": "https://github.com/issinoho/vms-xz/releases/download/v5.8.4-vms1/ISSINOHO-I64VMS-XZ-V0508-4E1-1.PCSI"
+        },
+        {
+          "name": "ISSINOHO-X86VMS-XZ-V0508-4E1-1.PCSI",
+          "size": 2588672,
+          "browser_download_url": "https://github.com/issinoho/vms-xz/releases/download/v5.8.4-vms1/ISSINOHO-X86VMS-XZ-V0508-4E1-1.PCSI"
+        },
+        {
+          "name": "SHA256SUMS",
+          "size": 204,
+          "browser_download_url": "https://github.com/issinoho/vms-xz/releases/download/v5.8.4-vms1/SHA256SUMS"
+        }
+      ]
+    },
+    "vms-zstd": {
+      "tag_name": "v1.5.7-vms1",
+      "name": "Zstandard 1.5.7 for OpenVMS (vms1)",
+      "published_at": "2026-10-05T12:45:23Z",
+      "html_url": "https://github.com/issinoho/vms-zstd/releases/tag/v1.5.7-vms1",
+      "assets": [
+        {
+          "name": "ISSINOHO-I64VMS-ZSTD-V0105-7E1-1.PCSI",
+          "size": 4726784,
+          "browser_download_url": "https://github.com/issinoho/vms-zstd/releases/download/v1.5.7-vms1/ISSINOHO-I64VMS-ZSTD-V0105-7E1-1.PCSI"
+        },
+        {
+          "name": "ISSINOHO-X86VMS-ZSTD-V0105-7E1-1.PCSI",
+          "size": 2908160,
+          "browser_download_url": "https://github.com/issinoho/vms-zstd/releases/download/v1.5.7-vms1/ISSINOHO-X86VMS-ZSTD-V0105-7E1-1.PCSI"
+        },
+        {
+          "name": "SHA256SUMS",
+          "size": 208,
+          "browser_download_url": "https://github.com/issinoho/vms-zstd/releases/download/v1.5.7-vms1/SHA256SUMS"
         }
       ]
     }
