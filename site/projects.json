@@ -103,6 +103,28 @@
     "setup": "$ @MAKE$ROOT:[000000]MAKE$SETUP.COM"
   },
   {
+    "repo": "vms-diffutils",
+    "name": "GNU diffutils",
+    "kind": "tool",
+    "upstream": "https://www.gnu.org/software/diffutils/",
+    "product": "DIFFUTILS",
+    "blurb": "cmp, diff, diff3 and sdiff. \"Files differ\" is a warning under DCL, so ON ERROR does not stop. GNU diff is gdiff by default, because DIFF abbreviates DCL's DIFFERENCES.",
+    "try": "$ gdiff \"-u\" OLD.C NEW.C",
+    "status": "released",
+    "setup": "$ @DIFFUTILS$ROOT:[000000]DIFFUTILS$SETUP.COM"
+  },
+  {
+    "repo": "vms-patch",
+    "name": "GNU patch",
+    "kind": "tool",
+    "upstream": "https://www.gnu.org/software/patch/",
+    "product": "PATCH",
+    "blurb": "Applies unified and context diffs to your files, with backups, rejects and --dry-run. Pairs with GNU diffutils.",
+    "try": "$ patch \"-p1\" \"-i\" FIX.DIFF",
+    "status": "released",
+    "setup": "$ @PATCH$ROOT:[000000]PATCH$SETUP.COM"
+  },
+  {
     "repo": "vms-pcre2",
     "name": "PCRE2",
     "kind": "library",
