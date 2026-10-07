@@ -130,7 +130,7 @@
     "kind": "server",
     "upstream": "https://mariadb.org/",
     "product": "VMSMARIADB",
-    "blurb": "The MariaDB 11.4 LTS server and command-line clients, built with VSI's clang compiler. A preview: Aria, MyISAM and MEMORY tables, no InnoDB yet. Installs as VMSMARIADB, beside VSI's own MariaDB kit; VMSMARIADB$SERVER.COM creates a data directory and starts the server.",
+    "blurb": "The MariaDB 11.4 LTS server and command-line clients, built with VSI's clang compiler. A preview: Aria, MyISAM and MEMORY tables, no InnoDB yet. Installs as VMSMARIADB, beside VSI's own MariaDB kit; VMSMARIADB$CONFIGURE.COM sets the server up as a service under its own account, started at boot and stopped cleanly at shutdown.",
     "requires": "VSI SSL3 kit",
     "notes": [
       "x86-64 only",
