@@ -125,6 +125,17 @@
     "setup": "$ @PATCH$ROOT:[000000]PATCH$SETUP.COM"
   },
   {
+    "repo": "vms-gzip",
+    "name": "GNU gzip",
+    "kind": "tool",
+    "upstream": "https://www.gnu.org/software/gzip/",
+    "product": "GZIP",
+    "blurb": "gzip, gunzip and zcat. VMS text files are compressed as text, so gzip -l agrees with Linux and the .gz unpacks anywhere; gzip -r takes [.dir] as well as Unix names.",
+    "try": "$ gzip \"-k\" REPORT.TXT",
+    "status": "released",
+    "setup": "$ @GZIP$ROOT:[000000]GZIP$SETUP.COM"
+  },
+  {
     "repo": "vms-mariadb",
     "name": "MariaDB",
     "kind": "server",
