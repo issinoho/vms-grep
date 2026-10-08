@@ -307,7 +307,7 @@ The family of ports, all for IA64 and x86-64 (MariaDB: x86-64 only), each follow
 | GNU make — [vms-make](https://github.com/issinoho/vms-make) | [v4.4.1-vms1](https://github.com/issinoho/vms-make/releases/tag/v4.4.1-vms1) | built with make's own VMS port |
 | GNU diffutils — [vms-diffutils](https://github.com/issinoho/vms-diffutils) | [v3.12-vms1](https://github.com/issinoho/vms-diffutils/releases/tag/v3.12-vms1) | cmp, diff, diff3, sdiff |
 | GNU patch — [vms-patch](https://github.com/issinoho/vms-patch) | [v2.8-vms1](https://github.com/issinoho/vms-patch/releases/tag/v2.8-vms1) | applies diffs |
-| MariaDB — [vms-mariadb](https://github.com/issinoho/vms-mariadb) | [v11.4.13-vms1](https://github.com/issinoho/vms-mariadb/releases/tag/v11.4.13-vms1) | server and clients; x86-64 only, preview |
+| MariaDB — [vms-mariadb](https://github.com/issinoho/vms-mariadb) | [v11.4.13-vms2](https://github.com/issinoho/vms-mariadb/releases/tag/v11.4.13-vms2) | server and clients; x86-64 only, preview |
 | lighttpd — [vms-lighttpd](https://github.com/issinoho/vms-lighttpd) | [v1.4.85-vms2](https://github.com/issinoho/vms-lighttpd/releases/tag/v1.4.85-vms2) | web server: HTTPS, HTTP/2, PHP over FastCGI; preview |
 
 ## Further reading
