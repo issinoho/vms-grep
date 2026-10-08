@@ -146,7 +146,7 @@
     "kind": "server",
     "upstream": "https://www.lighttpd.net/",
     "product": "LIGHTTPD",
-    "blurb": "A light, fast web server as a modern alternative to VSI's Apache: HTTPS and HTTP/2 through VSI's OpenSSL 3 kit, and PHP as a pool of persistent FastCGI processes; phpBB runs on it with MariaDB. A preview. VMSLIGHTTPD$CONFIGURE.COM sets it up as a service under its own account; it binds ports 80 and 443, then drops every privilege but TMPMBX and NETMBX.",
+    "blurb": "A light, fast web server as a modern alternative to VSI's Apache: HTTPS and HTTP/2 through VSI's OpenSSL 3 kit, and PHP as a pool of persistent FastCGI processes; phpBB runs on it with MariaDB, and it can sit behind a reverse proxy that ends TLS. A preview. VMSLIGHTTPD$CONFIGURE.COM sets it up as a service under its own account; it binds ports 80 and 443, then drops every privilege but TMPMBX and NETMBX.",
     "requires": "VSI SSL3 kit",
     "notes": [
       "preview"
