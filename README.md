@@ -4,6 +4,8 @@
 
 # GNU grep for OpenVMS
 
+[![Downloads](https://img.shields.io/github/downloads/issinoho/vms-grep/total?label=downloads)](https://github.com/issinoho/vms-grep/releases)
+
 A port of current GNU grep to OpenVMS on **IA64** and **x86-64**, kept as a thin layer over the
 official GNU release so that it can follow upstream releases with minimal effort. VSI's GNV kit
 ships a grep that is many releases behind; this port starts from **GNU grep 3.12**. It belongs to
