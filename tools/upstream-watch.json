@@ -20,6 +20,7 @@
     { "repo": "vms-patch",     "anitya": 2597 },
     { "repo": "vms-gzip",      "anitya": 1290 },
     { "repo": "vms-tar",       "anitya": 4939 },
+    { "repo": "vms-findutils", "anitya": 812 },
     { "repo": "vms-mariadb",   "anitya": 1887, "track": "11.4." },
     { "repo": "vms-lighttpd",  "anitya": 1817, "track": "1.4." },
     { "repo": "vms-pcre2",     "anitya": 5832 },

@@ -15,6 +15,7 @@ the same family as [GNU sed](https://github.com/issinoho/vms-sed),
 [GNU Wget](https://github.com/issinoho/vms-wget), [curl](https://github.com/issinoho/vms-curl),
 [PCRE2](https://github.com/issinoho/vms-pcre2), [zlib](https://github.com/issinoho/vms-zlib),
 [GNU gzip](https://github.com/issinoho/vms-gzip), [GNU tar](https://github.com/issinoho/vms-tar),
+[GNU findutils](https://github.com/issinoho/vms-findutils),
 [bzip2](https://github.com/issinoho/vms-bzip2), [XZ Utils](https://github.com/issinoho/vms-xz),
 [Zstandard](https://github.com/issinoho/vms-zstd),
 [MariaDB](https://github.com/issinoho/vms-mariadb),
@@ -298,6 +299,7 @@ The family of ports, all for IA64 and x86-64 (MariaDB: x86-64 only), each follow
 | zlib — [vms-zlib](https://github.com/issinoho/vms-zlib) | [v1.3.2-vms1](https://github.com/issinoho/vms-zlib/releases/tag/v1.3.2-vms1) | the compression library |
 | GNU gzip — [vms-gzip](https://github.com/issinoho/vms-gzip) | [v1.15-vms1](https://github.com/issinoho/vms-gzip/releases/tag/v1.15-vms1) | gzip, gunzip and zcat |
 | GNU tar — [vms-tar](https://github.com/issinoho/vms-tar) | [v1.35-vms1](https://github.com/issinoho/vms-tar/releases/tag/v1.35-vms1) | `-z`/`-j`/`-J`/`--zstd` through the compressor kits; VMS names as Unix members |
+| GNU findutils — [vms-findutils](https://github.com/issinoho/vms-findutils) | [v4.11.0-vms1](https://github.com/issinoho/vms-findutils/releases/tag/v4.11.0-vms1) | find and xargs; `-exec` and xargs run DCL commands; VMS names for a VMS starting point |
 | bzip2 — [vms-bzip2](https://github.com/issinoho/vms-bzip2) | [v1.0.8-vms1](https://github.com/issinoho/vms-bzip2/releases/tag/v1.0.8-vms1) | the bzip2 compressor and libbz2 |
 | XZ Utils — [vms-xz](https://github.com/issinoho/vms-xz) | [v5.8.4-vms1](https://github.com/issinoho/vms-xz/releases/tag/v5.8.4-vms1) | xz and liblzma |
 | Zstandard — [vms-zstd](https://github.com/issinoho/vms-zstd) | [v1.5.7-vms1](https://github.com/issinoho/vms-zstd/releases/tag/v1.5.7-vms1) | zstd and libzstd |

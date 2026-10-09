@@ -147,6 +147,17 @@
     "setup": "$ @TAR$ROOT:[000000]TAR$SETUP.COM"
   },
   {
+    "repo": "vms-findutils",
+    "name": "GNU findutils",
+    "kind": "tool",
+    "upstream": "https://www.gnu.org/software/findutils/",
+    "product": "FINDUTILS",
+    "blurb": "GNU find and xargs. -exec and xargs run DCL commands, so verbs, symbols and procedures work; a starting point in VMS syntax gives VMS names that DCL verbs accept, a Unix one gives Unix names.",
+    "try": "$ find [] -name \"*.log\" -exec delete {};* ;",
+    "status": "released",
+    "setup": "$ @FINDUTILS$ROOT:[000000]FINDUTILS$SETUP.COM"
+  },
+  {
     "repo": "vms-fastfetch",
     "name": "fastfetch",
     "kind": "tool",
