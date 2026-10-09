@@ -184,6 +184,18 @@
     "status": "released"
   },
   {
+    "repo": "vms-libxml2",
+    "name": "libxml2",
+    "kind": "library",
+    "upstream": "https://gitlab.gnome.org/GNOME/libxml2",
+    "product": "LIBXML2",
+    "blurb": "The libxml2 XML library (parser, XPath, HTML, DTD/RELAX NG/Schema validation) and xmllint, as an object library and headers under LIBXML2$ROOT, built with VSI clang (64-bit) for clang programs. It provides PHP's XML extensions.",
+    "notes": [
+      "x86-64"
+    ],
+    "status": "released"
+  },
+  {
     "repo": "vms-bzip2",
     "name": "bzip2",
     "kind": "library",
