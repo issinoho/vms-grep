@@ -17,8 +17,9 @@ the same family as [GNU sed](https://github.com/issinoho/vms-sed),
 [GNU gzip](https://github.com/issinoho/vms-gzip),
 [bzip2](https://github.com/issinoho/vms-bzip2), [XZ Utils](https://github.com/issinoho/vms-xz),
 [Zstandard](https://github.com/issinoho/vms-zstd),
-[MariaDB](https://github.com/issinoho/vms-mariadb)
-and [lighttpd](https://github.com/issinoho/vms-lighttpd) for OpenVMS.
+[MariaDB](https://github.com/issinoho/vms-mariadb),
+[lighttpd](https://github.com/issinoho/vms-lighttpd)
+and [fastfetch](https://github.com/issinoho/vms-fastfetch) for OpenVMS.
 
 This repository holds **only our changes**. Upstream source is never stored here: every
 build starts from the signed release tarball, applies our patches, adds our VMS-only
@@ -307,6 +308,7 @@ The family of ports, all for IA64 and x86-64 (MariaDB: x86-64 only), each follow
 | GNU make — [vms-make](https://github.com/issinoho/vms-make) | [v4.4.1-vms1](https://github.com/issinoho/vms-make/releases/tag/v4.4.1-vms1) | built with make's own VMS port |
 | GNU diffutils — [vms-diffutils](https://github.com/issinoho/vms-diffutils) | [v3.12-vms1](https://github.com/issinoho/vms-diffutils/releases/tag/v3.12-vms1) | cmp, diff, diff3, sdiff |
 | GNU patch — [vms-patch](https://github.com/issinoho/vms-patch) | [v2.8-vms1](https://github.com/issinoho/vms-patch/releases/tag/v2.8-vms1) | applies diffs |
+| fastfetch — [vms-fastfetch](https://github.com/issinoho/vms-fastfetch) | [v0.2.0](https://github.com/issinoho/vms-fastfetch/releases/tag/v0.2.0) | the system banner; a C99 rewrite, not a port |
 | MariaDB — [vms-mariadb](https://github.com/issinoho/vms-mariadb) | [v11.4.13-vms2](https://github.com/issinoho/vms-mariadb/releases/tag/v11.4.13-vms2) | server and clients; x86-64 only, preview |
 | lighttpd — [vms-lighttpd](https://github.com/issinoho/vms-lighttpd) | [v1.4.85-vms2](https://github.com/issinoho/vms-lighttpd/releases/tag/v1.4.85-vms2) | web server: HTTPS, HTTP/2, PHP over FastCGI; preview |
 

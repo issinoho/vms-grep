@@ -136,6 +136,17 @@
     "setup": "$ @GZIP$ROOT:[000000]GZIP$SETUP.COM"
   },
   {
+    "repo": "vms-fastfetch",
+    "name": "fastfetch",
+    "kind": "tool",
+    "upstream": "https://github.com/fastfetch-cli/fastfetch",
+    "product": "FASTFETCH",
+    "blurb": "The system banner: the OpenVMS logo beside OS, CPU (named by CPUID on both architectures), memory, disks, PCSI packages and cluster membership, read from system services. A C99 rewrite that keeps fastfetch's configs, format strings and --format json.",
+    "try": "$ fastfetch -c all",
+    "status": "released",
+    "setup": "$ @FASTFETCH$ROOT:[000000]FASTFETCH$SETUP.COM"
+  },
+  {
     "repo": "vms-mariadb",
     "name": "MariaDB",
     "kind": "server",
