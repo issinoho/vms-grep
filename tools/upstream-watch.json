@@ -1,0 +1,34 @@
+{
+  "_comment": [
+    "Ports watched by tools/upstream_watch.py.  anitya: the project's id on",
+    "release-monitoring.org.  track: optional version prefix for ports that follow",
+    "one release series (only versions starting with it count).  pin: where the",
+    "port records the upstream version it is built from; default upstream.conf",
+    "(UPSTREAM_VERSION), or a file and a regular expression with one group."
+  ],
+  "ports": [
+    { "repo": "vms-grep",      "anitya": 1251 },
+    { "repo": "vms-sed",       "anitya": 4789 },
+    { "repo": "vms-awk",       "anitya": 868 },
+    { "repo": "vms-curl",      "anitya": 381 },
+    { "repo": "vms-wget",      "anitya": 5124 },
+    { "repo": "vms-m4",        "anitya": 1871 },
+    { "repo": "vms-bison",     "anitya": 193 },
+    { "repo": "vms-flex",      "anitya": 819 },
+    { "repo": "vms-make",      "anitya": 1877 },
+    { "repo": "vms-diffutils", "anitya": 436 },
+    { "repo": "vms-patch",     "anitya": 2597 },
+    { "repo": "vms-gzip",      "anitya": 1290 },
+    { "repo": "vms-mariadb",   "anitya": 1887, "track": "11.4." },
+    { "repo": "vms-lighttpd",  "anitya": 1817, "track": "1.4." },
+    { "repo": "vms-pcre2",     "anitya": 5832 },
+    { "repo": "vms-zlib",      "anitya": 5303 },
+    { "repo": "vms-libxml2",   "anitya": 1783 },
+    { "repo": "vms-bzip2",     "anitya": 237 },
+    { "repo": "vms-xz",        "anitya": 5277 },
+    { "repo": "vms-zstd",      "anitya": 12083 },
+    { "repo": "vms-fastfetch", "anitya": 279670,
+      "pin": { "file": "src/fastfetch.h", "regex": "#define FF_UPSTREAM_VERSION \"([^\"]+)\"" },
+      "kind": "interface" }
+  ]
+}

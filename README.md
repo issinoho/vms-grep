@@ -330,6 +330,24 @@ come from each repository's latest GitHub release. The workflow takes a snapshot
 repository dispatch arrives. The page then checks the GitHub API itself, so a new release
 appears without waiting for a redeploy.
 
+## Upstream releases
+
+`.github/workflows/upstream-watch.yml` runs `tools/upstream_watch.py` every Monday, and by hand
+from the Actions tab, optionally as a dry run. For each port in `tools/upstream-watch.json` it
+compares the version the port is built from with the newest stable release on
+[release-monitoring.org](https://release-monitoring.org):
+
+- **The port's version** is `UPSTREAM_VERSION` in its `upstream.conf`; for vms-fastfetch,
+  `FF_UPSTREAM_VERSION`.
+- **Upstream's version** is limited to one release series where a port follows one (`track`:
+  MariaDB 11.4, lighttpd 1.4).
+- **When upstream is newer,** an issue labelled `upstream` opens here, titled
+  `[vms-x] name N released (we ship M)`, with a checklist. If upstream moves again, the issue is
+  updated. Once the port ships that version, the issue closes itself.
+
+The issues live in this repository because the workflow's own token can write only here. To add a
+port, add its repository and release-monitoring.org project id to `tools/upstream-watch.json`.
+
 ## Artwork
 
 `docs/images/banner.svg` and `docs/images/icon.svg` were made for this project in the style of

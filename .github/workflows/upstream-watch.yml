@@ -1,0 +1,34 @@
+# Notice new upstream releases of the vms-* ports (tools/upstream_watch.py):
+# opens an "upstream"-labelled issue here when a port's upstream has a newer
+# stable release, updates it if upstream moves again, and closes it once the
+# port has caught up.  Weekly, and by hand (optionally as a dry run).
+name: Upstream watch
+
+on:
+  schedule:
+    - cron: '23 6 * * 1'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Report only; change no issues'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: upstream-watch
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check upstream releases
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DRY_RUN: ${{ inputs.dry_run && '1' || '' }}
+        run: python3 tools/upstream_watch.py
