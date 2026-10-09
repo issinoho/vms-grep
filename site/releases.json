@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-07T17:51:56Z",
+  "generated": "2026-10-09T14:55:34Z",
   "releases": {
     "vms-grep": {
       "tag_name": "v3.12-vms3",
@@ -255,20 +255,20 @@
       ]
     },
     "vms-mariadb": {
-      "tag_name": "v11.4.13-vms2",
-      "name": "MariaDB 11.4.13 for OpenVMS (vms2, preview)",
-      "published_at": "2026-10-07T17:17:32Z",
-      "html_url": "https://github.com/issinoho/vms-mariadb/releases/tag/v11.4.13-vms2",
+      "tag_name": "v11.4.13-vms3",
+      "name": "MariaDB 11.4.13 for OpenVMS (vms3, preview)",
+      "published_at": "2026-10-09T14:54:45Z",
+      "html_url": "https://github.com/issinoho/vms-mariadb/releases/tag/v11.4.13-vms3",
       "assets": [
         {
-          "name": "ISSINOHO-X86VMS-VMSMARIADB-V1104-13E2-1.PCSI",
-          "size": 209756160,
-          "browser_download_url": "https://github.com/issinoho/vms-mariadb/releases/download/v11.4.13-vms2/ISSINOHO-X86VMS-VMSMARIADB-V1104-13E2-1.PCSI"
+          "name": "ISSINOHO-X86VMS-VMSMARIADB-V1104-13E3-1.PCSI",
+          "size": 209813504,
+          "browser_download_url": "https://github.com/issinoho/vms-mariadb/releases/download/v11.4.13-vms3/ISSINOHO-X86VMS-VMSMARIADB-V1104-13E3-1.PCSI"
         },
         {
           "name": "SHA256SUMS",
           "size": 111,
-          "browser_download_url": "https://github.com/issinoho/vms-mariadb/releases/download/v11.4.13-vms2/SHA256SUMS"
+          "browser_download_url": "https://github.com/issinoho/vms-mariadb/releases/download/v11.4.13-vms3/SHA256SUMS"
         }
       ]
     },
