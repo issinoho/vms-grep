@@ -136,6 +136,17 @@
     "setup": "$ @GZIP$ROOT:[000000]GZIP$SETUP.COM"
   },
   {
+    "repo": "vms-tar",
+    "name": "GNU tar",
+    "kind": "tool",
+    "upstream": "https://www.gnu.org/software/tar/",
+    "product": "TAR",
+    "blurb": "GNU tar with -z, -j, -J and --zstd through the family's compressor kits. Takes [.dir] as well as Unix names and archives VMS text files as lines with exact sizes, so any tar can read the result.",
+    "try": "$ tar \"-czvf\" WEB.TAR.GZ [.www]",
+    "status": "released",
+    "setup": "$ @TAR$ROOT:[000000]TAR$SETUP.COM"
+  },
+  {
     "repo": "vms-fastfetch",
     "name": "fastfetch",
     "kind": "tool",
