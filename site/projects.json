@@ -158,6 +158,17 @@
     "setup": "$ @FINDUTILS$ROOT:[000000]FINDUTILS$SETUP.COM"
   },
   {
+    "repo": "vms-less",
+    "name": "GNU less",
+    "kind": "tool",
+    "upstream": "https://www.gnu.org/software/less/",
+    "product": "LESS",
+    "blurb": "The pager, on VT terminals, DECterm and xterm over ssh. Reads the keyboard through the terminal driver, so the arrow keys, the editing keypad and CTRL/C work; pages VMS text files of every record format; runs DCL with ! and EDIT with v.",
+    "try": "$ pipe directory/full | less",
+    "status": "released",
+    "setup": "$ @LESS$ROOT:[000000]LESS$SETUP.COM"
+  },
+  {
     "repo": "vms-fastfetch",
     "name": "fastfetch",
     "kind": "tool",

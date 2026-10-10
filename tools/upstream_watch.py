@@ -86,14 +86,16 @@ def pinned(port):
     return m.group(1)
 
 
-def latest(port):
+def latest(port, ours=None):
     d = http("GET", f"https://release-monitoring.org/api/v2/versions/?project_id={port['anitya']}",
              github=False)
     versions = d.get("stable_versions") or d.get("versions") or []
     # Some projects' lists hold stray tags ("CVE-2021-3541", "fuzz-corpora2",
     # "libbitset_2003_06_08", "bzip2-1.0.8"): keep plain dotted versions.
     versions = [v[1:] if v.startswith("v") else v for v in versions]
-    versions = [v for v in versions if re.fullmatch(r"\d+(\.\d+)+", v)]
+    # A port whose own version is one number (less: 710) takes undotted ones too.
+    plain = r"\d+(\.\d+)*" if ours and "." not in ours else r"\d+(\.\d+)+"
+    versions = [v for v in versions if re.fullmatch(plain, v)]
     track = port.get("track")
     if track:
         versions = [v for v in versions if v.startswith(track)]
@@ -160,7 +162,8 @@ def main():
     for port in CONFIG["ports"]:
         repo = port["repo"]
         try:
-            ours, theirs = pinned(port), latest(port)
+            ours = pinned(port)
+            theirs = latest(port, ours)
         except Exception as e:      # one bad port must not stop the rest
             rows.append((repo, "?", "?", f"error: {e}"))
             failed += 1
