@@ -25,8 +25,10 @@
   }
 
   // ISSINOHO-X86VMS-GREP-V0312-3-1.PCSI -> { arch: "x86-64", product: "GREP" }
+  // The version's letter is PCSI's kit type: V release, T field test (vms-steward
+  // T0.1), X experimental, A/B alpha and beta.
   function parseKit(name) {
-    const m = /^[A-Z0-9]+-([A-Z0-9]+VMS)-([A-Z0-9_$]+)-V.*\.PCSI$/i.exec(name);
+    const m = /^[A-Z0-9]+-([A-Z0-9]+VMS)-([A-Z0-9_$]+)-[VTXAB].*\.PCSI$/i.exec(name);
     return m ? { arch: ARCH[m[1].toUpperCase()] || m[1], product: m[2].toUpperCase() } : null;
   }
 
@@ -93,7 +95,7 @@
          <span class="muted">${esc(rel.tag_name)} &middot; ${fmtDate(rel.published_at)}</span>
          <a href="${esc(rel.html_url)}">Release notes</a>
          ${sums ? `<a href="${esc(sums.browser_download_url)}">SHA256SUMS</a>` : ""}
-         <a href="${esc(p.upstream)}">Upstream</a>
+         ${p.upstream ? `<a href="${esc(p.upstream)}">Upstream</a>` : ""}
        </div>`;
   }
 
