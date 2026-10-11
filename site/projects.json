@@ -214,7 +214,7 @@
     "name": "Steward",
     "kind": "server",
     "product": "STEWARD",
-    "blurb": "OpenVMS system management in a web browser. It opens on a dashboard of the system (fastfetch's figures, live) and covers users and rights identifiers: everything AUTHORIZE SHOW shows, and modify, set passwords, grant and revoke. You sign in with your OpenVMS username and password, and every request runs as you, so OpenVMS itself decides what each person may see and change. Not a port: written for OpenVMS from scratch, and served by lighttpd for OpenVMS. STEWARD$CONFIGURE.COM sets it up under its own least-privilege account.",
+    "blurb": "OpenVMS system management in a web browser. It opens on a live dashboard of the system (fastfetch's figures) and covers users and rights identifiers the way AUTHORIZE does: create, copy and delete accounts, modify them, set passwords, grant and revoke identifiers. You sign in with your OpenVMS username and password, and every request runs as you, so OpenVMS itself decides what each person may see and change. Not a port: written for OpenVMS from scratch, and served by lighttpd for OpenVMS. STEWARD$CONFIGURE.COM sets it up under its own least-privilege account.",
     "requires": "VSI SSL3 kit, vms-lighttpd",
     "notes": [
       "x86-64 only",
