@@ -322,7 +322,7 @@ The family of ports, all for IA64 and x86-64 (MariaDB: x86-64 only), each follow
 | fastfetch — [vms-fastfetch](https://github.com/issinoho/vms-fastfetch) | [v0.2.1](https://github.com/issinoho/vms-fastfetch/releases/tag/v0.2.1) | the system banner; a C99 rewrite, not a port |
 | MariaDB — [vms-mariadb](https://github.com/issinoho/vms-mariadb) | [v11.4.13-vms2](https://github.com/issinoho/vms-mariadb/releases/tag/v11.4.13-vms2) | server and clients; x86-64 only, preview |
 | lighttpd — [vms-lighttpd](https://github.com/issinoho/vms-lighttpd) | [v1.4.85-vms2](https://github.com/issinoho/vms-lighttpd/releases/tag/v1.4.85-vms2) | web server: HTTPS, HTTP/2, PHP over FastCGI; preview |
-| Steward — [vms-steward](https://github.com/issinoho/vms-steward) | [v0.1.0](https://github.com/issinoho/vms-steward/releases/tag/v0.1.0) | system management in a browser: users and rights identifiers; written for OpenVMS, not a port; x86-64 only, early test |
+| Steward — [vms-steward](https://github.com/issinoho/vms-steward) | [v0.1.1](https://github.com/issinoho/vms-steward/releases/tag/v0.1.1) | system management in a browser: users and rights identifiers; written for OpenVMS, not a port; x86-64 only, early test |
 
 ## Further reading
 
