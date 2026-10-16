@@ -26,7 +26,8 @@ the same family as [GNU sed](https://github.com/issinoho/vms-sed),
 [Zstandard](https://github.com/issinoho/vms-zstd),
 [MariaDB](https://github.com/issinoho/vms-mariadb),
 [lighttpd](https://github.com/issinoho/vms-lighttpd),
-[Steward](https://github.com/issinoho/vms-steward)
+[Steward](https://github.com/issinoho/vms-steward),
+the [beszel agent](https://github.com/issinoho/vms-beszel)
 and [fastfetch](https://github.com/issinoho/vms-fastfetch) for OpenVMS.
 
 This repository holds **only our changes**. Upstream source is never stored here: every
@@ -323,6 +324,7 @@ The family of ports, all for IA64 and x86-64 (MariaDB: x86-64 only), each follow
 | MariaDB — [vms-mariadb](https://github.com/issinoho/vms-mariadb) | [v11.4.13-vms2](https://github.com/issinoho/vms-mariadb/releases/tag/v11.4.13-vms2) | server and clients; x86-64 only, preview |
 | lighttpd — [vms-lighttpd](https://github.com/issinoho/vms-lighttpd) | [v1.4.85-vms2](https://github.com/issinoho/vms-lighttpd/releases/tag/v1.4.85-vms2) | web server: HTTPS, HTTP/2, PHP over FastCGI; preview |
 | Steward — [vms-steward](https://github.com/issinoho/vms-steward) | [v0.4.0](https://github.com/issinoho/vms-steward/releases/tag/v0.4.0) | system management in a browser: a live dashboard; users (create, copy, modify, delete) and rights identifiers; access history (who signed in, when, from where, how); written for OpenVMS, not a port; x86-64 only, early test |
+| beszel agent — [vms-beszel](https://github.com/issinoho/vms-beszel) | [v0.21.0-vms1](https://github.com/issinoho/vms-beszel/releases/tag/v0.21.0-vms1) | reports the system to a beszel 0.21 monitoring hub, unprivileged; a C99 re-implementation of the agent protocol, not a port |
 
 ## Further reading
 

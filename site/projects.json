@@ -224,6 +224,17 @@
     "status": "released"
   },
   {
+    "repo": "vms-beszel",
+    "name": "beszel agent",
+    "kind": "server",
+    "upstream": "https://beszel.dev/",
+    "product": "BESZEL",
+    "blurb": "Reports the system to a beszel hub: CPU per mode and per CPU, load average, memory, page and swap files, disks and LAN traffic, with the hub's charts, history and alerts. A C99 re-implementation of beszel's agent protocol, checked against upstream's own code. It connects out to the hub over WebSocket, with TLS through VSI's OpenSSL 3 kit, so nothing listens. BESZEL$CONFIGURE.COM sets it up under its own account, with TMPMBX and NETMBX only.",
+    "requires": "VSI SSL3 kit, a beszel 0.21 hub",
+    "try": "$ @BESZEL$ROOT:[COM]BESZEL$CONFIGURE\n$ @BESZEL$ROOT:[COM]BESZEL$CONTROL START",
+    "status": "released"
+  },
+  {
     "repo": "vms-pcre2",
     "name": "PCRE2",
     "kind": "library",
