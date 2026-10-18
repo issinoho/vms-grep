@@ -19,6 +19,7 @@ the same family as [GNU sed](https://github.com/issinoho/vms-sed),
 [GNU Bison](https://github.com/issinoho/vms-bison), [flex](https://github.com/issinoho/vms-flex),
 [GNU Wget](https://github.com/issinoho/vms-wget), [curl](https://github.com/issinoho/vms-curl),
 [PCRE2](https://github.com/issinoho/vms-pcre2), [zlib](https://github.com/issinoho/vms-zlib),
+[libxml2](https://github.com/issinoho/vms-libxml2),
 [GNU gzip](https://github.com/issinoho/vms-gzip), [GNU tar](https://github.com/issinoho/vms-tar),
 [GNU findutils](https://github.com/issinoho/vms-findutils),
 [GNU less](https://github.com/issinoho/vms-less),
@@ -305,6 +306,7 @@ The family of ports, all for IA64 and x86-64 (MariaDB: x86-64 only), each follow
 | GNU sed — [vms-sed](https://github.com/issinoho/vms-sed) | [v4.10-vms1](https://github.com/issinoho/vms-sed/releases/tag/v4.10-vms1) | the stream editor |
 | GNU awk (gawk) — [vms-awk](https://github.com/issinoho/vms-awk) | [v5.4.1-vms1](https://github.com/issinoho/vms-awk/releases/tag/v5.4.1-vms1) | built with gawk's own VMS port |
 | zlib — [vms-zlib](https://github.com/issinoho/vms-zlib) | [v1.3.2-vms1](https://github.com/issinoho/vms-zlib/releases/tag/v1.3.2-vms1) | the compression library |
+| libxml2 — [vms-libxml2](https://github.com/issinoho/vms-libxml2) | [v2.15.4-vms1](https://github.com/issinoho/vms-libxml2/releases/tag/v2.15.4-vms1) | the XML library and xmllint, built with VSI clang (64-bit); it provides PHP's XML extensions |
 | GNU gzip — [vms-gzip](https://github.com/issinoho/vms-gzip) | [v1.15-vms1](https://github.com/issinoho/vms-gzip/releases/tag/v1.15-vms1) | gzip, gunzip and zcat |
 | GNU tar — [vms-tar](https://github.com/issinoho/vms-tar) | [v1.35-vms1](https://github.com/issinoho/vms-tar/releases/tag/v1.35-vms1) | `-z`/`-j`/`-J`/`--zstd` through the compressor kits; VMS names as Unix members |
 | GNU findutils — [vms-findutils](https://github.com/issinoho/vms-findutils) | [v4.11.0-vms2](https://github.com/issinoho/vms-findutils/releases/tag/v4.11.0-vms2) | find, xargs and locate; `-exec` and xargs run DCL commands; VMS names for a VMS starting point |
@@ -321,10 +323,10 @@ The family of ports, all for IA64 and x86-64 (MariaDB: x86-64 only), each follow
 | GNU diffutils — [vms-diffutils](https://github.com/issinoho/vms-diffutils) | [v3.12-vms1](https://github.com/issinoho/vms-diffutils/releases/tag/v3.12-vms1) | cmp, diff, diff3, sdiff |
 | GNU patch — [vms-patch](https://github.com/issinoho/vms-patch) | [v2.8-vms1](https://github.com/issinoho/vms-patch/releases/tag/v2.8-vms1) | applies diffs |
 | fastfetch — [vms-fastfetch](https://github.com/issinoho/vms-fastfetch) | [v0.2.1](https://github.com/issinoho/vms-fastfetch/releases/tag/v0.2.1) | the system banner; a C99 rewrite, not a port |
-| MariaDB — [vms-mariadb](https://github.com/issinoho/vms-mariadb) | [v11.4.13-vms2](https://github.com/issinoho/vms-mariadb/releases/tag/v11.4.13-vms2) | server and clients; x86-64 only, preview |
+| MariaDB — [vms-mariadb](https://github.com/issinoho/vms-mariadb) | [v11.4.13-vms3](https://github.com/issinoho/vms-mariadb/releases/tag/v11.4.13-vms3) | server and clients; x86-64 only, preview |
 | lighttpd — [vms-lighttpd](https://github.com/issinoho/vms-lighttpd) | [v1.4.85-vms2](https://github.com/issinoho/vms-lighttpd/releases/tag/v1.4.85-vms2) | web server: HTTPS, HTTP/2, PHP over FastCGI; preview |
 | Steward — [vms-steward](https://github.com/issinoho/vms-steward) | [v0.9.0](https://github.com/issinoho/vms-steward/releases/tag/v0.9.0) | system management in a browser: a live dashboard; users (create, copy, modify, delete) and rights identifiers; access history (who signed in, when, from where, how); logical names; processes; batch and print queues; system parameters (read-only); written for OpenVMS, not a port; x86-64 only, early test |
-| beszel agent — [vms-beszel](https://github.com/issinoho/vms-beszel) | [v0.21.0-vms1](https://github.com/issinoho/vms-beszel/releases/tag/v0.21.0-vms1) | reports the system to a beszel 0.21 monitoring hub, unprivileged; a C99 re-implementation of the agent protocol, not a port |
+| beszel agent — [vms-beszel](https://github.com/issinoho/vms-beszel) | [v0.21.0-vms2](https://github.com/issinoho/vms-beszel/releases/tag/v0.21.0-vms2) | reports the system to a beszel 0.21 monitoring hub, unprivileged; a C99 re-implementation of the agent protocol, not a port |
 
 ## Further reading
 
