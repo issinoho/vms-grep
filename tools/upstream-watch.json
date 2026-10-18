@@ -24,6 +24,7 @@
     { "repo": "vms-less",      "anitya": 1550 },
     { "repo": "vms-mariadb",   "anitya": 1887, "track": "11.4." },
     { "repo": "vms-lighttpd",  "anitya": 1817, "track": "1.4." },
+    { "repo": "vms-php",       "anitya": 3627, "track": "8.5." },
     { "repo": "vms-pcre2",     "anitya": 5832 },
     { "repo": "vms-zlib",      "anitya": 5303 },
     { "repo": "vms-libxml2",   "anitya": 1783 },

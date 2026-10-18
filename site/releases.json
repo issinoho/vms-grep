@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-18T00:23:07Z",
+  "generated": "2026-10-18T11:54:05Z",
   "releases": {
     "vms-grep": {
       "tag_name": "v3.12-vms3",
@@ -388,25 +388,43 @@
       ]
     },
     "vms-lighttpd": {
-      "tag_name": "v1.4.85-vms2",
-      "name": "lighttpd 1.4.85 for OpenVMS (vms2, preview)",
-      "published_at": "2026-10-08T16:22:32Z",
-      "html_url": "https://github.com/issinoho/vms-lighttpd/releases/tag/v1.4.85-vms2",
+      "tag_name": "v1.4.85-vms3",
+      "name": "lighttpd 1.4.85 for OpenVMS (vms3)",
+      "published_at": "2026-10-18T11:05:53Z",
+      "html_url": "https://github.com/issinoho/vms-lighttpd/releases/tag/v1.4.85-vms3",
       "assets": [
         {
-          "name": "ISSINOHO-I64VMS-LIGHTTPD-V0104-85E2-1.PCSI",
+          "name": "ISSINOHO-I64VMS-LIGHTTPD-V0104-85E3-1.PCSI",
           "size": 2449408,
-          "browser_download_url": "https://github.com/issinoho/vms-lighttpd/releases/download/v1.4.85-vms2/ISSINOHO-I64VMS-LIGHTTPD-V0104-85E2-1.PCSI"
+          "browser_download_url": "https://github.com/issinoho/vms-lighttpd/releases/download/v1.4.85-vms3/ISSINOHO-I64VMS-LIGHTTPD-V0104-85E3-1.PCSI"
         },
         {
-          "name": "ISSINOHO-X86VMS-LIGHTTPD-V0104-85E2-1.PCSI",
-          "size": 1572864,
-          "browser_download_url": "https://github.com/issinoho/vms-lighttpd/releases/download/v1.4.85-vms2/ISSINOHO-X86VMS-LIGHTTPD-V0104-85E2-1.PCSI"
+          "name": "ISSINOHO-X86VMS-LIGHTTPD-V0104-85E3-1.PCSI",
+          "size": 1581056,
+          "browser_download_url": "https://github.com/issinoho/vms-lighttpd/releases/download/v1.4.85-vms3/ISSINOHO-X86VMS-LIGHTTPD-V0104-85E3-1.PCSI"
         },
         {
           "name": "SHA256SUMS",
           "size": 218,
-          "browser_download_url": "https://github.com/issinoho/vms-lighttpd/releases/download/v1.4.85-vms2/SHA256SUMS"
+          "browser_download_url": "https://github.com/issinoho/vms-lighttpd/releases/download/v1.4.85-vms3/SHA256SUMS"
+        }
+      ]
+    },
+    "vms-php": {
+      "tag_name": "v8.5.11-vms1",
+      "name": "PHP 8.5.11 for OpenVMS (vms1)",
+      "published_at": "2026-10-18T10:19:09Z",
+      "html_url": "https://github.com/issinoho/vms-php/releases/tag/v8.5.11-vms1",
+      "assets": [
+        {
+          "name": "ISSINOHO-X86VMS-VMSPHP-V0805-11E1-1.PCSI",
+          "size": 43909120,
+          "browser_download_url": "https://github.com/issinoho/vms-php/releases/download/v8.5.11-vms1/ISSINOHO-X86VMS-VMSPHP-V0805-11E1-1.PCSI"
+        },
+        {
+          "name": "SHA256SUMS",
+          "size": 107,
+          "browser_download_url": "https://github.com/issinoho/vms-php/releases/download/v8.5.11-vms1/SHA256SUMS"
         }
       ]
     },

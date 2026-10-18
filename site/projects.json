@@ -201,12 +201,24 @@
     "kind": "server",
     "upstream": "https://www.lighttpd.net/",
     "product": "LIGHTTPD",
-    "blurb": "A light, fast web server as a modern alternative to VSI's Apache: HTTPS and HTTP/2 through VSI's OpenSSL 3 kit, and PHP as a pool of persistent FastCGI processes; phpBB runs on it with MariaDB, and it can sit behind a reverse proxy that ends TLS. A preview. VMSLIGHTTPD$CONFIGURE.COM sets it up as a service under its own account; it binds ports 80 and 443, then drops every privilege but TMPMBX and NETMBX.",
+    "blurb": "A light, fast web server as a modern alternative to VSI's Apache: HTTPS and HTTP/2 through VSI's OpenSSL 3 kit, and PHP as a pool of persistent FastCGI processes; phpBB runs on it with PHP 8.5 and MariaDB, and it can sit behind a reverse proxy that ends TLS. VMSLIGHTTPD$CONFIGURE.COM sets it up as a service under its own account; it binds ports 80 and 443, then drops every privilege but TMPMBX and NETMBX.",
+    "requires": "VSI SSL3 kit",
+    "try": "$ @VMSLIGHTTPD$ROOT:[COM]VMSLIGHTTPD$CONFIGURE\n$ @VMSLIGHTTPD$ROOT:[COM]VMSLIGHTTPD$CONTROL START",
+    "status": "released"
+  },
+  {
+    "repo": "vms-php",
+    "name": "PHP",
+    "kind": "server",
+    "upstream": "https://www.php.net/",
+    "product": "VMSPHP",
+    "blurb": "PHP 8.5, built natively with VSI's clang (64-bit): the command-line interpreter and a FastCGI server for lighttpd or Apache, with opcache, mysqli for MariaDB, openssl through VSI's SSL3 kit, Argon2 password hashing and CA certificates for verified HTTPS. A live phpBB 3.3 board runs on it behind lighttpd.",
     "requires": "VSI SSL3 kit",
     "notes": [
-      "preview"
+      "x86-64 only"
     ],
-    "try": "$ @VMSLIGHTTPD$ROOT:[COM]VMSLIGHTTPD$CONFIGURE\n$ @VMSLIGHTTPD$ROOT:[COM]VMSLIGHTTPD$CONTROL START",
+    "try": "$ php -v",
+    "setup": "$ @VMSPHP$ROOT:[COM]VMSPHP$SETUP",
     "status": "released"
   },
   {

@@ -27,6 +27,7 @@ the same family as [GNU sed](https://github.com/issinoho/vms-sed),
 [Zstandard](https://github.com/issinoho/vms-zstd),
 [MariaDB](https://github.com/issinoho/vms-mariadb),
 [lighttpd](https://github.com/issinoho/vms-lighttpd),
+[PHP](https://github.com/issinoho/vms-php),
 [Steward](https://github.com/issinoho/vms-steward),
 the [beszel agent](https://github.com/issinoho/vms-beszel)
 and [fastfetch](https://github.com/issinoho/vms-fastfetch) for OpenVMS.
@@ -297,7 +298,7 @@ GNU `configure` cannot run usefully on VMS, so it runs on the Linux host with VM
 3. Bring in vms-sed's fix for the C run-time library's UTF-8 decoding (sed patch 0012).
 4. Offer the patches that are not VMS packaging to grep and gnulib.
 
-The family of ports, all for IA64 and x86-64 (MariaDB: x86-64 only), each following its upstream releases:
+The family of ports, all for IA64 and x86-64 (MariaDB, PHP: x86-64 only), each following its upstream releases:
 
 | Port | Latest release | |
 |---|---|---|
@@ -324,7 +325,8 @@ The family of ports, all for IA64 and x86-64 (MariaDB: x86-64 only), each follow
 | GNU patch — [vms-patch](https://github.com/issinoho/vms-patch) | [v2.8-vms1](https://github.com/issinoho/vms-patch/releases/tag/v2.8-vms1) | applies diffs |
 | fastfetch — [vms-fastfetch](https://github.com/issinoho/vms-fastfetch) | [v0.2.1](https://github.com/issinoho/vms-fastfetch/releases/tag/v0.2.1) | the system banner; a C99 rewrite, not a port |
 | MariaDB — [vms-mariadb](https://github.com/issinoho/vms-mariadb) | [v11.4.13-vms3](https://github.com/issinoho/vms-mariadb/releases/tag/v11.4.13-vms3) | server and clients; x86-64 only, preview |
-| lighttpd — [vms-lighttpd](https://github.com/issinoho/vms-lighttpd) | [v1.4.85-vms2](https://github.com/issinoho/vms-lighttpd/releases/tag/v1.4.85-vms2) | web server: HTTPS, HTTP/2, PHP over FastCGI; preview |
+| lighttpd — [vms-lighttpd](https://github.com/issinoho/vms-lighttpd) | [v1.4.85-vms3](https://github.com/issinoho/vms-lighttpd/releases/tag/v1.4.85-vms3) | web server: HTTPS, HTTP/2, PHP over FastCGI |
+| PHP — [vms-php](https://github.com/issinoho/vms-php) | [v8.5.11-vms1](https://github.com/issinoho/vms-php/releases/tag/v8.5.11-vms1) | PHP 8.5: CLI and FastCGI, opcache, mysqli, openssl, Argon2; built with VSI clang (64-bit); x86-64 only |
 | Steward — [vms-steward](https://github.com/issinoho/vms-steward) | [v0.9.0](https://github.com/issinoho/vms-steward/releases/tag/v0.9.0) | system management in a browser: a live dashboard; users (create, copy, modify, delete) and rights identifiers; access history (who signed in, when, from where, how); logical names; processes; batch and print queues; system parameters (read-only); written for OpenVMS, not a port; x86-64 only, early test |
 | beszel agent — [vms-beszel](https://github.com/issinoho/vms-beszel) | [v0.21.0-vms2](https://github.com/issinoho/vms-beszel/releases/tag/v0.21.0-vms2) | reports the system to a beszel 0.21 monitoring hub, unprivileged; a C99 re-implementation of the agent protocol, not a port |
 
@@ -356,7 +358,7 @@ compares the version the port is built from with the newest stable release on
 - **The port's version** is `UPSTREAM_VERSION` in its `upstream.conf`; for vms-fastfetch,
   `FF_UPSTREAM_VERSION`.
 - **Upstream's version** is limited to one release series where a port follows one (`track`:
-  MariaDB 11.4, lighttpd 1.4).
+  MariaDB 11.4, lighttpd 1.4, PHP 8.5).
 - **When upstream is newer,** an issue labelled `upstream` opens here, titled
   `[vms-x] name N released (we ship M)`, with a checklist. If upstream moves again, the issue is
   updated. Once the port ships that version, the issue closes itself.
