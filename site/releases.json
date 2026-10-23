@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-23T10:37:47Z",
+  "generated": "2026-10-23T10:43:24Z",
   "releases": {
     "vms-grep": {
       "tag_name": "v3.12-vms3",
@@ -429,20 +429,25 @@
       ]
     },
     "vms-steward": {
-      "tag_name": "v0.9.0",
-      "name": "Steward 0.9.0 for OpenVMS x86-64 (early test): processes, queues and system parameters",
-      "published_at": "2026-10-16T07:32:21Z",
-      "html_url": "https://github.com/issinoho/vms-steward/releases/tag/v0.9.0",
+      "tag_name": "v0.16.0",
+      "name": "Steward 0.16.0 for OpenVMS x86-64 and IA64 (early test): licences, products, monitoring and the error log",
+      "published_at": "2026-10-23T10:42:56Z",
+      "html_url": "https://github.com/issinoho/vms-steward/releases/tag/v0.16.0",
       "assets": [
         {
-          "name": "ISSINOHO-X86VMS-STEWARD-T0009-0-1.PCSI",
-          "size": 581632,
-          "browser_download_url": "https://github.com/issinoho/vms-steward/releases/download/v0.9.0/ISSINOHO-X86VMS-STEWARD-T0009-0-1.PCSI"
+          "name": "ISSINOHO-I64VMS-STEWARD-T0016-0-1.PCSI",
+          "size": 1236992,
+          "browser_download_url": "https://github.com/issinoho/vms-steward/releases/download/v0.16.0/ISSINOHO-I64VMS-STEWARD-T0016-0-1.PCSI"
+        },
+        {
+          "name": "ISSINOHO-X86VMS-STEWARD-T0016-0-1.PCSI",
+          "size": 811008,
+          "browser_download_url": "https://github.com/issinoho/vms-steward/releases/download/v0.16.0/ISSINOHO-X86VMS-STEWARD-T0016-0-1.PCSI"
         },
         {
           "name": "SHA256SUMS",
-          "size": 105,
-          "browser_download_url": "https://github.com/issinoho/vms-steward/releases/download/v0.9.0/SHA256SUMS"
+          "size": 210,
+          "browser_download_url": "https://github.com/issinoho/vms-steward/releases/download/v0.16.0/SHA256SUMS"
         }
       ]
     },
