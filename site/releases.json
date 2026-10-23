@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-23T11:07:25Z",
+  "generated": "2026-10-23T21:21:45Z",
   "releases": {
     "vms-grep": {
       "tag_name": "v3.12-vms3",
@@ -452,25 +452,25 @@
       ]
     },
     "vms-beszel": {
-      "tag_name": "v0.21.0-vms2",
-      "name": "beszel agent 0.21.0 for OpenVMS (vms2): x86-64 and Integrity",
-      "published_at": "2026-10-18T00:22:34Z",
-      "html_url": "https://github.com/issinoho/vms-beszel/releases/tag/v0.21.0-vms2",
+      "tag_name": "v0.21.1-vms1",
+      "name": "beszel agent 0.21.1 for OpenVMS (vms1): x86-64 and Integrity",
+      "published_at": "2026-10-23T21:15:41Z",
+      "html_url": "https://github.com/issinoho/vms-beszel/releases/tag/v0.21.1-vms1",
       "assets": [
         {
-          "name": "ISSINOHO-I64VMS-BESZEL-V0021-0E2-1.PCSI",
+          "name": "ISSINOHO-I64VMS-BESZEL-V0021-1E1-1.PCSI",
           "size": 450560,
-          "browser_download_url": "https://github.com/issinoho/vms-beszel/releases/download/v0.21.0-vms2/ISSINOHO-I64VMS-BESZEL-V0021-0E2-1.PCSI"
+          "browser_download_url": "https://github.com/issinoho/vms-beszel/releases/download/v0.21.1-vms1/ISSINOHO-I64VMS-BESZEL-V0021-1E1-1.PCSI"
         },
         {
-          "name": "ISSINOHO-X86VMS-BESZEL-V0021-0E2-1.PCSI",
+          "name": "ISSINOHO-X86VMS-BESZEL-V0021-1E1-1.PCSI",
           "size": 385024,
-          "browser_download_url": "https://github.com/issinoho/vms-beszel/releases/download/v0.21.0-vms2/ISSINOHO-X86VMS-BESZEL-V0021-0E2-1.PCSI"
+          "browser_download_url": "https://github.com/issinoho/vms-beszel/releases/download/v0.21.1-vms1/ISSINOHO-X86VMS-BESZEL-V0021-1E1-1.PCSI"
         },
         {
           "name": "SHA256SUMS",
           "size": 212,
-          "browser_download_url": "https://github.com/issinoho/vms-beszel/releases/download/v0.21.0-vms2/SHA256SUMS"
+          "browser_download_url": "https://github.com/issinoho/vms-beszel/releases/download/v0.21.1-vms1/SHA256SUMS"
         }
       ]
     },

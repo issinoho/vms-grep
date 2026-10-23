@@ -329,7 +329,7 @@ The family of ports, all for IA64 and x86-64 (MariaDB, PHP, SQLite: x86-64 only)
 | lighttpd — [vms-lighttpd](https://github.com/issinoho/vms-lighttpd) | [v1.4.85-vms3](https://github.com/issinoho/vms-lighttpd/releases/tag/v1.4.85-vms3) | web server: HTTPS, HTTP/2, PHP over FastCGI |
 | PHP — [vms-php](https://github.com/issinoho/vms-php) | [v8.5.12-vms2](https://github.com/issinoho/vms-php/releases/tag/v8.5.12-vms2) | PHP 8.5: CLI and FastCGI, opcache, mysqli, SQLite and PDO (sqlite3, pdo_sqlite, pdo_mysql), openssl, Argon2; built with VSI clang (64-bit); x86-64 only; 8.5.12 fixes CVE-2026-109618 and CVE-2026-109619 |
 | Steward — [vms-steward](https://github.com/issinoho/vms-steward) | [v0.16.0](https://github.com/issinoho/vms-steward/releases/tag/v0.16.0) | system management in a browser: a live dashboard; users (create, copy, modify, delete) and rights identifiers; access history (who signed in, when, from where, how); logical names; processes; batch and print queues; system parameters, licences (read-only); installed products (install and remove through PCSI); monitoring; the error log; written for OpenVMS, not a port; x86-64 and IA64, early test |
-| beszel agent — [vms-beszel](https://github.com/issinoho/vms-beszel) | [v0.21.0-vms2](https://github.com/issinoho/vms-beszel/releases/tag/v0.21.0-vms2) | reports the system to a beszel 0.21 monitoring hub, unprivileged; a C99 re-implementation of the agent protocol, not a port |
+| beszel agent — [vms-beszel](https://github.com/issinoho/vms-beszel) | [v0.21.1-vms1](https://github.com/issinoho/vms-beszel/releases/tag/v0.21.1-vms1) | reports the system to a beszel 0.21 monitoring hub, unprivileged; a C99 re-implementation of the agent protocol, not a port |
 
 ## Further reading
 
