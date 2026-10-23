@@ -278,6 +278,21 @@
     "status": "released"
   },
   {
+    "repo": "vms-sqlite",
+    "name": "SQLite",
+    "kind": "library",
+    "upstream": "https://sqlite.org/",
+    "product": "VMSSQLITE",
+    "blurb": "The SQLite database engine: the sqlite3 shell, an object library, the shareable image SQLITE3$SHR and headers under VMSSQLITE$ROOT, built with VSI clang (64-bit). Its own OpenVMS file layer ($QIO block I/O, locks on a companion lock file) lets several processes, and accounts in different UIC groups, share one database safely. FTS5, R*Tree, JSON and the math functions are built in. It provides PHP's sqlite3 and pdo_sqlite, which run a phpBB board on SQLite.",
+    "notes": [
+      "x86-64 only",
+      "rollback journals (no WAL)"
+    ],
+    "try": "$ sqlite3 test.db \"select sqlite_version();\"",
+    "setup": "$ @VMSSQLITE$ROOT:[COM]VMSSQLITE$SETUP",
+    "status": "released"
+  },
+  {
     "repo": "vms-bzip2",
     "name": "bzip2",
     "kind": "library",

@@ -28,6 +28,7 @@
     { "repo": "vms-pcre2",     "anitya": 5832 },
     { "repo": "vms-zlib",      "anitya": 5303 },
     { "repo": "vms-libxml2",   "anitya": 1783 },
+    { "repo": "vms-sqlite",    "anitya": 4877 },
     { "repo": "vms-bzip2",     "anitya": 237 },
     { "repo": "vms-xz",        "anitya": 5277 },
     { "repo": "vms-zstd",      "anitya": 12083 },

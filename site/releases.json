@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-23T10:43:24Z",
+  "generated": "2026-10-23T11:07:25Z",
   "releases": {
     "vms-grep": {
       "tag_name": "v3.12-vms3",
@@ -535,6 +535,24 @@
           "name": "SHA256SUMS",
           "size": 107,
           "browser_download_url": "https://github.com/issinoho/vms-libxml2/releases/download/v2.15.4-vms1/SHA256SUMS"
+        }
+      ]
+    },
+    "vms-sqlite": {
+      "tag_name": "v3.54.1-vms1",
+      "name": "SQLite 3.54.1 for OpenVMS (vms1)",
+      "published_at": "2026-10-23T11:07:07Z",
+      "html_url": "https://github.com/issinoho/vms-sqlite/releases/tag/v3.54.1-vms1",
+      "assets": [
+        {
+          "name": "ISSINOHO-X86VMS-VMSSQLITE-V0354-1E1-1.PCSI",
+          "size": 7692288,
+          "browser_download_url": "https://github.com/issinoho/vms-sqlite/releases/download/v3.54.1-vms1/ISSINOHO-X86VMS-VMSSQLITE-V0354-1E1-1.PCSI"
+        },
+        {
+          "name": "SHA256SUMS",
+          "size": 109,
+          "browser_download_url": "https://github.com/issinoho/vms-sqlite/releases/download/v3.54.1-vms1/SHA256SUMS"
         }
       ]
     },

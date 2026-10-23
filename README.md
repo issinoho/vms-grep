@@ -19,7 +19,7 @@ the same family as [GNU sed](https://github.com/issinoho/vms-sed),
 [GNU Bison](https://github.com/issinoho/vms-bison), [flex](https://github.com/issinoho/vms-flex),
 [GNU Wget](https://github.com/issinoho/vms-wget), [curl](https://github.com/issinoho/vms-curl),
 [PCRE2](https://github.com/issinoho/vms-pcre2), [zlib](https://github.com/issinoho/vms-zlib),
-[libxml2](https://github.com/issinoho/vms-libxml2),
+[libxml2](https://github.com/issinoho/vms-libxml2), [SQLite](https://github.com/issinoho/vms-sqlite),
 [GNU gzip](https://github.com/issinoho/vms-gzip), [GNU tar](https://github.com/issinoho/vms-tar),
 [GNU findutils](https://github.com/issinoho/vms-findutils),
 [GNU less](https://github.com/issinoho/vms-less),
@@ -298,7 +298,7 @@ GNU `configure` cannot run usefully on VMS, so it runs on the Linux host with VM
 3. Bring in vms-sed's fix for the C run-time library's UTF-8 decoding (sed patch 0012).
 4. Offer the patches that are not VMS packaging to grep and gnulib.
 
-The family of ports, all for IA64 and x86-64 (MariaDB, PHP: x86-64 only), each following its upstream releases:
+The family of ports, all for IA64 and x86-64 (MariaDB, PHP, SQLite: x86-64 only), each following its upstream releases:
 
 | Port | Latest release | |
 |---|---|---|
@@ -308,6 +308,7 @@ The family of ports, all for IA64 and x86-64 (MariaDB, PHP: x86-64 only), each f
 | GNU awk (gawk) — [vms-awk](https://github.com/issinoho/vms-awk) | [v5.4.1-vms1](https://github.com/issinoho/vms-awk/releases/tag/v5.4.1-vms1) | built with gawk's own VMS port |
 | zlib — [vms-zlib](https://github.com/issinoho/vms-zlib) | [v1.3.2-vms1](https://github.com/issinoho/vms-zlib/releases/tag/v1.3.2-vms1) | the compression library |
 | libxml2 — [vms-libxml2](https://github.com/issinoho/vms-libxml2) | [v2.15.4-vms1](https://github.com/issinoho/vms-libxml2/releases/tag/v2.15.4-vms1) | the XML library and xmllint, built with VSI clang (64-bit); it provides PHP's XML extensions |
+| SQLite — [vms-sqlite](https://github.com/issinoho/vms-sqlite) | [v3.54.1-vms1](https://github.com/issinoho/vms-sqlite/releases/tag/v3.54.1-vms1) | the database engine and the sqlite3 shell, built with VSI clang (64-bit); one database shared safely by several processes and accounts; it provides PHP's sqlite3 and pdo_sqlite |
 | GNU gzip — [vms-gzip](https://github.com/issinoho/vms-gzip) | [v1.15-vms1](https://github.com/issinoho/vms-gzip/releases/tag/v1.15-vms1) | gzip, gunzip and zcat |
 | GNU tar — [vms-tar](https://github.com/issinoho/vms-tar) | [v1.35-vms1](https://github.com/issinoho/vms-tar/releases/tag/v1.35-vms1) | `-z`/`-j`/`-J`/`--zstd` through the compressor kits; VMS names as Unix members |
 | GNU findutils — [vms-findutils](https://github.com/issinoho/vms-findutils) | [v4.11.0-vms2](https://github.com/issinoho/vms-findutils/releases/tag/v4.11.0-vms2) | find, xargs and locate; `-exec` and xargs run DCL commands; VMS names for a VMS starting point |
