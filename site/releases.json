@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-21T19:33:53Z",
+  "generated": "2026-10-23T10:37:47Z",
   "releases": {
     "vms-grep": {
       "tag_name": "v3.12-vms3",
@@ -411,20 +411,20 @@
       ]
     },
     "vms-php": {
-      "tag_name": "v8.5.12-vms1",
-      "name": "PHP 8.5.12 for OpenVMS (vms1)",
-      "published_at": "2026-10-21T19:32:09Z",
-      "html_url": "https://github.com/issinoho/vms-php/releases/tag/v8.5.12-vms1",
+      "tag_name": "v8.5.12-vms2",
+      "name": "PHP 8.5.12 for OpenVMS (vms2): SQLite and PDO",
+      "published_at": "2026-10-23T10:37:01Z",
+      "html_url": "https://github.com/issinoho/vms-php/releases/tag/v8.5.12-vms2",
       "assets": [
         {
-          "name": "ISSINOHO-X86VMS-VMSPHP-V0805-12E1-1.PCSI",
-          "size": 44040192,
-          "browser_download_url": "https://github.com/issinoho/vms-php/releases/download/v8.5.12-vms1/ISSINOHO-X86VMS-VMSPHP-V0805-12E1-1.PCSI"
+          "name": "ISSINOHO-X86VMS-VMSPHP-V0805-12E2-1.PCSI",
+          "size": 48791552,
+          "browser_download_url": "https://github.com/issinoho/vms-php/releases/download/v8.5.12-vms2/ISSINOHO-X86VMS-VMSPHP-V0805-12E2-1.PCSI"
         },
         {
           "name": "SHA256SUMS",
           "size": 107,
-          "browser_download_url": "https://github.com/issinoho/vms-php/releases/download/v8.5.12-vms1/SHA256SUMS"
+          "browser_download_url": "https://github.com/issinoho/vms-php/releases/download/v8.5.12-vms2/SHA256SUMS"
         }
       ]
     },

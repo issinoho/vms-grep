@@ -212,11 +212,12 @@
     "kind": "server",
     "upstream": "https://www.php.net/",
     "product": "VMSPHP",
-    "blurb": "PHP 8.5, built natively with VSI's clang (64-bit): the command-line interpreter and a FastCGI server for lighttpd or Apache, with opcache, mysqli for MariaDB, openssl through VSI's SSL3 kit, Argon2 password hashing and CA certificates for verified HTTPS. A live phpBB 3.3 board runs on it behind lighttpd.",
+    "blurb": "PHP 8.5, built natively with VSI's clang (64-bit): the command-line interpreter and a FastCGI server for lighttpd or Apache, with opcache, mysqli for MariaDB, SQLite (sqlite3, PDO, pdo_sqlite) with an OpenVMS VFS safe across processes and accounts, openssl through VSI's SSL3 kit, Argon2 password hashing and CA certificates for verified HTTPS. A live phpBB 3.3 board runs on it behind lighttpd.",
     "requires": "VSI SSL3 kit",
     "notes": [
       "x86-64 only",
-      "8.5.12-vms1: fixes CVE-2026-109618, CVE-2026-109619"
+      "8.5.12 fixes CVE-2026-109618, CVE-2026-109619",
+      "8.5.12-vms2: SQLite and PDO"
     ],
     "try": "$ php -v",
     "setup": "$ @VMSPHP$ROOT:[COM]VMSPHP$SETUP",
