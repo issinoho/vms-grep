@@ -133,6 +133,16 @@ def body(port, name, ours, theirs):
                 f"format arguments\n"
                 f"- [ ] Match what applies on OpenVMS, then set `FF_UPSTREAM_VERSION` to {theirs}\n"
                 f"- [ ] Release as usual (tests, kits, install check, GitHub release)\n")
+    elif port.get("kind") == "protocol":
+        todo = (f"{repo} re-implements the upstream agent protocol: nothing is patched.\n\n"
+                f"- [ ] Compare the protocol files between {ours} and {theirs} (wire structs, "
+                f"handshake, hub handling)\n"
+                f"- [ ] Pin {theirs} in `upstream.conf` (tag and commit); `tools/fetch.sh --ref`; "
+                f"run the conformance and integration tests against it\n"
+                f"- [ ] Follow any wire changes, with a conformance test each; update "
+                f"`docs/PROTOCOL.md` and `docs/DECISIONS.md`\n"
+                f"- [ ] Build and test on IA64 and x86-64; kits, upgrade test, GitHub release; "
+                f"README release table here\n")
     else:
         todo = (f"- [ ] Set `UPSTREAM_VERSION={theirs}` (and the URL, SHA-256, key) in "
                 f"`upstream.conf`; fetch and verify the signed tarball\n"

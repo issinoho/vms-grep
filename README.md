@@ -361,7 +361,9 @@ compares the version the port is built from with the newest stable release on
 - **Upstream's version** is limited to one release series where a port follows one (`track`:
   MariaDB 11.4, lighttpd 1.4, PHP 8.5).
 - **When upstream is newer,** an issue labelled `upstream` opens here, titled
-  `[vms-x] name N released (we ship M)`, with a checklist. If upstream moves again, the issue is
+  `[vms-x] name N released (we ship M)`, with a checklist: a port's (patches, signed tarball),
+  vms-fastfetch's (`kind: interface`) or vms-beszel's (`kind: protocol`, the wire format and
+  conformance tests). If upstream moves again, the issue is
   updated. Once the port ships that version, the issue closes itself.
 
 The issues live in this repository because the workflow's own token can write only here. To add a

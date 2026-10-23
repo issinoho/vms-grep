@@ -34,6 +34,7 @@
     { "repo": "vms-zstd",      "anitya": 12083 },
     { "repo": "vms-fastfetch", "anitya": 279670,
       "pin": { "file": "src/fastfetch.h", "regex": "#define FF_UPSTREAM_VERSION \"([^\"]+)\"" },
-      "kind": "interface" }
+      "kind": "interface" },
+    { "repo": "vms-beszel",    "anitya": 383361, "kind": "protocol" }
   ]
 }
