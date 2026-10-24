@@ -184,11 +184,11 @@
     "name": "HISTSH",
     "kind": "tool",
     "product": "HISTSH",
-    "blurb": "Command history that lasts across sessions for DCL, the way bash keeps ~/.bash_history: log in, press up-arrow, and your commands from earlier sessions are there. DCL's RECALL can only save and load at the prompt, so HISTSH runs your session on a pseudo-terminal, passes every keystroke through, and quietly saves after each command. Switched on per user with the rights identifier HISTSH$USER. Not a port: written for OpenVMS in C99.",
+    "blurb": "Command history that lasts across sessions for DCL, the way bash keeps ~/.bash_history: log in, press up-arrow, and your commands from earlier sessions are there, from one history file all your sessions share; Ctrl/R searches it. DCL's RECALL can only save and load at the prompt, so HISTSH runs your session on a pseudo-terminal, passes every keystroke through, and quietly records each command. DCL still edits the line. Switched on per user with the rights identifier HISTSH$USER. Not a port: written for OpenVMS in C99.",
     "notes": [
       "early test"
     ],
-    "try": "UAF> GRANT/IDENTIFIER HISTSH$USER username\n$ ! then log in again and press up-arrow",
+    "try": "UAF> GRANT/IDENTIFIER HISTSH$USER username\n$ ! log in again: up-arrow, or Ctrl/R to search",
     "status": "released"
   },
   {
