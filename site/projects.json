@@ -192,6 +192,18 @@
     "status": "released"
   },
   {
+    "repo": "vms-vlmf",
+    "name": "VLMF",
+    "kind": "tool",
+    "product": "VLMF",
+    "blurb": "A full-screen manager for the License Management Facility, in DEC style: every license in a framed list with its details and a statistics panel, and register (from a typed PAK or a PAK file), modify, remove, disable, enable and load. Every change shows the exact LICENSE commands and asks first; the database is copied before the first change and each command is logged. Not a port: written for OpenVMS in C99.",
+    "notes": [
+      "early test"
+    ],
+    "try": "$ VLMF :== $VLMF:VLMF.EXE\n$ VLMF          ! Help lists the keys, F10 leaves",
+    "status": "released"
+  },
+  {
     "repo": "vms-mariadb",
     "name": "MariaDB",
     "kind": "server",
