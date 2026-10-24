@@ -200,7 +200,7 @@
     "notes": [
       "early test"
     ],
-    "try": "$ VLMF :== $VLMF:VLMF.EXE\n$ VLMF          ! Help lists the keys, F10 leaves",
+    "try": "$ @VLMF$ROOT:[000000]VLMF$SETUP.COM   ! defines VLMF\n$ VLMF          ! Help lists the keys, F10 leaves",
     "status": "released"
   },
   {
