@@ -31,6 +31,7 @@ the same family as [GNU sed](https://github.com/issinoho/vms-sed),
 [Steward](https://github.com/issinoho/vms-steward),
 [HISTSH](https://github.com/issinoho/vms-histsh),
 [VLMF](https://github.com/issinoho/vms-vlmf),
+[VTREE](https://github.com/issinoho/vms-vtree),
 the [beszel agent](https://github.com/issinoho/vms-beszel)
 and [fastfetch](https://github.com/issinoho/vms-fastfetch) for OpenVMS.
 
@@ -328,6 +329,7 @@ The family of ports, all for IA64 and x86-64 (MariaDB, PHP, SQLite: x86-64 only)
 | GNU patch — [vms-patch](https://github.com/issinoho/vms-patch) | [v2.8-vms1](https://github.com/issinoho/vms-patch/releases/tag/v2.8-vms1) | applies diffs |
 | fastfetch — [vms-fastfetch](https://github.com/issinoho/vms-fastfetch) | [v0.2.1](https://github.com/issinoho/vms-fastfetch/releases/tag/v0.2.1) | the system banner; a C99 rewrite, not a port |
 | HISTSH — [vms-histsh](https://github.com/issinoho/vms-histsh) | [v0.2.0](https://github.com/issinoho/vms-histsh/releases/tag/v0.2.0) | DCL command history across sessions: up-arrow reaches earlier sessions from one shared history file; Ctrl/R search; switched on per user by a rights identifier; written for OpenVMS, not a port; x86-64 and IA64, early test |
+| VTREE — [vms-vtree](https://github.com/issinoho/vms-vtree) | [v0.1.1](https://github.com/issinoho/vms-vtree/releases/tag/v0.1.1) | full-screen file manager inspired by XTree Gold, in DEC style: tree and file window, tagging, view, copy, move, rename, delete, purge, prune, graft, protection, owner and ACLs; protection always applies, deletes previewed and asked; written for OpenVMS, not a port; x86-64 and IA64, early test |
 | VLMF — [vms-vlmf](https://github.com/issinoho/vms-vlmf) | [v0.1.2](https://github.com/issinoho/vms-vlmf/releases/tag/v0.1.2) | full-screen license manager: view, register (typed or from a PAK file), modify, remove, disable, enable and load licenses; shows the LICENSE commands and asks before every change, backs up the database first; written for OpenVMS, not a port; x86-64 and IA64, early test |
 | MariaDB — [vms-mariadb](https://github.com/issinoho/vms-mariadb) | [v11.4.13-vms3](https://github.com/issinoho/vms-mariadb/releases/tag/v11.4.13-vms3) | server and clients; x86-64 only, preview |
 | lighttpd — [vms-lighttpd](https://github.com/issinoho/vms-lighttpd) | [v1.4.85-vms3](https://github.com/issinoho/vms-lighttpd/releases/tag/v1.4.85-vms3) | web server: HTTPS, HTTP/2, PHP over FastCGI |

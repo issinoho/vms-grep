@@ -204,6 +204,18 @@
     "status": "released"
   },
   {
+    "repo": "vms-vtree",
+    "name": "VTREE",
+    "kind": "tool",
+    "product": "VTREE",
+    "blurb": "A full-screen file and directory manager inspired by XTree Gold, dressed as a DEC application: a directory tree above a file window in XTree Gold's colours, one-letter commands, tagging, the LK201 keys and PF1 as GOLD. Browse, view (records or hex), copy and move as COPY does, rename, delete, purge, prune and graft branches, and set protection, owner and ACLs. File protection always applies (VTREE/PRIVILEGES to override), deletes are previewed and asked, aliases are never followed, every change is logged. Not a port: written for OpenVMS in C99.",
+    "notes": [
+      "early test"
+    ],
+    "try": "$ @VTREE$ROOT:[000000]VTREE$SETUP.COM   ! defines VTREE\n$ VTREE          ! Help lists the keys, F10 leaves",
+    "status": "released"
+  },
+  {
     "repo": "vms-mariadb",
     "name": "MariaDB",
     "kind": "server",
