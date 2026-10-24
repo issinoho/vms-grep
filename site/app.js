@@ -77,6 +77,20 @@
         ${p.try ? `<pre class="try">${esc(p.try)}</pre>` : ""}
       </div>`;
 
+    // Plain DCL procedures: no kit and no release, just files to copy.
+    if (p.kind === "dcl") {
+      const procs = (p.procedures || []).map((n) =>
+        `<span class="tag${n === p.newest ? " tag-new" : ""}">${esc(n)}${n === p.newest ? " &middot; new" : ""}</span>`).join("");
+      return head("DCL", esc(p.status || "no kit needed")) +
+        `<div class="port-body">
+          <div class="tags"><span class="tag tag-dcl">DCL</span>${procs}</div>
+          <p>${esc(p.blurb)}</p>
+          ${p.try ? `<pre class="try">${esc(p.try)}</pre>` : ""}
+        </div>
+        <div class="port-wip"><p>No kit to install: copy a <code>.COM</code> file to a directory on
+          <code>DCL$PATH</code>. Browse them on <a href="${repoUrl}">GitHub</a>.</p></div>`;
+    }
+
     if (!rel) {
       return head(p.status === "in progress" ? "WIP" : "&mdash;", esc(p.status || "no release yet")) + body +
         `<div class="port-wip"><p>No release yet. Follow progress on <a href="${repoUrl}">GitHub</a>.</p></div>`;

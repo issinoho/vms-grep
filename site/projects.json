@@ -284,6 +284,32 @@
     "status": "released"
   },
   {
+    "repo": "vms-dcl-tools",
+    "name": "DCL tools",
+    "kind": "dcl",
+    "blurb": "Command procedures for running and inspecting OpenVMS, each a single file with its settings at the top, drawing DEC-style boxed reports. Newest: BOOTMAP explains in plain language how the system boots and starts up: the phases, where SYLOGICALS.COM fits, which procedure mounts each disk, networking, layered products, queues and how long the last boot took.",
+    "try": "$ @BOOTMAP",
+    "status": "no kit needed",
+    "procedures": [
+      "BOOTMAP",
+      "SYSINFO",
+      "REPORT",
+      "TOOLCHAIN",
+      "SPACE",
+      "DEV",
+      "UPTIME",
+      "DEVMON",
+      "QUEMON",
+      "PSCAN",
+      "DELTREE",
+      "SSHLOGS",
+      "LOGROTATE",
+      "LPD_QUEUE",
+      "LPRINT"
+    ],
+    "newest": "BOOTMAP"
+  },
+  {
     "repo": "vms-pcre2",
     "name": "PCRE2",
     "kind": "library",
