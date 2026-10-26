@@ -227,6 +227,18 @@
     "status": "released"
   },
   {
+    "repo": "vms-vtop",
+    "name": "VTOP",
+    "kind": "tool",
+    "product": "VTOP",
+    "blurb": "A full-screen, live system monitor inspired by btop: CPU by processor mode and per CPU, memory, disks and network with history graphs, and a process list you can sort, filter, view as a tree and act on (suspend, resume, delete, priority; each asked first). Plus what only VMS has: cluster members and quorum, shadow set copy progress, and every queue, problem queues first. Braille in 24-bit colour on an xterm, DEC line drawing on a VT. Enables no privilege. Not a port: written for OpenVMS in C99.",
+    "notes": [
+      "early test"
+    ],
+    "try": "$ @VTOP$ROOT:[000000]VTOP$SETUP.COM   ! defines VTOP\n$ VTOP           ! h lists the keys, q leaves",
+    "status": "released"
+  },
+  {
     "repo": "vms-mariadb",
     "name": "MariaDB",
     "kind": "server",
