@@ -169,6 +169,17 @@
     "setup": "$ @LESS$ROOT:[000000]LESS$SETUP.COM"
   },
   {
+    "repo": "vms-vim",
+    "name": "Vim",
+    "kind": "tool",
+    "upstream": "https://www.vim.org/",
+    "product": "VIM",
+    "blurb": "The editor, built from upstream's signed releases with fixes for VMS: edits variable-length, VFC and stream files and writes new versions, reads a .vimrc made with EDIT, CTRL/C and :!command work on VT terminals, DECterm and xterm over ssh, and vim -es runs Ex scripts from DCL. The 5,400-file runtime (help, syntax, filetypes, the tutor) installs with its real names.",
+    "try": "$ vim LOGIN.COM\n$ vimtutor",
+    "status": "released",
+    "setup": "$ @VIM$ROOT:[000000]VIM$SETUP.COM"
+  },
+  {
     "repo": "vms-fastfetch",
     "name": "fastfetch",
     "kind": "tool",
