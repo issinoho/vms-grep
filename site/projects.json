@@ -307,6 +307,17 @@
     "status": "released"
   },
   {
+    "repo": "vmsotel",
+    "name": "vmsotel",
+    "kind": "server",
+    "upstream": "https://opentelemetry.io/",
+    "product": "VMSOTEL",
+    "blurb": "An OpenTelemetry agent: sends the system's metrics (CPU by mode, memory, paging, disks, processes, uptime, I/O), chosen processes, and the operator log and audit journal as OTLP logs to any OpenTelemetry collector, over OTLP/HTTP with TLS through VSI's OpenSSL 3 kit. Metrics are named as the collector's hostmetrics receiver names them, so Linux dashboards mostly just work. Written for OpenVMS in C99; it connects out, and VMSOTEL$CONFIGURE.COM sets it up under its own account with only the privileges its configuration needs.",
+    "requires": "VSI SSL3 kit, an OpenTelemetry collector",
+    "try": "$ @VMSOTEL$ROOT:[COM]VMSOTEL$CONFIGURE\n$ @VMSOTEL$ROOT:[COM]VMSOTEL_START",
+    "status": "released"
+  },
+  {
     "repo": "vms-dcl-tools",
     "name": "DCL tools",
     "kind": "dcl",
