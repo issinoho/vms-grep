@@ -239,6 +239,20 @@
     "status": "released"
   },
   {
+    "repo": "vms-vftp",
+    "name": "VFTP",
+    "kind": "tool",
+    "product": "VFTP",
+    "blurb": "A full-screen FTP, SFTP and SCP client in DEC style, like VTREE and VLMF: the local directory and a server's side by side in XTree Gold's colours, one-letter commands and PF1 as GOLD. SFTP to any SSH server (key or password, the server's key checked against known_hosts), SCP to Unix servers, FTP and FTPS (AUTH TLS) to VMS and Unix servers. Get and Put files and whole directories, text or binary by record format, a saved-sites list, a server's permissions, and resume of an interrupted binary transfer. A download is always a new version; replacing or deleting a file on a server asks first; passwords are never stored. Not a port: written for OpenVMS in C99, with libssh2 linked in.",
+    "requires": "VSI SSL3 kit",
+    "notes": [
+      "early test"
+    ],
+    "try": "$ @VFTP$ROOT:[000000]VFTP$SETUP.COM   ! defines VFTP\n$ VFTP user@host  ! Help lists the keys, F10 leaves",
+    "status": "released",
+    "setup": "$ @VFTP$ROOT:[000000]VFTP$SETUP.COM"
+  },
+  {
     "repo": "vms-mariadb",
     "name": "MariaDB",
     "kind": "server",
@@ -420,5 +434,15 @@
     "try": "$ zstd \"-19\" REPORT.TXT",
     "status": "released",
     "setup": "$ @ZSTD$ROOT:[000000]ZSTD$SETUP.COM"
+  },
+  {
+    "repo": "vms-libssh2",
+    "name": "libssh2",
+    "kind": "library",
+    "upstream": "https://libssh2.org/",
+    "product": "LIBSSH2",
+    "blurb": "The client-side SSH2 library as an object library and headers under LIBSSH2$ROOT, built against VSI's OpenSSL 3 kit: SSH sessions, public-key and password login, known_hosts checks, SFTP and SCP. Linked statically, so a program needs only SSL3 where it runs. It provides SFTP and SCP in VFTP.",
+    "requires": "VSI SSL3 kit",
+    "status": "released"
   }
 ]

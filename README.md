@@ -26,6 +26,7 @@ the same family as [GNU sed](https://github.com/issinoho/vms-sed),
 [Vim](https://github.com/issinoho/vms-vim),
 [bzip2](https://github.com/issinoho/vms-bzip2), [XZ Utils](https://github.com/issinoho/vms-xz),
 [Zstandard](https://github.com/issinoho/vms-zstd),
+[libssh2](https://github.com/issinoho/vms-libssh2),
 [MariaDB](https://github.com/issinoho/vms-mariadb),
 [lighttpd](https://github.com/issinoho/vms-lighttpd),
 [PHP](https://github.com/issinoho/vms-php),
@@ -34,6 +35,7 @@ the same family as [GNU sed](https://github.com/issinoho/vms-sed),
 [VLMF](https://github.com/issinoho/vms-vlmf),
 [VTREE](https://github.com/issinoho/vms-vtree),
 [VTOP](https://github.com/issinoho/vms-vtop),
+[VFTP](https://github.com/issinoho/vms-vftp),
 the [beszel agent](https://github.com/issinoho/vms-beszel),
 [vmsotel](https://github.com/issinoho/vmsotel)
 and [fastfetch](https://github.com/issinoho/vms-fastfetch) for OpenVMS.
@@ -323,6 +325,7 @@ The family of ports, all for IA64 and x86-64 (MariaDB, PHP, SQLite: x86-64 only)
 | bzip2 — [vms-bzip2](https://github.com/issinoho/vms-bzip2) | [v1.0.8-vms1](https://github.com/issinoho/vms-bzip2/releases/tag/v1.0.8-vms1) | the bzip2 compressor and libbz2 |
 | XZ Utils — [vms-xz](https://github.com/issinoho/vms-xz) | [v5.8.4-vms1](https://github.com/issinoho/vms-xz/releases/tag/v5.8.4-vms1) | xz and liblzma |
 | Zstandard — [vms-zstd](https://github.com/issinoho/vms-zstd) | [v1.5.7-vms1](https://github.com/issinoho/vms-zstd/releases/tag/v1.5.7-vms1) | zstd and libzstd |
+| libssh2 — [vms-libssh2](https://github.com/issinoho/vms-libssh2) | [v1.11.1-vms1](https://github.com/issinoho/vms-libssh2/releases/tag/v1.11.1-vms1) | the SSH2 client library (SFTP, SCP), linked statically; built against VSI's OpenSSL 3 kit; it provides VFTP's SFTP and SCP |
 | curl — [vms-curl](https://github.com/issinoho/vms-curl) | [v8.22.0-vms2](https://github.com/issinoho/vms-curl/releases/tag/v8.22.0-vms2) | alongside VSI's curl kit, following curl's own releases |
 | GNU Wget — [vms-wget](https://github.com/issinoho/vms-wget) | [v1.25.0-vms2](https://github.com/issinoho/vms-wget/releases/tag/v1.25.0-vms2) | the web retriever |
 | GNU m4 — [vms-m4](https://github.com/issinoho/vms-m4) | [v1.4.21-vms1](https://github.com/issinoho/vms-m4/releases/tag/v1.4.21-vms1) | the macro processor |
@@ -335,6 +338,7 @@ The family of ports, all for IA64 and x86-64 (MariaDB, PHP, SQLite: x86-64 only)
 | HISTSH — [vms-histsh](https://github.com/issinoho/vms-histsh) | [v0.2.0](https://github.com/issinoho/vms-histsh/releases/tag/v0.2.0) | DCL command history across sessions: up-arrow reaches earlier sessions from one shared history file; Ctrl/R search; switched on per user by a rights identifier; written for OpenVMS, not a port; x86-64 and IA64, early test |
 | VTREE — [vms-vtree](https://github.com/issinoho/vms-vtree) | [v0.1.1](https://github.com/issinoho/vms-vtree/releases/tag/v0.1.1) | full-screen file manager inspired by XTree Gold, in DEC style: tree and file window, tagging, view, copy, move, rename, delete, purge, prune, graft, protection, owner and ACLs; protection always applies, deletes previewed and asked; written for OpenVMS, not a port; x86-64 and IA64, early test |
 | VTOP — [vms-vtop](https://github.com/issinoho/vms-vtop) | [v0.1.0](https://github.com/issinoho/vms-vtop/releases/tag/v0.1.0) | full-screen system monitor inspired by btop: CPU by mode and per CPU, memory, disks, network graphs; processes sorted, filtered, as a tree, with suspend, resume, delete and priority (each asked first); cluster, shadow sets and queues; enables no privilege; written for OpenVMS, not a port; x86-64 and IA64, early test |
+| VFTP — [vms-vftp](https://github.com/issinoho/vms-vftp) | [v0.1.0](https://github.com/issinoho/vms-vftp/releases/tag/v0.1.0) | full-screen FTP, SFTP and SCP client in DEC style: local and remote panes, Get and Put of files and directories, text or binary, saved sites, permissions, resume; downloads are new versions, replacing or deleting on a server asks first, passwords never stored; written for OpenVMS, not a port; x86-64 and IA64, early test |
 | VLMF — [vms-vlmf](https://github.com/issinoho/vms-vlmf) | [v0.1.2](https://github.com/issinoho/vms-vlmf/releases/tag/v0.1.2) | full-screen license manager: view, register (typed or from a PAK file), modify, remove, disable, enable and load licenses; shows the LICENSE commands and asks before every change, backs up the database first; written for OpenVMS, not a port; x86-64 and IA64, early test |
 | MariaDB — [vms-mariadb](https://github.com/issinoho/vms-mariadb) | [v11.4.13-vms3](https://github.com/issinoho/vms-mariadb/releases/tag/v11.4.13-vms3) | server and clients; x86-64 only, preview |
 | lighttpd — [vms-lighttpd](https://github.com/issinoho/vms-lighttpd) | [v1.4.85-vms3](https://github.com/issinoho/vms-lighttpd/releases/tag/v1.4.85-vms3) | web server: HTTPS, HTTP/2, PHP over FastCGI |
