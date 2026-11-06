@@ -253,6 +253,20 @@
     "setup": "$ @VFTP$ROOT:[000000]VFTP$SETUP.COM"
   },
   {
+    "repo": "vms-rsync",
+    "name": "rsync",
+    "kind": "tool",
+    "upstream": "https://github.com/kristapsdz/openrsync",
+    "product": "RSYNC",
+    "blurb": "rsync, ported from openrsync (the ISC-licensed rsync of OpenBSD and macOS): keeps a VMS tree and another system's in step, sending only what changed, over ssh or from an rsync:// server, and copies VMS to VMS. VMS text files go as LF lines and arrive as records again; every update is a new version, with --keep-versions to purge and --delete removing every version; VMS specifications work as arguments, and a failure has error severity under DCL. Tested against rsync 3.4.1 on Linux. A client for now: VMS cannot yet be the remote end.",
+    "notes": [
+      "early test"
+    ],
+    "try": "$ rsync -av user@linuxhost:/srv/www/ [.WWW]",
+    "status": "released",
+    "setup": "$ @RSYNC$ROOT:[000000]RSYNC$SETUP.COM"
+  },
+  {
     "repo": "vms-mariadb",
     "name": "MariaDB",
     "kind": "server",

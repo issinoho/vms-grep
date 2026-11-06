@@ -36,6 +36,7 @@ the same family as [GNU sed](https://github.com/issinoho/vms-sed),
 [VTREE](https://github.com/issinoho/vms-vtree),
 [VTOP](https://github.com/issinoho/vms-vtop),
 [VFTP](https://github.com/issinoho/vms-vftp),
+[rsync](https://github.com/issinoho/vms-rsync),
 the [beszel agent](https://github.com/issinoho/vms-beszel),
 [vmsotel](https://github.com/issinoho/vmsotel),
 [vms-hass](https://github.com/issinoho/vms-hass)
@@ -340,6 +341,7 @@ The family of ports, all for IA64 and x86-64 (MariaDB, PHP, SQLite: x86-64 only)
 | VTREE — [vms-vtree](https://github.com/issinoho/vms-vtree) | [v0.1.1](https://github.com/issinoho/vms-vtree/releases/tag/v0.1.1) | full-screen file manager inspired by XTree Gold, in DEC style: tree and file window, tagging, view, copy, move, rename, delete, purge, prune, graft, protection, owner and ACLs; protection always applies, deletes previewed and asked; written for OpenVMS, not a port; x86-64 and IA64, early test |
 | VTOP — [vms-vtop](https://github.com/issinoho/vms-vtop) | [v0.1.0](https://github.com/issinoho/vms-vtop/releases/tag/v0.1.0) | full-screen system monitor inspired by btop: CPU by mode and per CPU, memory, disks, network graphs; processes sorted, filtered, as a tree, with suspend, resume, delete and priority (each asked first); cluster, shadow sets and queues; enables no privilege; written for OpenVMS, not a port; x86-64 and IA64, early test |
 | VFTP — [vms-vftp](https://github.com/issinoho/vms-vftp) | [v0.1.1](https://github.com/issinoho/vms-vftp/releases/tag/v0.1.1) | full-screen FTP, SFTP and SCP client in DEC style: local and remote panes, Get and Put of files and directories, text or binary, saved sites, permissions, resume; downloads are new versions, replacing or deleting on a server asks first, passwords never stored; written for OpenVMS, not a port; x86-64 and IA64, early test |
+| rsync — [vms-rsync](https://github.com/issinoho/vms-rsync) | [v20260730-vms1](https://github.com/issinoho/vms-rsync/releases/tag/v20260730-vms1) | rsync from openrsync: keeps a VMS tree and another system's in step over ssh or rsync://, and VMS to VMS; text files as LF lines and records again, updates as new versions with --keep-versions, VMS specifications as arguments; a client for now; x86-64 and IA64, early test |
 | VLMF — [vms-vlmf](https://github.com/issinoho/vms-vlmf) | [v0.1.2](https://github.com/issinoho/vms-vlmf/releases/tag/v0.1.2) | full-screen license manager: view, register (typed or from a PAK file), modify, remove, disable, enable and load licenses; shows the LICENSE commands and asks before every change, backs up the database first; written for OpenVMS, not a port; x86-64 and IA64, early test |
 | MariaDB — [vms-mariadb](https://github.com/issinoho/vms-mariadb) | [v11.4.13-vms3](https://github.com/issinoho/vms-mariadb/releases/tag/v11.4.13-vms3) | server and clients; x86-64 only, preview |
 | lighttpd — [vms-lighttpd](https://github.com/issinoho/vms-lighttpd) | [v1.4.85-vms3](https://github.com/issinoho/vms-lighttpd/releases/tag/v1.4.85-vms3) | web server: HTTPS, HTTP/2, PHP over FastCGI |
