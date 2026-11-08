@@ -128,7 +128,7 @@ subst() {
         -e "s/@KITVERSION@/$kitversion/g" -e "s/@ARCH@/$2/g" \
         -e "s/@PCRE2VERSION@/${PCRE2_VERSION:-none}/g"
 }
-for base in I64VMS X86VMS; do
+for base in I64VMS X86VMS AXPVMS; do
     subst $base "" < "$kit/grep.pcsi\$desc_template" > "$kit/GREP-$base.PCSI\$DESC"
     subst $base "" < "$kit/grep.pcsi\$text_template" > "$kit/GREP-$base.PCSI\$TEXT"
 done
