@@ -7,7 +7,7 @@
   const OWNER = "issinoho";
   const CACHE_KEY = "vmsReleases.v1";
   const CACHE_MS = 30 * 60 * 1000;
-  const ARCH = { I64VMS: "IA64", X86VMS: "x86-64", AXPVMS: "Alpha" };
+  const ARCH = { I64VMS: "IA64", X86VMS: "x86-64", AXPVMS: "Alpha", VMS: "VAX" };
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   let projects = [];
@@ -28,7 +28,8 @@
   // The version's letter is PCSI's kit type: V release, T field test (vms-steward
   // T0.1), X experimental, A/B alpha and beta.
   function parseKit(name) {
-    const m = /^[A-Z0-9]+-([A-Z0-9]+VMS)-([A-Z0-9_$]+)-[VTXAB].*\.PCSI$/i.exec(name);
+    // VAX kits have the bare base name VMS (ISSINOHO-VMS-ZLIB-...).
+    const m = /^[A-Z0-9]+-([A-Z0-9]*VMS)-([A-Z0-9_$]+)-[VTXAB].*\.PCSI$/i.exec(name);
     return m ? { arch: ARCH[m[1].toUpperCase()] || m[1], product: m[2].toUpperCase() } : null;
   }
 
