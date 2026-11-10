@@ -352,7 +352,7 @@
     "upstream": "https://www.home-assistant.io/",
     "product": "HASS",
     "blurb": "OpenVMS in Home Assistant: an agent publishes the system's state over MQTT, and Home Assistant's MQTT discovery turns each node into a device with typed sensors, with no YAML to write. CPU by mode, memory, page and swap files, disks, LAN devices, processes and users, plus what only VMS has: batch and print queues, shadow sets and cluster quorum, with problem sensors (a stopped queue, a degraded shadow set, disk errors) ready for alerts and automations. Read-only, it connects out over MQTT with optional TLS, and HASS$CONFIGURE.COM sets it up under its own unprivileged account. Written for OpenVMS in C99.",
-    "requires": "VSI SSL3 kit, an MQTT broker for Home Assistant",
+    "requires": "VSI SSL3 kit (not on VAX, which uses plain MQTT), an MQTT broker for Home Assistant",
     "notes": [
       "early test"
     ],
