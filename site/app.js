@@ -1,11 +1,15 @@
-// openvms.issinoho.com: renders the ports from projects.json and their latest
+// openvms.issinoho.com: renders the ports from projects.json and their recent
 // GitHub releases. releases.json is a snapshot taken at deploy time; the GitHub
 // API is then asked directly so a new release shows up without a redeploy.
+// A port's card shows, per architecture, the kit from the newest release that
+// has one: an Alpha-only release (the family's dedicated Alpha releases) must
+// not hide the x86-64 and IA64 kits of the release before it.
 (() => {
   "use strict";
 
   const OWNER = "issinoho";
-  const CACHE_KEY = "vmsReleases.v1";
+  const CACHE_KEY = "vmsReleases.v2"; // v2: combined releases
+  const RECENT = 10;                     // releases looked at per port
   const CACHE_MS = 30 * 60 * 1000;
   const ARCH = { I64VMS: "IA64", X86VMS: "x86-64", AXPVMS: "Alpha", VMS: "VAX" };
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -54,6 +58,34 @@
 
   const kitsOf = (rel) => (rel && rel.assets || []).filter((a) => parseKit(a.name));
 
+  // A port's recent releases (GitHub's list, or the snapshot's) -> one release
+  // for its card: the newest release's tag, date and notes, with one kit per
+  // architecture from the newest release that has it. Each kit keeps its own
+  // release's tag, notes and SHA256SUMS. Drafts and pre-releases are skipped.
+  // An object that is already one release (an old snapshot) is returned as is.
+  function combineReleases(list) {
+    if (!Array.isArray(list)) return list || null;
+    const rels = list.filter((r) => r && !r.draft && !r.prerelease)
+      .sort((a, b) => Date.parse(b.published_at) - Date.parse(a.published_at));
+    if (!rels.length) return null;
+    const head = trimRelease(rels[0]);
+    const seen = new Set();
+    const kits = [];
+    for (const r of rels) {
+      const sums = (r.assets || []).find((a) => a.name === "SHA256SUMS");
+      for (const a of r.assets || []) {
+        const k = parseKit(a.name);
+        if (!k || seen.has(k.arch)) continue;
+        seen.add(k.arch);
+        kits.push({ name: a.name, size: a.size, browser_download_url: a.browser_download_url,
+          tag: r.tag_name, html_url: r.html_url, published_at: r.published_at,
+          sums_url: sums ? sums.browser_download_url : null });
+      }
+    }
+    head.assets = kits.concat(head.assets.filter((a) => !parseKit(a.name)));
+    return head;
+  }
+
   // ---------- ports grid ----------
   function cardHTML(p) {
     const rel = releases[p.repo];
@@ -99,17 +131,27 @@
 
     const t = parseTag(rel.tag_name);
     const sums = rel.assets.find((a) => a.name === "SHA256SUMS");
+    const older = (a) => a.tag && a.tag !== rel.tag_name;
     const dls = kitsOf(rel).map((a) => {
       const k = parseKit(a.name);
       return `<a class="dl" href="${esc(a.browser_download_url)}" title="${esc(a.name)}">
-        <b>${esc(k.arch)}</b><span>.PCSI &middot; ${fmtSize(a.size)}</span></a>`;
+        <b>${esc(k.arch)}</b><span>.PCSI &middot; ${fmtSize(a.size)}${older(a) ? ` &middot; ${esc(a.tag)}` : ""}</span></a>`;
     }).join("");
+    // Kits from an earlier release: its notes and checksums too.
+    const others = [];
+    for (const a of kitsOf(rel)) {
+      if (older(a) && !others.some((o) => o.tag === a.tag)) others.push(a);
+    }
+    const otherLinks = others.map((o) =>
+      `<a href="${esc(o.html_url)}">${esc(o.tag)} notes</a>` +
+      (o.sums_url ? `<a href="${esc(o.sums_url)}">${esc(o.tag)} SHA256SUMS</a>` : "")).join("");
     return head(esc(t.upstream), t.level ? `vms${t.level}` : esc(rel.tag_name)) + body +
       `<div class="downloads">${dls}</div>
        <div class="port-foot">
          <span class="muted">${esc(rel.tag_name)} &middot; ${fmtDate(rel.published_at)}</span>
          <a href="${esc(rel.html_url)}">Release notes</a>
          ${sums ? `<a href="${esc(sums.browser_download_url)}">SHA256SUMS</a>` : ""}
+         ${otherLinks}
          ${p.upstream ? `<a href="${esc(p.upstream)}">Upstream</a>` : ""}
        </div>`;
   }
@@ -260,11 +302,12 @@
     if (cached) return { releases: cached, cached: true };
     const out = {};
     const results = await Promise.all(projects.map(async (p) => {
-      const r = await fetch(`https://api.github.com/repos/${OWNER}/${p.repo}/releases/latest`,
+      const r = await fetch(`https://api.github.com/repos/${OWNER}/${p.repo}/releases?per_page=${RECENT}`,
         { headers: { Accept: "application/vnd.github+json" } });
-      if (r.status === 404) return true; // no release yet
+      if (r.status === 404) return true; // no such repository yet
       if (!r.ok) throw new Error(`GitHub API ${r.status}`);
-      out[p.repo] = trimRelease(await r.json());
+      const rel = combineReleases(await r.json());
+      if (rel) out[p.repo] = rel;
       return true;
     }));
     if (results.every(Boolean)) writeCache(out);
@@ -286,7 +329,11 @@
       projects = pj;
       snapshotAt = rj && rj.generated;
       if (rj) {
-        releases = rj.releases || {};
+        releases = {};
+        for (const [repo, r] of Object.entries(rj.releases || {})) {
+          const c = combineReleases(r);
+          if (c) releases[repo] = c;
+        }
         setSource(`Snapshot from ${fmtDate(rj.generated)}; checking GitHub…`);
       }
     } catch (e) {

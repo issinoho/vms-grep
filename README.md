@@ -308,7 +308,7 @@ GNU `configure` cannot run usefully on VMS, so it runs on the Linux host with VM
 3. Bring in vms-sed's fix for the C run-time library's UTF-8 decoding (sed patch 0012).
 4. Offer the patches that are not VMS packaging to grep and gnulib.
 
-The family of ports, all for IA64 and x86-64 (MariaDB, PHP, SQLite: x86-64 only), each following its upstream releases:
+The family of ports, all for IA64 and x86-64 (MariaDB, PHP, SQLite: x86-64 only), some also for Alpha and VAX as noted, each following its upstream releases:
 
 | Port | Latest release | |
 |---|---|---|
@@ -316,7 +316,7 @@ The family of ports, all for IA64 and x86-64 (MariaDB, PHP, SQLite: x86-64 only)
 | PCRE2 — [vms-pcre2](https://github.com/issinoho/vms-pcre2) | [v10.49-vms1](https://github.com/issinoho/vms-pcre2/releases/tag/v10.49-vms1) | the regular-expression library |
 | GNU sed — [vms-sed](https://github.com/issinoho/vms-sed) | [v4.10-vms1](https://github.com/issinoho/vms-sed/releases/tag/v4.10-vms1) | the stream editor |
 | GNU awk (gawk) — [vms-awk](https://github.com/issinoho/vms-awk) | [v5.4.1-vms1](https://github.com/issinoho/vms-awk/releases/tag/v5.4.1-vms1) | built with gawk's own VMS port |
-| zlib — [vms-zlib](https://github.com/issinoho/vms-zlib) | [v1.3.2-vms1](https://github.com/issinoho/vms-zlib/releases/tag/v1.3.2-vms1) | the compression library |
+| zlib — [vms-zlib](https://github.com/issinoho/vms-zlib) | [v1.3.2-vms1](https://github.com/issinoho/vms-zlib/releases/tag/v1.3.2-vms1) | the compression library; x86-64, IA64, Alpha and VAX |
 | libxml2 — [vms-libxml2](https://github.com/issinoho/vms-libxml2) | [v2.15.4-vms1](https://github.com/issinoho/vms-libxml2/releases/tag/v2.15.4-vms1) | the XML library and xmllint, built with VSI clang (64-bit); it provides PHP's XML extensions |
 | SQLite — [vms-sqlite](https://github.com/issinoho/vms-sqlite) | [v3.54.1-vms1](https://github.com/issinoho/vms-sqlite/releases/tag/v3.54.1-vms1) | the database engine and the sqlite3 shell, built with VSI clang (64-bit); one database shared safely by several processes and accounts; it provides PHP's sqlite3 and pdo_sqlite |
 | GNU gzip — [vms-gzip](https://github.com/issinoho/vms-gzip) | [v1.15-vms1](https://github.com/issinoho/vms-gzip/releases/tag/v1.15-vms1) | gzip, gunzip and zcat |
@@ -324,7 +324,7 @@ The family of ports, all for IA64 and x86-64 (MariaDB, PHP, SQLite: x86-64 only)
 | GNU findutils — [vms-findutils](https://github.com/issinoho/vms-findutils) | [v4.11.0-vms2](https://github.com/issinoho/vms-findutils/releases/tag/v4.11.0-vms2) | find, xargs and locate; `-exec` and xargs run DCL commands; VMS names for a VMS starting point |
 | GNU less — [vms-less](https://github.com/issinoho/vms-less) | [v710-vms1](https://github.com/issinoho/vms-less/releases/tag/v710-vms1) | the pager; keyboard and screen through the terminal driver; VT, DECterm and xterm |
 | Vim — [vms-vim](https://github.com/issinoho/vms-vim) | [v9.2.1240-vms2](https://github.com/issinoho/vms-vim/releases/tag/v9.2.1240-vms2) | the editor, from upstream's signed releases; VMS fixes for record files, CTRL/C, `:!`, `vim -es` scripts; runtime installed with its real names |
-| bzip2 — [vms-bzip2](https://github.com/issinoho/vms-bzip2) | [v1.0.8-vms1](https://github.com/issinoho/vms-bzip2/releases/tag/v1.0.8-vms1) | the bzip2 compressor and libbz2 |
+| bzip2 — [vms-bzip2](https://github.com/issinoho/vms-bzip2) | [v1.0.8-vms1](https://github.com/issinoho/vms-bzip2/releases/tag/v1.0.8-vms1) | the bzip2 compressor and libbz2; x86-64, IA64, Alpha and VAX |
 | XZ Utils — [vms-xz](https://github.com/issinoho/vms-xz) | [v5.8.4-vms1](https://github.com/issinoho/vms-xz/releases/tag/v5.8.4-vms1) | xz and liblzma |
 | Zstandard — [vms-zstd](https://github.com/issinoho/vms-zstd) | [v1.5.7-vms1](https://github.com/issinoho/vms-zstd/releases/tag/v1.5.7-vms1) | zstd and libzstd |
 | libssh2 — [vms-libssh2](https://github.com/issinoho/vms-libssh2) | [v1.11.1-vms1](https://github.com/issinoho/vms-libssh2/releases/tag/v1.11.1-vms1) | the SSH2 client library (SFTP, SCP), linked statically; built against VSI's OpenSSL 3 kit; it provides VFTP's SFTP and SCP |
@@ -348,7 +348,7 @@ The family of ports, all for IA64 and x86-64 (MariaDB, PHP, SQLite: x86-64 only)
 | PHP — [vms-php](https://github.com/issinoho/vms-php) | [v8.5.12-vms2](https://github.com/issinoho/vms-php/releases/tag/v8.5.12-vms2) | PHP 8.5: CLI and FastCGI, opcache, mysqli, SQLite and PDO (sqlite3, pdo_sqlite, pdo_mysql), openssl, Argon2; built with VSI clang (64-bit); x86-64 only; 8.5.12 fixes CVE-2026-109618 and CVE-2026-109619 |
 | Steward — [vms-steward](https://github.com/issinoho/vms-steward) | [v0.16.0](https://github.com/issinoho/vms-steward/releases/tag/v0.16.0) | system management in a browser: a live dashboard; users (create, copy, modify, delete) and rights identifiers; access history (who signed in, when, from where, how); logical names; processes; batch and print queues; system parameters, licences (read-only); installed products (install and remove through PCSI); monitoring; the error log; written for OpenVMS, not a port; x86-64 and IA64, early test |
 | beszel agent — [vms-beszel](https://github.com/issinoho/vms-beszel) | [v0.21.1-vms1](https://github.com/issinoho/vms-beszel/releases/tag/v0.21.1-vms1) | reports the system to a beszel 0.21 monitoring hub, unprivileged; a C99 re-implementation of the agent protocol, not a port |
-| vmsotel — [vmsotel](https://github.com/issinoho/vmsotel) | [v0.1.0](https://github.com/issinoho/vmsotel/releases/tag/v0.1.0) | OpenTelemetry agent: system metrics, chosen processes, and the operator log and audit journal as logs, to any OpenTelemetry collector over OTLP/HTTP and TLS; runs as its own account with only the privileges it needs; written for OpenVMS, not a port; x86-64, IA64 and VAX |
+| vmsotel — [vmsotel](https://github.com/issinoho/vmsotel) | [v0.1.0](https://github.com/issinoho/vmsotel/releases/tag/v0.1.0) | OpenTelemetry agent: system metrics, chosen processes, and the operator log and audit journal as logs, to any OpenTelemetry collector over OTLP/HTTP and TLS; runs as its own account with only the privileges it needs; written for OpenVMS, not a port; x86-64, IA64, Alpha and VAX |
 | vms-hass — [vms-hass](https://github.com/issinoho/vms-hass) | [v0.1.2](https://github.com/issinoho/vms-hass/releases/tag/v0.1.2) | the system in Home Assistant over MQTT: CPU, memory, disks, network, queues, shadow sets and cluster as a discovered device, with problem sensors for alerts and automations; read-only, its own unprivileged account; written for OpenVMS, not a port; x86-64, IA64, Alpha and VAX, early test |
 | DCL tools — [vms-dcl-tools](https://github.com/issinoho/vms-dcl-tools) | no kit: plain DCL | command procedures in DEC-style boxes: BOOTMAP (how the system boots and starts up, in plain language), SYSINFO, REPORT, TOOLCHAIN, SPACE, DEV, UPTIME, live DEVMON and QUEMON, PSCAN, DELTREE, SSHLOGS and LOGROTATE housekeeping, printing |
 
@@ -365,7 +365,9 @@ The family of ports, all for IA64 and x86-64 (MariaDB, PHP, SQLite: x86-64 only)
 [openvms.issinoho.com](https://openvms.issinoho.com) is the home page for all the vms-*
 ports. Its source is in `site/` and `.github/workflows/pages.yml` publishes it to GitHub
 Pages. The ports are listed in `site/projects.json`; add a new port there. Release details
-come from each repository's latest GitHub release. The workflow takes a snapshot
+come from each repository's recent GitHub releases: for each architecture, the kit from the
+newest release that has one, so a release with only an Alpha kit leaves the x86-64 and IA64
+kits of the release before it on the page. The workflow takes a snapshot
 (`tools/site-releases.sh`) when it deploys, every six hours, and when a `release-published`
 repository dispatch arrives. The page then checks the GitHub API itself, so a new release
 appears without waiting for a redeploy.
