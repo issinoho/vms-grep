@@ -346,6 +346,17 @@
     "status": "released"
   },
   {
+    "repo": "vmsnotify",
+    "name": "vmsnotify",
+    "kind": "server",
+    "upstream": "https://gotify.net/",
+    "product": "VMSNOTIFY",
+    "blurb": "Sends what matters in the operator log (OPCOM) and the security audit journal to notification servers you run yourself: Gotify, an Apprise API server (and through it mail, Matrix, Teams and the rest), ntfy, or any webhook. Built-in rules cover break-ins, login failures, UAF, rights and auditing changes, OPCOM errors and warnings, and operator messages; repeats are counted into one summary. It connects out with TLS through VSI's OpenSSL 3 kit, involves no outside service, and VMSNOTIFY$CONFIGURE.COM sets it up under its own account with NETMBX, TMPMBX and READALL only. Written for OpenVMS in C99.",
+    "requires": "VSI SSL3 kit; a Gotify, Apprise API or ntfy server, or a webhook",
+    "try": "$ @VMSNOTIFY$ROOT:[COM]VMSNOTIFY$CONFIGURE\n$ @VMSNOTIFY$ROOT:[COM]VMSNOTIFY_START",
+    "status": "released"
+  },
+  {
     "repo": "vms-hass",
     "name": "vms-hass",
     "kind": "server",
