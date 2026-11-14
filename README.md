@@ -73,7 +73,9 @@ expected-to-fail test.
 
 Download the kits from the
 [latest release](https://github.com/issinoho/vms-grep/releases/latest); the current
-release is [v3.12-vms3](https://github.com/issinoho/vms-grep/releases/tag/v3.12-vms3).
+release is [v3.12-vms3](https://github.com/issinoho/vms-grep/releases/tag/v3.12-vms3) for
+IA64 and x86-64, and [v3.12-vms4](https://github.com/issinoho/vms-grep/releases/tag/v3.12-vms4)
+for Alpha (`ISSINOHO-AXPVMS-GREP-V0312-4-1.PCSI`).
 Check them against the release's `SHA256SUMS`. The kits are PCSI files, named
 `ISSINOHO-<base>-GREP-V0312-3-1.PCSI` (grep 3.12, VMS patch level 3). `<base>` is `I64VMS`
 or `X86VMS`. A kit downloaded through a non-VMS system arrives without its record format,
@@ -323,7 +325,7 @@ The family of ports, all for IA64 and x86-64 (MariaDB, PHP, SQLite: x86-64 only)
 
 | Port | Latest release | |
 |---|---|---|
-| **GNU grep** (this port) — [vms-grep](https://github.com/issinoho/vms-grep) | [v3.12-vms3](https://github.com/issinoho/vms-grep/releases/tag/v3.12-vms3) | with `grep -P` through PCRE2 |
+| **GNU grep** (this port) — [vms-grep](https://github.com/issinoho/vms-grep) | [v3.12-vms4](https://github.com/issinoho/vms-grep/releases/tag/v3.12-vms4) (Alpha), [v3.12-vms3](https://github.com/issinoho/vms-grep/releases/tag/v3.12-vms3) (x86-64, IA64) | with `grep -P` through PCRE2 |
 | PCRE2 — [vms-pcre2](https://github.com/issinoho/vms-pcre2) | [v10.49-vms2](https://github.com/issinoho/vms-pcre2/releases/tag/v10.49-vms2) (Alpha), [v10.49-vms1](https://github.com/issinoho/vms-pcre2/releases/tag/v10.49-vms1) (x86-64, IA64) | the regular-expression library |
 | GNU sed — [vms-sed](https://github.com/issinoho/vms-sed) | [v4.10-vms1](https://github.com/issinoho/vms-sed/releases/tag/v4.10-vms1) | the stream editor |
 | GNU awk (gawk) — [vms-awk](https://github.com/issinoho/vms-awk) | [v5.4.1-vms1](https://github.com/issinoho/vms-awk/releases/tag/v5.4.1-vms1) | built with gawk's own VMS port |
