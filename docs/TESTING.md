@@ -4,8 +4,8 @@ There are three layers, from quick to thorough:
 
 | Layer | Runs on | Needs | Command (host) |
 |---|---|---|---|
-| DCL smoke test, 20 checks | IA64, x86-64 | nothing extra | `tools/test.sh <node>` |
-| Regex tables, 330 cases | IA64, x86-64 | VSI Perl | `@[.VMS]REGEX_TESTS` on the node |
+| DCL smoke test, 20 checks | IA64, x86-64, Alpha | nothing extra | `tools/test.sh <node>` |
+| Regex tables, 330 cases | IA64, x86-64, Alpha | VSI Perl (none on Alpha: DCL runner) | `@[.VMS]REGEX_TESTS` on the node |
 | Upstream test suite, 128 tests | x86-64 | GNV (bash 4.4 + coreutils), VSI Perl | `tools/gnvtest.sh x86` |
 
 ## DCL smoke test (`vms/test_smoke.com`)
@@ -19,7 +19,10 @@ These are upstream's `bre.tests`, `ere.tests` and `spencer1.tests`, the tables t
 `bre.awk`/`ere.awk`/`spencer1.awk` normally turn into shell scripts. Each case runs
 directly from VSI Perl, with the pattern and input passed through files (`grep -f`), so
 no GNV is involved. A final case captures grep's output with Perl backticks, which go
-through a mailbox (patch 0010). This is IA64's main correctness coverage: IA64's GNV is from 2015
+through a mailbox (patch 0010). Alpha has no VSI Perl: `regex_tests.com` then runs
+`vms/regex_tests_noperl.com`, which reads the same tables and runs the same cases
+(`grep -q [-E] -f pattern input`, exit status compared) from DCL, with the same totals and
+messages. This is IA64's main correctness coverage: IA64's GNV is from 2015
 (bash 1.14) and cannot run gnulib's `init.sh`.
 
 ## Upstream suite under GNV (`vms/run_gnv_tests.sh`, `vms/run_gnv_tests.com`)
@@ -79,11 +82,11 @@ Expected failures come from two lists:
 | backref-multibyte-slow | It sets its time limit by timing `grep` run from Perl, which on VMS goes to DCL rather than our grep. Measured natively, the UTF-8 case takes 0.14 s against 0.12 s in the C locale. |
 
 ## Current results (grep 3.12)
-| Suite | IA64 | x86-64 |
-|---|---|---|
-| DCL smoke test | 20/20 | 20/20 |
-| Regex tables | 330/330 | 330/330 |
-| Upstream suite | (no usable GNV) | 96 pass, 0 unexpected failures, 10 expected failures, 16 skipped (7 "expensive", the rest missing locales, devices or programs), 6 excluded |
+| Suite | IA64 | x86-64 | Alpha |
+|---|---|---|---|
+| DCL smoke test | 20/20 | 20/20 | 20/20 |
+| Regex tables | 330/330 | 330/330 | 330/330 (DCL runner) |
+| Upstream suite | (no usable GNV) | 96 pass, 0 unexpected failures, 10 expected failures, 16 skipped (7 "expensive", the rest missing locales, devices or programs), 6 excluded | (no GNV) |
 
 The skips break down as follows. The "expensive" tests are
 skipped upstream unless `RUN_EXPENSIVE_TESTS=yes`. The locales VMS doesn't ship are

@@ -1,4 +1,4 @@
-# Hand-settled configure answers for OpenVMS (VSI C, both IA64 and x86-64).
+# Hand-settled configure answers for OpenVMS (VSI C; IA64, x86-64 and Alpha).
 #
 # Loaded after probed.site, so values here win.  Use this for checks the
 # automatic probes cannot answer: run-time behaviour tests (AC_RUN_IFELSE),
@@ -10,7 +10,7 @@
 ac_cv_func_pthread_sigmask=no
 
 # configure reads byte order out of an object file in cross mode, which
-# vmscc does not return.  IA64 (as used by VMS) and x86-64 are little-endian.
+# vmscc does not return.  IA64 (as used by VMS), x86-64 and Alpha are little-endian.
 ac_cv_c_bigendian=no
 
 # The CRTL's <string.h> provides mempcpy as a function-like macro (no linkable
@@ -22,3 +22,11 @@ gl_cv_onwards_func_mempcpy=yes
 # open() cannot open a directory by its Unix name on VMS (ENOENT); use
 # gnulib's dummy-fd fallback (patch 0003 extends it to ENOENT).
 gl_cv_func_open_directory_works=no
+
+# OpenVMS Alpha (V8.4-2L2, VSI C V7.4-002): configure-alpha.cache comes from a full cross
+# configure run on the node (2026-11-14, 111 minutes, 475 compiles judged by the Alpha's
+# compiler).  It is identical to configure-ia64.cache except for the CPU ABI lines
+# (gl_cv_host_cpu_c_abi*), and generating config.h from it changes only the __alpha__ /
+# __ia64__ macros, which grep and gnulib do not use here (HAVE_SIGSEGV_RECOVERY is off).  So
+# the staged config.h, generated from the IA64 answers, is shared by all three
+# architectures, and prepare.sh still takes its answers from configure-ia64.cache.

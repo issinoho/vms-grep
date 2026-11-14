@@ -133,7 +133,9 @@ for base in I64VMS X86VMS AXPVMS; do
     subst $base "" < "$kit/grep.pcsi\$text_template" > "$kit/GREP-$base.PCSI\$TEXT"
 done
 rm -f "$kit/grep.pcsi\$desc_template" "$kit/grep.pcsi\$text_template"
-subst "" "IA64 and x86-64" < "$kit/readme.vms" > "$kit/README.VMS"; rm -f "$kit/readme.vms"
+subst "" "IA64 and x86-64" < "$kit/readme.vms" > "$kit/README.VMS"
+# The Alpha kit has its own README (the others are unchanged, so their kits stay as released).
+subst "" "Alpha" < "$kit/readme.vms" > "$kit/README_AXPVMS.VMS"; rm -f "$kit/readme.vms"
 make -s -C "$hostcfg/doc" grep.1 >/dev/null
 mkdir -p "$kit/doc"
 cp "$hostcfg/doc/grep.1" "$kit/doc/GREP.1"

@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-Guidance for working in this repository: a port of GNU grep to OpenVMS (IA64 and x86-64)
+Guidance for working in this repository: a port of GNU grep to OpenVMS (IA64, x86-64 and Alpha)
 that stores only our deltas over the upstream release tarball. Read README.md first; it
 describes the workflow and design. This file covers the rules and the pitfalls.
 
@@ -34,6 +34,17 @@ describes the workflow and design. This file covers the rules and the pitfalls.
 and is found through the rooted logical name `PCRE2$ROOT`, which build.sh and the configure
 compile server define from `PCRE2_TREE` in `upstream.conf`. Build PCRE2 first on a fresh
 node. Both repos must use the same `/NAMES` qualifiers.
+
+## Alpha
+
+- `build.sh`/`test.sh`/`kit.sh`/`installcheck.sh` use `vms.sh batch` there (interactive ssh
+  output is unreliable; a batch job starts in the login directory, so each job sets default
+  to the work directory). `vms.sh` is vms-pcre2's (it retries a command that never started).
+- DCL: compare architecture names with `.EQS.`, never `.EQ.` (integer compare: every name
+  equals every other). `build.com` upper-cases `F$GETSYI("ARCH_NAME")` and accepts ALPHA.
+- The AXPVMS kit has its own README (`README_AXPVMS.VMS`). Patch level 4 is the Alpha kit; the
+  x86-64 and IA64 kits stay on 3.
+- Configuration: see the Alpha note in `overlay/vms/config/vms-manual.site`.
 
 ## Commands
 
@@ -82,6 +93,7 @@ MMS does not track compiler flags: after changing `ccflags.txt` or `CFLAGS` in
   - VMS pipes have no SIGPIPE.
   - A `timeout` that fires in a batch job kills the whole process tree.
   - IA64's GNV is bash 1.14 and cannot run the upstream suite; use the regex tables there.
+  - Alpha has no GNV and no Perl: smoke test plus `regex_tests_noperl.com` (DCL) only.
   - `printf` to a VMS file ends every write with a newline (each write is a record), so
     tests that build exact bytes with printf fail; verify them natively with VSI Perl.
   - An assignment prefix on a function call (`LC_ALL=x func`) stays set afterwards.

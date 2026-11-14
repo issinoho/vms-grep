@@ -2,7 +2,8 @@ $! REGEX_TESTS.COM - run grep's data-driven regex tests with VSI Perl
 $!
 $! Usage:  @[.VMS]REGEX_TESTS [grep-image]
 $!         The default image is [.BIN_<arch>]GREP.EXE in this tree.
-$! Needs VSI Perl (SYS$COMMON:[PERL-5_*]PERL_SETUP.COM); not GNV.
+$! Needs VSI Perl (SYS$COMMON:[PERL-5_*]PERL_SETUP.COM), or on Alpha (no Perl) uses
+$! REGEX_TESTS_NOPERL.COM; not GNV.
 $!
 $ set noon
 $ saved_default = f$environment("DEFAULT")
@@ -24,8 +25,12 @@ $ goto perl_loop
 $perl_done:
 $ if perl_setup .eqs. ""
 $ then
-$   write sys$error "REGEX_TESTS: VSI Perl not found"
-$   status = 44
+$!  No VSI Perl (OpenVMS Alpha has none): the DCL runner does the same work.
+$   saved_parse = f$getjpi("", "PARSE_STYLE_PERM")
+$   set process/parse_style=extended
+$   @[.vms]regex_tests_noperl
+$   status = $status
+$   set process/parse_style='saved_parse'
 $   goto finish
 $ endif
 $ @'perl_setup'

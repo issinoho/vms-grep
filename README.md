@@ -6,10 +6,10 @@
 
 [![Release](https://img.shields.io/github/v/release/issinoho/vms-grep?label=release)](https://github.com/issinoho/vms-grep/releases/latest)
 [![Downloads](https://img.shields.io/github/downloads/issinoho/vms-grep/total?label=downloads)](https://github.com/issinoho/vms-grep/releases)
-![OpenVMS](https://img.shields.io/badge/OpenVMS-IA64%20%7C%20x86--64-blue)
+![OpenVMS](https://img.shields.io/badge/OpenVMS-IA64%20%7C%20x86--64%20%7C%20Alpha-blue)
 [![License](https://img.shields.io/github/license/issinoho/vms-grep)](COPYING)
 
-A port of current GNU grep to OpenVMS on **IA64** and **x86-64**, kept as a thin layer over the
+A port of current GNU grep to OpenVMS on **IA64**, **x86-64** and **Alpha**, kept as a thin layer over the
 official GNU release so that it can follow upstream releases with minimal effort. VSI's GNV kit
 ships a grep that is many releases behind; this port starts from **GNU grep 3.12**. It belongs to
 the same family as [GNU sed](https://github.com/issinoho/vms-sed),
@@ -57,6 +57,14 @@ files, and generates the configuration for VSI C.
 | Upstream test suite (128 tests) | not runnable (GNV too old) | 96 pass, 0 unexpected failures |
 | `grep -P` (PCRE2 10.49, [vms-pcre2](https://github.com/issinoho/vms-pcre2)) | yes | yes |
 | PCSI kit ([v3.12-vms3](https://github.com/issinoho/vms-grep/releases/tag/v3.12-vms3)) | `ISSINOHO-I64VMS-GREP-V0312-3-1.PCSI` | `ISSINOHO-X86VMS-GREP-V0312-3-1.PCSI` |
+
+**Alpha (v3.12-vms4, a dedicated Alpha release; IA64 and x86-64 stay on vms3):** built on OpenVMS
+Alpha V8.4-2L2 with VSI C V7.4-002 and PCRE2 10.49 from vms-pcre2 (no compiler warnings, only
+informational messages, as on x86-64); DCL smoke test 20/20 (including `grep -P`); regex tables
+330/330 (no Perl there: a DCL runner does the same work); kit
+`ISSINOHO-AXPVMS-GREP-V0312-4-1.PCSI`. A full configure run on the Alpha gave the IA64
+answers (see `vms-manual.site`). The upstream suite needs GNV, which the Alpha node
+does not have.
 
 See [docs/TESTING.md](docs/TESTING.md) for the details of every skipped, excluded and
 expected-to-fail test.
@@ -161,10 +169,11 @@ you can also copy it to VMS any way you like and build there by hand.
 
 - **Linux host:** git, bash, python3, gcc and make (for the host-side `configure` run),
   curl and gpg. ssh/sftp too, if you want the automated route.
-- **OpenVMS IA64 or x86-64:** VSI C and MMS. OpenSSH for the automated route. VSI Perl for
+- **OpenVMS IA64, x86-64 or Alpha:** VSI C and MMS. OpenSSH for the automated route. VSI Perl for
   the regex tests, and GNV (bash 4.4 and coreutils, x86-64) for the full upstream suite.
-  The build has been tested on IA64 V8.4-2L3 with VSI C 7.4, and on x86-64 E9.2-4 with
-  VSI C 7.7.
+  The build has been tested on IA64 V8.4-2L3 with VSI C 7.4, on x86-64 E9.2-4 with
+  VSI C 7.7, and on Alpha V8.4-2L2 with VSI C V7.4-002 (no Perl there: the regex tables
+  run from DCL).
 
 ### 0. Build PCRE2 first
 
@@ -270,7 +279,8 @@ GNU `configure` cannot run usefully on VMS, so it runs on the Linux host with VM
    `vms_ccserver.com` on the node and judged by VSI C; results are memoised by content
    hash. It takes 50–70 minutes, once per upstream release, and writes
    `overlay/vms/config/configure-<node>.cache` (committed). The IA64 and x86-64 answers are
-   identical apart from the CPU name.
+   identical apart from the CPU name, and so are Alpha's (a full run on the Alpha took
+   111 minutes), so one `config.h` serves all three.
 2. `overlay/vms/config/vms-manual.site` holds hand-settled answers, each with a reason:
    run-time behaviour that cross mode cannot test, and CRTL quirks.
 3. `overlay/vms/config/next-headers.site` (generated) maps gnulib's wrapper headers to
@@ -303,7 +313,7 @@ GNU `configure` cannot run usefully on VMS, so it runs on the Linux host with VM
 
 ## Roadmap
 
-1. A port to OpenVMS **Alpha**, alongside IA64 and x86-64.
+1. ~~A port to OpenVMS **Alpha**, alongside IA64 and x86-64.~~ Done: see Status (Alpha kit, patch level 4).
 2. VMS-specific behaviour: native record formats (VAR/VFC files), wildcard file
    specifications typed at DCL, and a review of the compiler's warnings.
 3. Bring in vms-sed's fix for the C run-time library's UTF-8 decoding (sed patch 0012).
