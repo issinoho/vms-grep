@@ -327,7 +327,7 @@ The family of ports, all for IA64 and x86-64 (MariaDB, PHP, SQLite: x86-64 only)
 |---|---|---|
 | **GNU grep** (this port) — [vms-grep](https://github.com/issinoho/vms-grep) | [v3.12-vms4](https://github.com/issinoho/vms-grep/releases/tag/v3.12-vms4) (Alpha), [v3.12-vms3](https://github.com/issinoho/vms-grep/releases/tag/v3.12-vms3) (x86-64, IA64) | with `grep -P` through PCRE2 |
 | PCRE2 — [vms-pcre2](https://github.com/issinoho/vms-pcre2) | [v10.49-vms2](https://github.com/issinoho/vms-pcre2/releases/tag/v10.49-vms2) (Alpha), [v10.49-vms1](https://github.com/issinoho/vms-pcre2/releases/tag/v10.49-vms1) (x86-64, IA64) | the regular-expression library |
-| GNU sed — [vms-sed](https://github.com/issinoho/vms-sed) | [v4.10-vms1](https://github.com/issinoho/vms-sed/releases/tag/v4.10-vms1) | the stream editor |
+| GNU sed — [vms-sed](https://github.com/issinoho/vms-sed) | [v4.10-vms2](https://github.com/issinoho/vms-sed/releases/tag/v4.10-vms2) (Alpha), [v4.10-vms1](https://github.com/issinoho/vms-sed/releases/tag/v4.10-vms1) (x86-64, IA64) | the stream editor |
 | GNU awk (gawk) — [vms-awk](https://github.com/issinoho/vms-awk) | [v5.4.1-vms1](https://github.com/issinoho/vms-awk/releases/tag/v5.4.1-vms1) | built with gawk's own VMS port |
 | zlib — [vms-zlib](https://github.com/issinoho/vms-zlib) | [v1.3.2-vms1](https://github.com/issinoho/vms-zlib/releases/tag/v1.3.2-vms1) | the compression library; x86-64, IA64, Alpha and VAX |
 | libxml2 — [vms-libxml2](https://github.com/issinoho/vms-libxml2) | [v2.15.4-vms1](https://github.com/issinoho/vms-libxml2/releases/tag/v2.15.4-vms1) | the XML library and xmllint, built with VSI clang (64-bit); it provides PHP's XML extensions |
