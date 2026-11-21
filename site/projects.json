@@ -496,5 +496,17 @@
     "blurb": "The client-side SSH2 library as an object library and headers under LIBSSH2$ROOT, built against VSI's OpenSSL 3 kit: SSH sessions, public-key and password login, known_hosts checks, SFTP and SCP. Linked statically, so a program needs only SSL3 where it runs. It provides SFTP and SCP in VFTP.",
     "requires": "VSI SSL3 kit",
     "status": "released"
+  },
+  {
+    "repo": "vms-maven",
+    "name": "Apache Maven",
+    "kind": "tool",
+    "upstream": "https://maven.apache.org/",
+    "product": "MAVEN",
+    "blurb": "The Java build tool on VSI OpenJDK 8, from upstream's signed distribution: an MVN image that keeps the case of goals and options, patched classes for VMS file behaviour, and forked test JVMs, javadoc, antrun and tar archives that work. Plugins and dependencies come from Maven Central as elsewhere. x86-64; IA64 to follow.",
+    "try": "$ SET PROCESS/PARSE_STYLE=EXTENDED\n$ PIPE MVN -B package > build.log",
+    "requires": "VSI OpenJDK 8",
+    "status": "released",
+    "setup": "$ @MAVEN$ROOT:[000000]MAVEN$SETUP.COM"
   }
 ]
