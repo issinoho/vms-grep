@@ -227,6 +227,19 @@
     "status": "released"
   },
   {
+    "repo": "vms-vupdate",
+    "name": "VUPDATE",
+    "kind": "tool",
+    "product": "VUPDATE",
+    "blurb": "Keeps VSI software up to date the way winget or apt does: compares the installed products with the VSI Service Platform catalogue and lists newer kits, OpenVMS patches and security fixes, then downloads, verifies and installs the ones you choose. Prerequisites come from the portal and from each kit's release notes (the portal's lists are incomplete), in install order; downloads are MD5-checked and unpacked by VUPDATE itself; PCSI installs only kits whose VSI signature validates, with recovery data, and VUPDATE asks before a full kit would delete patch recovery data. A nightly batch check reports changes and never installs. Needs a VSI portal account; not a VSI product. Not a port: written for OpenVMS in C99.",
+    "requires": "VSI SSL3 kit, a VSI Service Platform account",
+    "notes": [
+      "early test"
+    ],
+    "try": "$ @VUPDATE$ROOT:[COM]VUPDATE$SETUP.COM   ! defines VUPDATE\n$ VUPDATE LOGIN\n$ VUPDATE CHECK",
+    "status": "released"
+  },
+  {
     "repo": "vms-vtop",
     "name": "VTOP",
     "kind": "tool",
