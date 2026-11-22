@@ -508,5 +508,17 @@
     "requires": "VSI OpenJDK 8",
     "status": "released",
     "setup": "$ @MAVEN$ROOT:[000000]MAVEN$SETUP.COM"
+  },
+  {
+    "repo": "vms-ant",
+    "name": "Apache Ant",
+    "kind": "tool",
+    "upstream": "https://ant.apache.org/",
+    "product": "ANT",
+    "blurb": "The Java build tool on VSI OpenJDK 8, from upstream's signed distribution: an ANT image that keeps the case of targets and options, forked java, javac, JUnit and javadoc that work, DCL commands from <exec>, and the environment as properties. Installs beside VSI's own ANT kit. x86-64; IA64 to follow.",
+    "try": "$ SET PROCESS/PARSE_STYLE=EXTENDED\n$ PIPE ANT -f /DISK$USER/ME/proj/build.xml dist > build.log",
+    "requires": "VSI OpenJDK 8",
+    "status": "released",
+    "setup": "$ @ANT$ROOT:[000000]ANT$SETUP.COM"
   }
 ]
