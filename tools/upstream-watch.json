@@ -4,7 +4,9 @@
     "release-monitoring.org.  track: optional version prefix for ports that follow",
     "one release series (only versions starting with it count).  pin: where the",
     "port records the upstream version it is built from; default upstream.conf",
-    "(UPSTREAM_VERSION), or a file and a regular expression with one group."
+    "(UPSTREAM_VERSION), or a file and a regular expression with one group.",
+    "compare: optional number of leading version parts to compare, for upstreams",
+    "that tag every patch (vim)."
   ],
   "ports": [
     { "repo": "vms-grep",      "anitya": 1251 },
@@ -32,6 +34,10 @@
     { "repo": "vms-bzip2",     "anitya": 237 },
     { "repo": "vms-xz",        "anitya": 5277 },
     { "repo": "vms-zstd",      "anitya": 12083 },
+    { "repo": "vms-libssh2",   "anitya": 1730 },
+    { "repo": "vms-vim",       "anitya": 5092, "compare": 2 },
+    { "repo": "vms-ant",       "anitya": 50 },
+    { "repo": "vms-maven",     "anitya": 1894 },
     { "repo": "vms-fastfetch", "anitya": 279670,
       "pin": { "file": "src/fastfetch.h", "regex": "#define FF_UPSTREAM_VERSION \"([^\"]+)\"" },
       "kind": "interface" },

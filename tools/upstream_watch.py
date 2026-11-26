@@ -180,7 +180,13 @@ def main():
             continue
         name = repo[4:]
         issue = by_repo.get(repo)
-        if vkey(theirs) > vkey(ours):
+        # "compare": N looks only at the first N parts, for upstreams that tag
+        # every patch (vim 9.2.NNNN daily); report the series, so the issue
+        # title stays put until the next one.
+        n = port.get("compare")
+        if n:
+            theirs = ".".join(str(x) for x in vkey(theirs)[:n])
+        if vkey(theirs)[:n or None] > vkey(ours)[:n or None]:
             title = f"[{repo}] {name} {theirs} released (we ship {ours})"
             if issue and issue["title"] == title:
                 action = f"issue #{issue['number']} open"
