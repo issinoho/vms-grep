@@ -316,8 +316,8 @@
     "requires": "VSI SSL3 kit",
     "notes": [
       "x86-64 only",
-      "8.5.12 fixes CVE-2026-109618, CVE-2026-109619",
-      "8.5.12-vms2: SQLite and PDO"
+      "8.5.13 fixes 11 CVEs in PHP-CGI, sessions and the engine",
+      "SQLite and PDO since 8.5.12-vms2"
     ],
     "try": "$ php -v",
     "setup": "$ @VMSPHP$ROOT:[COM]VMSPHP$SETUP",
